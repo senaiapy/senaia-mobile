@@ -1,0 +1,35 @@
+/* eslint-disable unicorn/filename-case */
+export type Salida = {
+  salidaId: string;
+  salidaUniqueId: string;
+  consumo_ms_cab_dia: string;
+  numero_caravana: string;
+  valor_compra: string;
+  costo_diaria: string;
+  costo_curativo: string;
+  costo_protocolo: string;
+  corral: string;
+  peso_salida: string;
+  peso_entrada: string;
+  dias_confinamento: string;
+  lote: string;
+  fecha_salida: string;
+  numero_guia: string;
+  propietario_origem: string;
+  peso_proyectado: string;
+  cms_pv: string;
+  categoria: string;
+  cms_total: string;
+  gmd: string;
+  destino: string;
+  controlador: string;
+  tipo_salida: string;
+  tipo_entrada: string;
+  angus: string;
+  nombre_identificaccion: string;
+  cantidad: string;
+  custo_total: string;
+  dbversion: string;
+  createdAt: any;
+  updatedAt: any;
+};

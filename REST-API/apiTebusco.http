@@ -1,0 +1,583 @@
+@Tebusco = https://symma-exchange.store
+@LocalTebusco = http://localhost:3333
+
+@apiTebusco = https://symma-exchange.store/api/v0/tebusco
+@apiLocalTebusco = http://localhost:3333/api/v0/tebusco
+
+@apiTebuscoWdb = https://symma-exchange.store/api/v0/tebusco/wdb
+@apiTebuscoWdbH = http://64.227.14.0:3333/api/v0/tebusco/wdb
+@apiLocalTebuscoWdb = http://localhost:3333/api/v0/tebusco/wdb
+
+############################################
+############################################
+### SERVER ALIVE
+GET {{apiTebusco}}  HTTP/1.1
+##########
+GET {{apiLocalTebusco}}  HTTP/1.1
+
+### SWAGGER ALIVE
+GET {{apiTebusco}}/swagger  HTTP/1.1
+##########
+GET {{apiLocalTebusco}}/swagger  HTTP/1.1
+
+### GRAPHQL ALIVE
+GET {{Tebusco}}/graphql  HTTP/1.1
+##########
+GET {{LocalTebusco}}/graphql  HTTP/1.1
+
+############################################
+############################################
+############################################
+############################################
+############################################
+############################################
+############################################
+############################################
+### CREATE USER
+
+// @name create  Users
+POST {{apiTebuscoWdbH}}/user 
+content-type: application/json
+
+{
+  "user_name": "Marcelo Anjos",
+  "user_email": "marcelu.phd-2@gmail.com",
+  "user_mobile": "985676074-2",
+  "user_password": "12345679"
+}
+############################################
+### CREATE USER
+
+// @name create  Users 
+POST {{apiTebuscoWdb}}/user 
+content-type: application/json
+
+{
+  "user_name": "Marcelo Anjos",
+  "user_email": "marcelu.phd-1@gmail.com",
+  "user_mobile": "985676074-1",
+  "user_password": "12345679"
+}
+
+############################################
+### CREATE USER
+
+// @name create  Users 
+POST {{apiLocalTebuscoWdb}}/user  
+content-type: application/json
+
+{
+  "user_name": "Marcelo Anjos",
+  "user_email": "marcelu.phd-2@gmail.com",
+  "user_mobile": "985676074-2",
+  "user_password": "12345679"
+}
+
+############################################
+############################################
+
+### GET all Users USER LOCAL
+// @name findAll Users
+GET {{apiLocalTebuscoWdb}}/users
+
+############################################
+
+### GET all Users USER
+// @name findAll Users
+GET {{apiTebuscoWdb}}/users
+
+############################################
+############################################
+
+### GET by id
+// @name get by USERS
+GET {{apiLocalTebuscoWdb}}/user/1
+############################################
+### GET by id
+// @name get by USERS
+GET {{apiTebuscoWdb}}/user/1
+
+############################################
+############################################
+
+### GET by id
+// @name get by USERS by name
+GET {{apiLocalTebuscoWdb}}/user/search/user_name/Marcelo Anjos
+
+### GET by id
+// @name get by USERS
+GET {{apiTebuscoWdb}}/user/search/user_name/Marcelo Anjos
+
+############################################
+############################################
+
+### GET by id
+// @name get by USERS by telefone
+GET {{apiLocalTebuscoWdb}}/user/search/user_mobile/985676074-2
+
+### GET by id
+// @name get by USERS
+GET {{apiTebuscoWdb}}/user/search/user_mobile/985676074-2
+
+############################################
+############################################
+
+### GET by id
+// @name get by USERS by user_email
+GET {{apiLocalTebuscoWdb}}/user/search/user_email/marcelu.phd-1@gmail.com
+
+### GET by id
+// @name get by USERS
+GET {{apiTebuscoWdb}}/user/search/user_email/marcelu.phd-1@gmail.com
+
+############################################
+############################################
+
+### UPDATE
+// @name UPDATE USERS/cpf or vpa
+
+### GET by id
+// @name get by USERS
+PATCH {{apiLocalTebuscoWdb}}/user/1
+content-type: application/json
+
+{
+  "user_token": "0",    
+  "user_status": "active",    
+  "user_locked": "unlocked"    
+}
+############################################
+### GET by id
+// @name get by USERS
+PATCH {{apiTebuscoWdb}}/user/1
+content-type: application/json
+
+{
+  "user_token": "0",    
+  "user_status": "active",    
+  "user_locked": "unlocked"    
+}
+
+############################################
+############################################
+
+### UPDATE
+// @name UPDATE USERS/cpf or vpa
+
+### GET by id
+// @name get by USERS
+PUT {{apiLocalTebuscoWdb}}/user/1
+content-type: application/json
+
+{
+  "user_token": "1",    
+  "user_status": "active",    
+  "user_locked": "unlocked"    
+}
+############################################
+### GET by id
+// @name get by USERS
+PUT {{apiTebuscoWdb}}/user/1
+content-type: application/json
+
+{
+  "user_token": "1",    
+  "user_status": "active",    
+  "user_locked": "unlocked"    
+}
+############################################
+############################################
+### GET by id
+// @name get by USERS
+POST {{apiLocalTebuscoWdb}}/userdump
+############################################
+### GET by id
+// @name get by USERS
+POST {{apiTebuscoWdb}}/userdump
+
+
+############################################
+### GET by id
+// @name get by USERS
+POST {{apiLocalTebuscoWdb}}/user_token
+############################################
+### GET by id
+// @name get by USERS
+POST {{apiTebuscoWdb}}/user_token
+
+
+############################################
+### GET by id
+// @name get by USERS
+POST {{apiLocalTebuscoWdb}}/user/login
+############################################
+### GET by id
+// @name get by USERS
+POST {{apiTebuscoWdb}}/user/login
+
+
+
+############################################
+### GET by id
+// @name get by USERS
+POST {{apiLocalTebuscoWdb}}/user/recover_password
+############################################
+### GET by id
+// @name get by USERS
+POST {{apiTebuscoWdb}}/user/recover_password
+
+
+############################################
+### GET by id
+// @name get by USERS
+POST {{apiLocalTebuscoWdb}}/user/login-token/62dc244bbb909f5ec2143ad4
+############################################
+### GET by id
+// @name get by USERS
+POST {{apiTebuscoWdb}}/user/login-token/62dc244bbb909f5ec2143ad4
+
+
+############################################
+### GET by id
+// @name get by USERS
+POST {{apiLocalTebuscoWdb}}/user/simple-login
+############################################
+### GET by id
+// @name get by USERS
+POST {{apiTebuscoWdb}}/user/simple-login
+
+
+############################################
+### GET by id
+// @name get by USERS
+POST {{apiLocalTebuscoWdb}}/ser/register
+############################################
+### GET by id
+// @name get by USERS
+POST {{apiTebuscoWdb}}/ser/register
+############################################
+
+
+############################################
+############################################
+
+### GET by id
+// @name DELETE by USERS
+DELETE {{apiLocalTebuscoWdb}}/user/2
+############################################
+### GET by id
+// @name get by USERS
+DELETE {{apiTebuscoWdb}}/user/2
+############################################
+############################################
+############################################
+############################################
+############################################
+############################################
+############################################
+############################################
+############################################
+############################################
+############################################
+############################################
+### CREATE USER
+
+// @name create  CATEGORYUSERS 
+POST {{apiLocalTebuscoWdb}}/categoryuser 
+content-type: application/json
+
+{
+  "user_id": 0,
+  "title": "Mecanico Bom",
+  "name": "Marcelo Anjos",
+  "address": "Lafranconi, 4685",
+  "price": "100.000/Hr",
+  "description": "Hacemos todo Mantenimento de su Veiculo, incluindo Recuperacion de bancos",
+  "photo": "https://i.ebayimg.com/images/g/wIQAAOSw5whjpFTC/s-l500.jpg",
+  "star": "5",
+  "reviews": "4",
+  "category": "mecanico",
+  "img": "https://i.ebayimg.com/images/g/N68AAOSwh-VjODrb/s-l500.png",
+  "other": "Mecanico",
+  "dollar": "100.000/Hr",
+  "cleaner": "mecanico",
+  "users_category_sync": false,
+  "created_at": "2023-04-09T23:06:13.454Z",
+  "modified_at": "2023-04-09T23:06:13.454Z"
+}
+
+###
+POST {{apiTebuscoWdb}}/categoryuser 
+content-type: application/json
+
+{
+ "user_id": 0,
+  "address": "Asus", 
+  "category": "aire", 
+  "cleaner": "Nnnnnnnn", 
+  "description": "Vvvvvvv", 
+  "dollar": "0123", 
+  "img": "", 
+  "name": "Marcelu", 
+  "other": "", 
+  "photo": "", 
+  "price": "0123", 
+  "reviews": "(0K)", 
+  "star": "0", 
+  "title": "Nnnnnnnn", 
+  "users_category_sync": false
+}
+############################################
+### CREATE USER
+
+// @name create  CATEGORYUSERS 
+POST {{apiTebuscoWdb}}/categoryuser 
+content-type: application/json
+
+{
+ "user_id": 0,
+  "title": "Mecanico Bom",
+  "name": "Marcelo Anjos",
+  "address": "Lafranconi, 4685",
+  "price": "100.000/Hr",
+  "description": "Hacemos todo Mantenimento de su Veiculo, incluindo Recuperacion de bancos",
+  "photo": "https://i.ebayimg.com/images/g/wIQAAOSw5whjpFTC/s-l500.jpg",
+  "star": "5",
+  "reviews": "4",
+  "category": "mecanico",
+  "img": "https://i.ebayimg.com/images/g/N68AAOSwh-VjODrb/s-l500.png",
+  "other": "Mecanico",
+  "dollar": "100.000/Hr",
+  "cleaner": "mecanico",
+  "users_category_sync": false
+}
+
+############################################
+############################################
+
+### GET all CATEGORYUSERS USER LOCAL
+// @name findAll CATEGORYUSERS
+GET {{apiLocalTebuscoWdb}}/categoryusers
+
+############################################
+
+### GET all CATEGORYUSERS USER
+// @name findAll CATEGORYUSERS
+GET {{apiTebuscoWdb}}/categoryusers
+
+############################################
+############################################
+
+### GET by id
+// @name get by CATEGORYUSERS
+GET {{apiLocalTebuscoWdb}}/categoryuser/5
+############################################
+### GET by id
+// @name get by CATEGORYUSERS
+GET {{apiTebuscoWdb}}/categoryuser/5
+
+############################################
+############################################
+
+### GET by id
+// @name get by CATEGORYUSERS by name
+GET {{apiLocalTebuscoWdb}}/categoryuser/search/category/mecanico
+
+### GET by id
+// @name get by CATEGORYUSERS
+GET {{apiTebuscoWdb}}/categoryuser/search/category/mecanico
+
+############################################
+############################################
+############################################
+############################################
+
+### GET by id
+// @name get by CATEGORYUSERS by RETURM ARRAY
+GET {{apiLocalTebuscoWdb}}/categoryusers/search/category/pintor
+
+### GET by id
+// @name get by CATEGORYUSERS
+GET {{apiTebuscoWdb}}/categoryusers/search/category/mecanico
+
+############################################
+############################################
+### UPDATE
+// @name UPDATE CATEGORYUSERS
+### GET by id
+// @name get by CATEGORYUSERS
+PATCH {{apiLocalTebuscoWdb}}/categoryuser/4
+content-type: application/json
+
+{
+  "title": "Pintor de Casa",    
+  "description": "Pinto todo el su hogar",    
+  "category": "pintor"    
+}
+############################################
+### GET by id
+// @name get by CATEGORYUSERS
+PATCH {{apiTebuscoWdb}}/categoryuser/1
+content-type: application/json
+
+{
+ "title": "Pintor de Casa",    
+  "description": "Pinto todo el su hogar",    
+  "category": "pintor"   
+}
+
+############################################
+############################################
+
+### UPDATE
+// @name UPDATE CATEGORYUSERS/cpf or vpa
+
+### GET by id
+// @name get by CATEGORYUSERS
+PUT {{apiLocalTebuscoWdb}}/categoryuser/1
+content-type: application/json
+
+{
+  "user_token": "1",    
+  "user_status": "active",    
+  "user_locked": "unlocked"    
+}
+############################################
+### GET by id
+// @name get by CATEGORYUSERS
+PUT {{apiTebuscoWdb}}/categoryuser/1
+content-type: application/json
+
+{
+  "user_token": "1",    
+  "user_status": "active",    
+  "user_locked": "unlocked"    
+}
+############################################
+############################################
+### GET by id
+// @name get by CATEGORYUSERS
+GET {{apiLocalTebuscoWdb}}/categoryuserdump
+############################################
+### GET by id
+// @name get by CATEGORYUSERS
+GET {{apiTebuscoWdb}}/categoryuserdump
+
+############################################
+############################################
+
+### GET by id
+// @name DELETE by CATEGORYUSERS
+DELETE {{apiLocalTebuscoWdb}}/categoryuser/2
+############################################
+### GET by id
+// @name get by CATEGORYUSERS
+DELETE {{apiTebuscoWdb}}/categoryuser/5
+############################################
+############################################
+############################################
+############################################
+
+### CREATE COIBFE
+
+// @name create  coibfes 
+POST {{apiTebuscoWdb}}/coibfecoibfes  HTTP/1.1
+content-type: application/json
+
+{
+ "ids": "",
+    "coibfeid": "499990001",
+    "coibfecodigov": "452dfb",
+    "coibfetransporte": "T",
+    "coibfefinalidad": "F",
+    "coibfedestino": "UE",
+    "coibfeanimales": "",
+    "coibfeaninovillos": "0",
+    "coibfeanitoros": "40",
+    "coibfeanivacas": "0",
+    "coibfeanivaquillas": "0",
+    "coibfeaniotros": "0",
+    "coibfeanitotal": "40",
+    "coibfeanihilton": "0",
+    "coibfetecnico_vpa_id": "877",
+    "coibfetecniconame": "Marcelo Anjos",
+    "coibfefrigorificoname": "frigorifico Concepcion",
+    "coibfefrigorifico_id": "0101010005",
+    "coibfeproductorname": "ARREND. FERNANDEZ GAMEZ LUIS ANIBAL",
+    "coibfeproductor_id": "318531",
+    "coibfeproductorsitrap": "LAFG",
+    "coibfepropriedadname": "DON LUIS A",
+    "coibfepropriedadsigor": "0217090002",
+    "coibfepropriedadsitrap": "LUIS",
+    "coibfepropriedaddepartamento": "SAN PEDRO",
+    "coibfepropriedaddistrito": "PUERTO YBAPOBO",
+    "coibfepropriedad_productor_id": "",
+    "coibfeprecinto1": "472534",
+    "coibfeprecinto2": "472535",
+    "coibfeprecinto3": "472536",
+    "coibfepos_id": "QTg1MTVCRTJGOEM0NDM5MjkxNjBmMmExN2ZkNA==",
+    "coibfeposdate": "2022-11-23T16:38:06-03:00",
+    "coibfeposapikeymobile": "",
+    "coibfeposlatitud": "-23.596468311734498",
+    "coibfeposlongitud": "-57.01739969663322",
+    "coibfedocnroprop": "318531",
+    "coibfedocdigprop": "",
+    "coibfedocorigabrev": "PY",
+    "coibfedoctipoabrev": "CI",
+    "coibfe_issinc": "false"    
+  }
+
+############################################
+############################################
+
+### GET all coibfecoibfess COIBFE
+// @name findAll coibfecoibfes
+GET {{apiTebuscoWdb}}/coibfecoibfes
+
+############################################
+############################################
+
+### GET all DUMP COIBFE
+// @name findAll coibfecoibfes
+GET {{apiTebuscoWdb}}/coibfecoibfesdump
+
+############################################
+############################################
+
+### GET all coibfecoibfess COIBFE
+// @name findAll coibfecoibfes
+GET {{apiLocalTebuscoWdb}}/coibfecoibfes
+
+############################################
+############################################
+### GET ONE coibfecoibfess COIBFE
+// @name findAll coibfecoibfes
+GET {{apiTebuscoWdb}}/coibfecoibfes/1
+
+############################################
+############################################
+
+############################################
+############################################
+
+### DELETE ONE coibfecoibfess COIBFE
+// @name findAll coibfecoibfes
+DELETE {{apiTebuscoWdb}}/coibfecoibfes/343
+
+############################################
+############################################
+
+############################################
+############################################
+### UPDATE
+// @name UPDATE coibfes
+
+PUT  {{apiTebuscoWdb}}/coibfecoibfes/51  HTTP/1.1
+content-type: application/json
+
+{
+             "coibfeobs": "ANULADO"
+}
+
+############################################
+############################################

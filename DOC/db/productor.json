@@ -1,0 +1,78 @@
+PROP {
+    "__changes": {
+        "_value": [Circular
+        ],
+        "closed": false,
+        "currentObservers": null,
+        "hasError": false,
+        "isStopped": false,
+        "observers": [
+            [SafeSubscriber
+            ]
+        ],
+        "thrownError": null
+    },
+    "_isEditing": false,
+    "_preparedState": null,
+    "_raw": {
+        "_changed": "",
+        "_status": "created",
+        "body": null,
+        "createdat": "",
+        "dbversion": "",
+        "id": "189",
+        "propriedaddepartamento": "BOQUERON ",
+        "propriedaddistrito": "TENIENTE ACOSTA",
+        "propriedadname": "SAN RAMON",
+        "propriedadproductors": "",
+        "propriedadpropietario": "undefined",
+        "propriedadsigor": "1717000001",
+        "propriedadsitrap": "GASR",
+        "propriedadstatus": "active",
+        "server_id": 189,
+        "title": "",
+        "updatedat": ""
+    },
+    "_subscribers": [],
+    "collection": {
+        "_cache": {
+            "_debugCollection": [Circular
+            ],
+            "map": [Map
+            ],
+            "recordInsantiator": [Function anonymous
+            ],
+            "tableName": "coibfepropriedads"
+        },
+        "_subscribers": [
+            [Array
+            ]
+        ],
+        "changes": {
+            "closed": false,
+            "currentObservers": null,
+            "hasError": false,
+            "isStopped": false,
+            "observers": [Array
+            ],
+            "thrownError": null
+        },
+        "database": {
+            "_isBeingReset": false,
+            "_isBroken": false,
+            "_resetCount": 0,
+            "_subscribers": [Array
+            ],
+            "_workQueue": [WorkQueue
+            ],
+            "adapter": [DatabaseAdapterCompat
+            ],
+            "collections": [CollectionMap
+            ],
+            "schema": [Object
+            ]
+        },
+        "modelClass": [Function CoibfePropriedadModel
+        ]
+    }
+}

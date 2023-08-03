@@ -1,0 +1,178 @@
+let todoList = [ 
+
+{item_name:"Apple", price:"$5", quantity:1, brand_details: {name:"Golden Delicious", location:"San Francisco"}, isChecked:true},
+
+{item_name:"Bannana", price:"$3", quantity:2, brand_details: {name:"Fuji", location:"San Diego"}, isChecked:false},
+
+{item_name:"Pears", price:"$7", quantity:4, brand_details: {name:"Golden Delicious", location:"San Francisco"}, isChecked:true},
+                         
+{item_name:"Milk", price:"$4", quantity:3, brand_details: {name:"Mother Dairy", location:"California"}, isChecked:false},
+                       
+];
+
+// Print item_name, price and quantity of each object in todo list 
+
+todoList.map(({item_name, price, quantity})=>{ 
+
+  console.log(`${item_name} with quantity ${quantity} with price ${price}`)
+
+});
+
+// "Apple with quantity 1 with price $5"
+// "Bannana with quantity 2 with price $3"
+// "Pears with quantity 4 with price $7"
+// "Milk with quantity 3 with price $4"
+
+// Print item_name and brand name of all checked object 
+
+todoList.map(({item_name, isChecked, brand_details: {name}})=>{ 
+
+if(isChecked){
+
+  console.log(`${item_name} from ${name} is selected`); 
+
+}
+
+
+
+// Transform into nested array of item_name with isChecked value 
+
+todoList.map(({item_name, isChecked})=>{ 
+
+  return [item_name, isChecked];
+
+});
+
+// [["Apple", true]
+//  ["Bannana", false]
+//  ["Pears", true]
+//  ["Milk", false]]
+
+// Transform into array of objects with item_name and price 
+
+todoList.map(({item_name, price})=>{ 
+
+  return {item_name, price};
+
+});
+
+// [{item_name: "Apple", price: "$5"}
+//  {item_name: "Bannana", price: "$3"}
+//  {item_name: "Pears", price: "$7"}
+//  {item_name: "Milk", price: "$4"}]
+
+
+// Print all item_name values from array of objects
+
+const itemList = todoList.map(({item_name})=> item_name);
+
+console.log(itemList)
+
+// ["Apple", "Bannana", "Pears", "Milk"]
+
+// Print unique brand location values from array of objects
+
+let productLocations = todoList.map(({brand_details: {location}}) => location);
+
+productLocations = new Set(productLocations)
+
+console.log(productLocations)
+
+// {"San Francisco", "San Diego", "California"}
+
+
+
+// Adding "total" property to todoList objects
+
+todoList = todoList.map(
+
+(item)=> { 
+
+  // Parsing price string to number value
+
+  const price = Number(item.price.replace("$", ""))
+
+  return {...item, total: `\$${price*item.quantity}`}
+
+});
+
+console.log(todoList)
+
+
+// Transform array to exclude brand_details property from todoList
+
+todoList = todoList.map(
+
+ ({item_name, price, quantity, isChecked})=> { 
+
+   return { item_name, price, quantity, isChecked }
+
+});
+
+console.log(todoList)
+
+//[{item_name: "Apple", price: "$5", quantity: 1}
+// {item_name: "Bannana", price: "$3", quantity: 2}
+// {item_name: "Pears", price: "$7", quantity: 4}
+// {item_name: "Milk", price: "$4", quantity: 3}]
+
+// Delete price property for every object entry in todoList
+
+todoList = todoList.map(
+
+(item)=> {  
+
+  delete item.price 
+
+  return item;
+
+});
+
+console.log(todoList)
+
+// [{item_name: "Apple", quantity: 1}
+// {item_name: "Bannana", quantity: 2}
+// {item_name: "Pears", quantity: 4}
+// {item_name: "Milk", quantity: 3}]"
+
+
+
+// Getting key/value pair of object entries in todoList array
+
+todoList.map((item)=>{ 
+
+return Object.entries(item).map( 
+
+(todoList_entry)=>{
+
+// Getting key/value pair of brand_details object
+
+  if(todoList_entry[0]=="brand_details"){ 
+
+    return Object.entries(todoList_entry[1]).map( 
+
+    (brand_details_entry)=> brand_details_entry);
+  }
+  else{
+
+    return todoList_entry;
+
+  }
+})
+
+});
+
+// [["item_name", "Apple"], ["price", "$5"],
+// ["quantity", 1], 
+//   [["name", "Golden Delicious"],
+//   ["location", "San Francisco"]],
+// ["isChecked", true]]
+...(more)
+
+
+});
+
+// "Apple from Golden Delicious is selected"
+// "Pears from Golden Delicious is selected"
+
+

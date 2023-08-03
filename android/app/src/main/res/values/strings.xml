@@ -1,0 +1,16 @@
+<resources>
+  <string name="app_name">Senaia</string>
+  <string name="expo_splash_screen_resize_mode" translatable="false">cover</string>
+  <string name="expo_splash_screen_status_bar_translucent" translatable="false">false</string>
+  <string name="expo_system_ui_user_interface_style" translatable="false">automatic</string>
+  <string name="expo_runtime_version">1</string>
+  <string name="ExpoLocalization_supportsRTL" translatable="false">undefined</string>
+  <string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true" translatable="false">DO_NOT_ASK_JAVASCRIPT</string>
+  <string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true" translatable="false">ALWAYS_SEND</string>
+  <string name="CodePushPublicKey">-----BEGIN PUBLIC KEY-----nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtPSR9lkGzZ4FR0lxF+ZAnP6jJ8+Xi5L601BPN4QESoRVSrJM08roOCVrs4qoYqYJy3Of2cQWvNBEh8ti3FhHuntiuLFpNdfzM4DjAw0Ti5hOTfTixqVBXTJPYpSjDh7K6tUvp9MV0l5q/Ps3se1vudnM1/X6g54lIX/QoEXTdMgR+SKXvlUIC13T7GkDHT6Z4RlwxkWkOmf2tGguRcEBL6jnww7w/3g0kWILz7nNPtXyDhIB9WLH7MKSJWdVCZm+cAqabUfpCFo7sHiyHLnUxcVYnOTw3sz9ceaci7z2r8SZdsfjyjiDJrq69eWtvKVUpredy9HtyALtNuLjDITahdh8AnzwIDAQABn-----END PUBLIC KEY-----</string>
+  <string moduleConfig="true" name="CodePushDeploymentKey">bG6x9yd1yrczuYBkn9jeqtWd3RKmIgX6kDExF</string>
+  <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+        AIzaSyDvbXn0LJzHAEuiQOYFeBI4u0xVxtg9erk
+    </string>
+  <string name="fb_login_protocol_scheme">fb822353608505983</string>
+</resources>

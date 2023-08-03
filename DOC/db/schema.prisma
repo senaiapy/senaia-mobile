@@ -1,0 +1,1332 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  // previewFeatures = []
+}
+
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  USER
+}
+
+enum Permission {
+  ROOT
+  ADMIN
+  MANAGER
+  CLIENT
+  USER
+}
+
+model User {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email     String   @unique
+  password  String
+  firstname String?
+  lastname  String?
+  name      String?
+  posts     Post[]
+  role      Role?
+
+  userId             String?
+  user_vpa_id        String?
+  user_name          String?
+  user_password      String?
+  user_mac           String?
+  user_status        String?
+  user_key           String?
+  userToken          String?
+  user_register      String?
+  user_locked        String?
+  user_type          String?
+  userChatId         String?
+  userDeviceStatus   String?
+  userKeyPrivate     String?
+  userApiKeyHardware String?
+}
+
+model Post {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  publisheds Boolean?
+  viewCount  Int      @default(0)
+  title      String
+  content    String?
+  author     User?    @relation(fields: [authorId], references: [id])
+  authorId   String?
+}
+
+model Customer {
+  id                     String   @id @default(cuid())
+  customerId             String   @default(cuid())
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+  customerEmail          String?
+  customerPhone          String?
+  customerUniqueId       String   @unique
+  customerLocked         String?
+  customerServerName     String?
+  customer_vpa_id        String?
+  customer_name          String?
+  customer_register      String?
+  customer_password      String
+  customer_mac           String?
+  customer_status        String?  @default("locked")
+  customer_key           String?
+  customerApiKeyMobile   String?
+  customerApiKeySoftware String?
+  customerKeyPrivate     String?
+  customerLevelAccess    String?  @default("0")
+  customerToken          String?
+  customerDeviceStatus   String?
+  customerApiKeyHardware String?
+  avatar                 String?
+  avatar_face            String?
+  wallet                 String?
+
+  customerPermission Permission?
+  customerAddress    Address[]
+
+  first_name      String?
+  last_name       String?
+  address         String?
+  stateAbbr       String?
+  city            String?
+  zipcode         String?
+  birthday        String?
+  first_seen      String?
+  last_seen       String?
+  has_ordered     Boolean?
+  latest_purchase String?
+  has_newsletter  Boolean?
+  groups          Role?
+  nb_commands     Int?
+  total_spent     Int?
+
+  // rename table name
+  @@map("customers")
+}
+
+model Wallets {
+  id                   String   @id @default(cuid())
+  first_name           String?
+  last_name            String?
+  address              String?
+  stateAbbr            String?
+  city                 String?
+  zipcode              String?
+  avatar               String?
+  birthday             String?
+  first_seen           String?
+  last_seen            String?
+  has_ordered          Boolean?
+  latest_purchase      String?
+  has_newsletter       Boolean?
+  groups               Role?
+  nb_commands          Int?
+  total_spent          Int?
+  wallets_id           String?
+  wallets_pin          String?
+  wallets_mail         String?
+  wallets_balance      String?
+  wallets_tokens       String?
+  wallets_transactions String?
+  wallets_messages     String?
+  wallets_card         String?
+  wallets_chatid       String?
+
+  @@map("walletss")
+}
+
+model Statement {
+  id          String    @id @default(cuid())
+  data        DateTime?
+  type        String?
+  amount      String?
+  balance     String?
+  description String?
+  total       String?
+
+  wallets_id  String?
+  customer_id String?
+
+  @@map("statements")
+}
+
+model Nfts {
+  id              String   @id @default(cuid())
+  first_name      String?
+  last_name       String?
+  address         String?
+  stateAbbr       String?
+  city            String?
+  zipcode         String?
+  avatar          String?
+  birthday        String?
+  first_seen      String?
+  last_seen       String?
+  has_ordered     Boolean?
+  latest_purchase String?
+  has_newsletter  Boolean?
+  groups          Role?
+  nb_commands     Int?
+  total_spent     Int?
+  nfts_wallets    String?
+  nfts_name       String?
+  nfts_value      String?
+  nfts_chain      String?
+
+  @@map("nftss")
+}
+
+model Tokens {
+  id              String   @id @default(cuid())
+  first_name      String?
+  last_name       String?
+  address         String?
+  stateAbbr       String?
+  city            String?
+  zipcode         String?
+  avatar          String?
+  birthday        String?
+  first_seen      String?
+  last_seen       String?
+  has_ordered     Boolean?
+  latest_purchase String?
+  has_newsletter  Boolean?
+  groups          Role?
+  nb_commands     Int?
+  total_spent     Int?
+  tokens_wallets  String?
+  tokens_name     String?
+  tokens_symbol   String?
+  tokens_type     String?
+  tokens_decimal  String?
+  tokens_balance  String?
+  tokens_price    String?
+  tokens_logo     String?
+  tokens_chain    String?
+
+  @@map("tokenss")
+}
+
+model Address {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  street    String?
+  number    String?
+  district  String?
+  obs       String?
+  country   String?
+  zip       String?
+
+  customer   Customer? @relation(fields: [customerId], references: [id])
+  tecnico    Tecnico?  @relation(fields: [tecnicoId], references: [id])
+  customerId String?
+  tecnicoId  Int?
+
+  // rename table name
+  @@map("addresses")
+}
+
+model Databaseversion {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  @@map("dbversions")
+}
+
+model Iot {
+  id                      String   @id @default(cuid())
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+  sensorMaintenance       String?
+  sensorWarning           String?
+  sensorUserName          String?
+  sensorUserPassword      String?
+  sensorUserMail          String?
+  sensorUserLevelAcess    String?
+  sensorUserLocked        String?
+  sensorId                String?
+  sensorKey               String?
+  sensorKeyPrivate        String?
+  sensorUniqueId          String?
+  sensorName              String?
+  sensorStatus            String?
+  sensorLocked            String?
+  sensorInTotal           String?
+  sensorOutTotal          String?
+  sensorInParcial         String?
+  sensorOutParcial        String?
+  sensorParcialClear      String?
+  sensorCredits           String?
+  sensorCreditsFactor     String?
+  sensorWeight            String?
+  sensorEnergyKW          String?
+  sensorEnergyV           String?
+  sensorEnergyAS          String?
+  sensorEnergyI           String?
+  sensorEnergyP           String?
+  sensorEnergyVA          String?
+  sensorEnergyKWH         String?
+  sensorEnergyCurrent     String?
+  sensorEnergyVoltage     String?
+  sensorEnergyPower       String?
+  sensorEnergyCalibration String?
+  sensorEnergyPf          String?
+  sensorEnergyTariff      String?
+  sensorType              String?
+  sensorPrivateKey        String?
+  sensorPublicKey         String?
+  sensorSaveLog           String?
+  sensorUserId            String?
+  sensorDate              String?
+  sensorTime              String?
+  sensorLong              String?
+  sensorLati              String?
+  sensorPres              String?
+  sensorTem1              String?
+  sensorTem2              String?
+  sensorTem3              String?
+  sensorTem4              String?
+  sensorTem5              String?
+  sensorHumi              String?
+  sensorAceX              String?
+  sensorAceY              String?
+  sensorAceZ              String?
+  sensorMagX              String?
+  sensorMagY              String?
+  sensorMagZ              String?
+  sensorGyrX              String?
+  sensorGyrY              String?
+  sensorGyrZ              String?
+  sensorPuls              String?
+  sensorOxim              String?
+  sensorMapX              String?
+  sensorMapY              String?
+  sensorMapZ              String?
+  sensorSeco              String?
+  sensorSno2              String?
+  sensorSnh3              String?
+  sensorLigh              String?
+  sensorSoun              String?
+  sensorAna1              String?
+  sensorAna2              String?
+  sensorAna3              String?
+  sensorBut1              String?
+  sensorBut2              String?
+  sensorBut3              String?
+  sensorBut4              String?
+  sensorBut5              String?
+  sensorLed1              String?
+  sensorLed2              String?
+  sensorLed3              String?
+  sensorLed4              String?
+  sensorLed5              String?
+
+  @@map("iots")
+}
+
+model Tecnico {
+  id                           Int      @id @default(autoincrement())
+  tecnicoid             String   @default(cuid())
+  createdat             DateTime @default(now())
+  updatedat             DateTime @updatedAt
+  tecnicoemail          String?
+  tecnicophone          String?
+  tecnicouniqueid       String   @unique
+  tecnicolocked         String?
+  tecnicoservername     String?
+  tecnico_vpa_id        String  
+  tecnico_name          String?
+  tecnico_register      String?
+  tecnico_password      String
+  tecnico_mac           String?
+  tecnico_status        String?  @default("locked")
+  tecnico_key           String?
+  tecnicoapikeymobile   String?
+  tecnicoapikeysoftware String?
+  tecnicokeyprivate     String?
+  tecnicolevelaccess    String?  @default("0")
+  tecnicotoken          String?
+  tecnicodevicestatus   String?
+  tecnicoapikeyhardware String?
+  tecnicopermission Permission?
+  tecnicoaddress    Address[]
+  dbversion String?
+
+  // rename table name
+  @@map("tecnicos")
+}
+
+
+model Usuario {
+  id        String  @id @default(cuid())
+  nome      String? @default("")
+  email     String  @unique
+  password  String
+  senha     String? @default("")
+  telefone  String? @default("")
+  cpf       String? @default("")
+  firstname String? @default("")
+  lastname  String? @default("")
+  // posts     Posts[]
+  role      Role?
+
+  user_id            String? @default("")
+  user_name_register String? @default("")
+  user_status        String? @default("")
+  user_locked        String? @default("")
+  user_key_hardware  String? @default("")
+  user_level_access  String? @default("")
+  user_vpa           String? @default("")
+  user_token         String? @default("")
+  user_public_key    String? @default("")
+  user_private_key   String? @default("")
+  user_wallet_id     String? @default("")
+  user_system_type   String? @default("")
+  Status             String? @default("")
+  servicos           String? @default("")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("usuarios")
+}
+
+model Authenticate {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  userId             String?
+  user_vpa_id        String?
+  user_name          String?
+  user_password      String?
+  user_mac           String?
+  user_status        String?
+  user_key           String?
+  userToken          String?
+  user_register      String?
+  user_locked        String?
+  user_type          String?
+  userChatId         String?
+  userDeviceStatus   String?
+  userKeyPrivate     String?
+  userApiKeyHardware String?
+
+  @@map("autenthicates")
+}
+
+model Cerrar {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  @@map("cerrars")
+}
+
+model Coibfe {
+  id                           Int      @id @default(autoincrement())
+  createdat                    DateTime @default(now())
+  updatedat                    DateTime @updatedAt
+  dbversion                    String?
+  coibfeid                     String   @unique
+  coibfekey                    String?
+  coibfetoken                  String?
+  coibfecodigov                String?
+  coibfedestino                String?
+  coibfefinalidad              String?
+  coibfetransporte             String?
+  coibfeaninovillos            String?
+  coibfeanitoros               String?
+  coibfeanivacas               String?
+  coibfeanivaquillas           String?
+  coibfeaniotros               String?
+  coibfeanitotal               String?
+  coibfeanihilton              String?
+  coibfetecnico_vpa_id         String?
+  coibfetecniconame            String?
+  coibfefrigorificoname        String?
+  coibfefrigorifico_id         String?
+  coibfeproductorname          String?
+  coibfeproductor_id           String?
+  coibfeproductorsitrap        String?
+  coibfepropriedadname         String?
+  coibfepropriedad_id          String?
+  coibfepropriedadsigor        String?
+  coibfepropriedadsitrap       String?
+  coibfepropriedaddepartamento String?
+  coibfepropriedaddistrito     String?
+  coibfepropriedad_productor   String?
+  coibfeprecinto1              String?
+  coibfeprecinto2              String?
+  coibfeprecinto3              String?
+  coibfepos_id                 String?
+  coibfeposlatitud             String?
+  coibfeposlongitud            String?
+  coibfeposdate            String?
+  coibfeposapikeymobile        String?
+  coibfeobs                    String?
+  coibfedocnroprop             String?
+  coibfedocdigprop             String?
+  coibfedocorigabrev           String?
+  coibfedoctipoabrev           String?
+  coibfeerrocode               String?
+  coibfeerromessage            String?
+  coibfeanimales              String?
+  coibfe_issinc                String?
+
+  @@map("Coibfes")
+}
+
+model Configurar {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  @@map("configurars")
+}
+
+model Empezar {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  @@map("empezars")
+}
+
+model Enviar {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  @@map("enviars")
+}
+
+model Enviar_Sigor {
+  id                     String   @id @default(cuid())
+  createdat              DateTime @default(now())
+  updatedat              DateTime @updatedAt
+  dbversion              String?
+  coibfeid               String // ": "38320011"
+  coibfedestino          String //": "UE"
+  coibfefinalidad        String // ": "F"
+  coibfetransporte       String // ": "T"
+  coibfeaninovillos      String // ": "0"
+  coibfeanitoros         String // ": "40"
+  coibfeanivacas         String // ": "0"
+  coibfeanivaquillas     String // ": "0"
+  coibfeaniotros         String // ": "0"
+  coibfeanihilton        String // ": "0"
+  coibfetecnico_vpa_id   String // ": "832"
+  coibfefrigorifico_id   String // ": "1113010010"
+  coibfeproductor_id     String // ": "80061886-6"
+  coibfepropriedadsigor  String // ": "1613010027"
+  coibfepropriedadsitrap String // ": "AGLH"
+  coibfeprecinto1        String // ": "442318"
+  coibfeprecinto2        String // ": "442319"
+  coibfeprecinto3        String // ": "442320"
+  coibfeposlatitud       String // ": "-22.3446833"
+  coibfeposlongitud      String // ": "-60.2523733"
+  coibfeposdate      String // ": "2021-02-05T12:51:47"
+  coibfedignroprop       String // ": "6"
+  coibfedocnroprop       String // ": "80061886"
+  coibfedocorigabrev     String // ": "NA"
+  coibfedoctipoabrev     String // ": "RUC"
+
+  @@map("enviar_sigors")
+}
+
+model Frigorifico {
+   id                           Int      @id @default(autoincrement())
+  createdat DateTime @default(now())
+  updatedat DateTime @updatedAt
+  dbversion String?
+  frigorificoname         String?
+  frigorifico_id          String?
+  frigorificodepartamento String?
+  frigorificokeyprivate   String?
+  frigorificostatus       String?
+
+  @@map("frigorificos")
+}
+
+model Frontend {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  @@map("frontends")
+}
+
+model Productor {
+   id                           Int      @id @default(autoincrement())
+  createdat DateTime @default(now())
+  updatedat DateTime @updatedAt
+  dbversion String?
+  productorname           String?
+  productor_id            String?
+  productortoken          String?
+  productorsitrap         String?
+  productoracreditacion   String?
+  productor_propriedad_id String?
+  productorpassword       String?
+  productormail           String?
+  productorphone          String?
+  productorissync         String?
+  @@map("productors")
+}
+
+model Propriedad {
+   id                           Int      @id @default(autoincrement())
+
+  createdat DateTime @default(now())
+  updatedat DateTime @updatedAt
+  dbversion String?
+  propriedadname         String?
+  propriedadpropietario  String?
+  propriedadstatus       String?
+  propriedadsigor        String?
+  propriedadsitrap       String?
+  propriedaddepartamento String?
+  propriedaddistrito     String?
+ // productores            Productor[]?
+  @@map("propriedads")
+}
+
+model Propriedad_Productor {
+  id        Int      @id @default(autoincrement())
+  createdat DateTime @default(now())
+  updatedat DateTime @updatedAt
+  dbversion String?
+  propriedadsigor            String?
+  productor_id               String?
+  coibfeid                   String?
+  propriedad_productorissync String?
+
+  @@map("propriedad_productors")
+}
+
+model Registrar {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  @@map("registrars")
+}
+
+model Animal {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  animalId                String?
+  animalUniqueId          String?
+  animalNroTag            String?
+  animalDataNascimento    String?
+  animalDataQuarentena    String?
+  animalIdRaca            String?
+  animalSexo              String?
+  animalIdClassificacao   String?
+  animalUltimoPeso        String?
+  animalDataUltimapesagem String?
+  animalListaNegra        String?
+  animalProductor_ID      String?
+  animalPropriedad_ID     String?
+
+  @@map("animals")
+}
+
+model Entrada {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  entradaId                 String?
+  entradaUniqueId           String?
+  tipo_dispositivo_anterior String?
+  numero_anterior           String?
+  sigla_anterior            String?
+  color_anterior            String?
+  tipo_dispositivo          String?
+  numero_actual             String?
+  sigla                     String?
+  color                     String?
+  corral                    String?
+  peso_actual               String?
+  categoria                 String?
+  fecha_aplicaccion         String?
+  fecha_entrada             String?
+  corral_origem             String?
+  modalidade                String?
+  lote                      String?
+  num_guia                  String?
+  peso_entrada              String?
+  propietario_origem        String?
+
+  @@map("entradas")
+}
+
+model Front {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  @@map("fronts")
+}
+
+model Guia {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  guiaId           String?
+  guiaUniqueId     String?
+  guiaOrden        String?
+  guiaGuias        String?
+  guiaContrato     String?
+  guiaFechaEntrada String?
+  guiaCantidad     String?
+  guiaOrigen       String?
+  guiaCategoria    String?
+  guiaCorral       String?
+  guiaModalidad    String?
+
+  @@map("guias")
+}
+
+model Identifica {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  identificaId                  String?
+  identificaUniqueId            String?
+  identificaIdAnimal            String?
+  identificaNroTag              String?
+  identificaIdTecnico           String?
+  identificaNumeroIdentificador String?
+  identificaDataNascimento      String?
+  identificaSexo                String?
+  identificaIdRaca              String?
+  identificaMarcaFogo           String?
+  identificaLatitude            String?
+  identificaLongitude           String?
+  identificaCarimbo             String?
+  identificaLoteVacina          String?
+  identificaPeso                String?
+  identificaCodErro             String?
+  identificaDataIdentificacao   String?
+
+  @@map("identificas")
+}
+
+model Liquidacion {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  liquidacionId                String?
+  liquidacionUniqueId          String?
+  liquidacionGuias             String?
+  liquidacionCantidad          String?
+  liquidacionFaena_kg_total    String?
+  liquidacionPromedio_animal   String?
+  liquidacionPrecio_venta      String?
+  liquidacionFecha_salida      String?
+  liquidacionFecha_faena       String?
+  liquidacionPrecio_kg_carcasa String?
+  liquidacionPrecio_total      String?
+
+  @@map("liquidacions")
+}
+
+model Peso {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  pesoId          String?
+  pesoUniqueId    String?
+  pesoPesoActual  String?
+  pesoPesoFinal   String?
+  pesoPesoEntrada String?
+
+  @@map("pesos")
+}
+
+model Raza {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  razaId            String?
+  razaUniqueId      String?
+  razaIdRaca        String?
+  razaNomeRaca      String?
+  razaOrdemExibicao String?
+
+  @@map("razas")
+}
+
+model Salida {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  salidaId               String?
+  salidaUniqueId         String?
+  consumo_ms_cab_dia     String?
+  numero_caravana        String?
+  valor_compra           String?
+  costo_diaria           String?
+  costo_curativo         String?
+  costo_protocolo        String?
+  corral                 String?
+  peso_salida            String?
+  peso_entrada           String?
+  dias_confinamento      String?
+  lote                   String?
+  fecha_salida           String?
+  numero_guia            String?
+  propietario_origem     String?
+  peso_proyectado        String?
+  cms_pv                 String?
+  categoria              String?
+  cms_total              String?
+  gmd                    String?
+  destino                String?
+  controlador            String?
+  tipo_salida            String?
+  tipo_entrada           String?
+  angus                  String?
+  nombre_identificaccion String?
+  cantidad               String?
+  custo_total            String?
+
+  @@map("salidas")
+}
+
+model Vacuna {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  vacunaId         String?
+  vacunaUniqueId   String?
+  vacunaIdLote     String?
+  vacunaIdVacuna   String?
+  vacunaNomeVacuna String?
+
+  @@map("vacunas")
+}
+
+model Check_online {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  @@map("check_onlines")
+}
+
+model Game {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  gameUser             String?
+  gameBio              String?
+  gameAvatar           String?
+  gameToken            String?
+  gameGroupUser        String?
+  gameDeviceType       String?
+  gameApiKeyHardware   String?
+  gameApiKeyMobile     String?
+  gameApiKeySoftware   String?
+  gameJackpot1Locked   String?
+  gameJackpot2Locked   String?
+  gameJackpot3Locked   String?
+  gameMaintenance      String?
+  gameWarning          String?
+  gameUserName         String?
+  gameUserPassword     String?
+  gameUserMail         String?
+  gameUserLevelAcess   String?
+  gameUserLocked       String?
+  gameId               String?
+  game_id              String?
+  gameRelative_cashin  String?
+  gameRelative_cashout String?
+  gameKey              String?
+  gameKeyPrivate       String?
+  gameUniqueId         String?
+  gameName             String?
+  gameStatus           String?
+  gameLocked           String?
+  gameInTotal          String?
+  gameOutTotal         String?
+  gameInParcial        String?
+  gameOutParcial       String?
+  gameParcialClear     String?
+  gameCredits          String?
+  gameCreditsFactor    String?
+  gameJackpot1         String?
+  gameJackpot2         String?
+  gameJackpot3         String?
+  gameWeight           String?
+  gameRegister1        String?
+  gameRegister2        String?
+  gameRegister3        String?
+  gameRegister4        String?
+  gameRegister5        String?
+  gameRegister6        String?
+  gameRegister7        String?
+  gameRegister8        String?
+  gameRegister9        String?
+  gameRegister10       String?
+
+  @@map("games")
+}
+
+model Mobile {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  @@map("mobiles")
+}
+
+model Localization {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  loc_indice       String? // integer NOT NULL
+  loc_tag          String? // bigint
+  loc_descricao    String? // character varying(25)
+  loc_latitude     String? // character varying(10)
+  loc_longitude    String? // character varying(10)
+  loc_data_fixacao String? // timestamp without time zone
+  loc_tec_indice   String? // integer
+  loc_pdd_indice   String? // integer
+
+  @@map("localizations")
+}
+
+model Log {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  user String?
+  logs String?
+
+  @@map("logs")
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  user    String?
+  message String?
+
+  @@map("messages")
+}
+
+model Token {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  @@map("tokens")
+}
+
+model Lista {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  status     String? //  "created"
+  group      String? //  "CINE SKY"
+  id_        String? //  2
+  logo       String? //  "http://asbx.xyz:80/images/711b1f8b9a30ceff12f0e72268a2b765.png"
+  name       String? //  "Cine Sky Ação"
+  token      String? //  null
+  url        String? //  "http://asbx.xyz:80/live/fuinha01/123321/71616.m3u8"
+  modelClass String? //  group cinesky
+
+  @@map("listas")
+}
+
+model Server {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dbversion String?
+
+  serverConfig_name            String?
+  serverConfigId               String?
+  serverConfigLocked           String?
+  serverConfigServerNameLocal  String?
+  serverConfigServerNameRemote String?
+  serverConfigChatId           String?
+  serverConfig_key             String?
+  serverConfigSendSigor        String?
+
+  @@map("servers")
+}
+
+model coibfefrigorifico {
+  id                                 Int      @id @default(autoincrement())
+  ids                                String?
+  frigorificoname                    String?
+  frigorifico_id                     String   @unique
+  frigorificoacreditacion            String?
+  frigorificopassword                String?
+  frigorificodepartamento            String?
+  frigorificodistrito                String?
+  frigorificomail                    String?
+  frigorificophone                   String?
+  frigorificolevelaccess             String?
+  frigorificoapikeymobile            String?
+  frigorificokey                     String?
+  frigorificostatus                  String?
+  frigorificolocked                  String?
+  frigorificotoken                   String?
+  frigorificoservername              String?
+  frigorificokeyprivate              String?
+  frigorificoapikeyhardware          String?
+  frigorificoapikeysoftware          String?
+  frigorificomessages                String?
+  frigorificopasswordremoteassistant String?
+  frigorificogroupusers              String?
+  frigorificodevicestatus            String?
+  frigorificoissync                  String?
+  createdat                          DateTime @default(now())
+  modifiedat                         DateTime @default(now())
+  updatedat                          DateTime @updatedAt
+
+  @@map("coibfefrigorificos")
+}
+
+model coibfepos {
+  id  Int     @id @default(autoincrement())
+  ids String?
+}
+
+model coibfeproductor {
+  id                               Int      @id @default(autoincrement())
+  ids                              String?
+  productorname                    String?
+  productor_id_type                String?
+  productor_id_origem              String?
+  productoracreditacion            String?
+  productor_propriedad_id          String?
+  productorpassword                String?
+  productormail                    String?
+  productorphone                   String?
+  productorlevelaccess             String?
+  productorapikeymobile            String?
+  productorkey                     String?
+  productorstatus                  String?
+  productorlocked                  String?
+  productortoken                   String?
+  productorsitrap                  String?
+  productorservername              String?
+  productordocnroprop              String?
+  productordocdigprop              String?
+  productordocorigabrev            String?
+  productordoctipoabrev            String?
+  productorissync                  String?
+  productorkeyprivate              String?
+  productorapikeyhardware          String?
+  productorapikeysoftware          String?
+  productormessages                String?
+  productorpasswordremoteassistant String?
+  productorgroupusers              String?
+  productordevicestatus            String?
+  productor_id                     String   @unique
+  createdat                        DateTime @default(now())
+  modifiedat                       DateTime @default(now())
+  updatedat                        DateTime @updatedAt
+
+  @@map("coibfeproductors")
+}
+
+model coibfepropriedad {
+  id                                Int      @id @default(autoincrement())
+  ids                               String?
+  propriedadname                    String?
+  propriedad_id                     String?
+  propriedaddevicestatus            String?
+  propriedadpropietario             String?
+  propriedadacreditacion            String?
+  propriedadpassword                String?
+  propriedadmail                    String?
+  propriedadphone                   String?
+  propriedadlevelaccess             String?
+  propriedadapikeymobile            String?
+  propriedadstatus                  String?
+  propriedadlocked                  String?
+  propriedadtoken                   String?
+  propriedadsitrap                  String?
+  propriedaddepartamento            String?
+  propriedaddistrito                String?
+  propriedadlocalidad               String?
+  propriedadservername              String?
+  propriedadkey                     String?
+  propriedadissync                  String?
+  propriedadkeyprivate              String?
+  propriedadapikeyhardware          String?
+  propriedadapikeysoftware          String?
+  propriedadmessages                String?
+  propriedadpasswordremoteassistant String?
+  propriedadgroupusers              String?
+  propriedadsigor                   String   @unique
+  createdat                         DateTime @default(now())
+  modifiedat                        DateTime @default(now())
+  updatedat                         DateTime @updatedAt
+  counter                           Int?
+ // productores                       coibfeproductor[]?
+  @@map("coibfepropriedads")
+}
+
+model coibfepropriedad_productor {
+  id                         Int      @id @default(autoincrement())
+  ids                        String?
+  propriedadproductorkey     String?
+  propriedadsigor            String?
+  productor_id               String?
+  coibfeid                   String?
+  propriedadindice           String?
+  productorindice            String?
+  propriedad_productorissync String?
+  createdat                  DateTime @default(now())
+  modifiedat                 DateTime @default(now())
+  updatedat                  DateTime @updatedAt
+  counter                    Int?
+
+  @@map("coibfepropriedad_productors")
+}
+
+model coibfe {
+  id                            Int      @id @default(autoincrement())
+  ids                           String?
+  coibfeuniqueid                String?
+  coibfesaltkey                 String?
+  coibfecodigov                 String?
+  coibfetransporte              String?
+  coibfefinalidad               String?
+  coibfedestino                 String?
+  coibfeanimales                String?
+  coibfeaninovillos             String?
+  coibfeanitoros                String?
+  coibfeanivacas                String?
+  coibfeanivaquillas            String?
+  coibfeaniotros                String?
+  coibfeanitotal                String?
+  coibfeanihilton               String?
+  coibfetecnico_vpa_id          String?
+  coibfetecniconame             String?
+  coibfefrigorificoname         String?
+  coibfefrigorifico_id          String?
+  coibfeproductorname           String?
+  coibfeproductor_id            String?
+  coibfeproductorsitrap         String?
+  coibfepropriedadname          String?
+  coibfepropriedad_id           String?
+  coibfepropriedadsigor         String?
+  coibfepropriedadsitrap        String?
+  coibfepropriedaddepartamento  String?
+  coibfepropriedaddistrito      String?
+  coibfepropriedad_productor_id String?
+  coibfeprecinto1               String?
+  coibfeprecinto2               String?
+  coibfeprecinto3               String?
+  coibfecaravanas               String?
+  coibfepos_id                  String?
+  coibfeposdate                 String?
+  coibfeposapikeymobile         String?
+  coibfeposlatitud              String?
+  coibfeposlongitud             String?
+  coibfeobs                     String?
+  coibfedocnroprop              String?
+  coibfedocdigprop              String?
+  coibfedocorigabrev            String?
+  coibfedoctipoabrev            String?
+  coibfeerrocode                String?
+  coibfeerromessage             String?
+  coibfe_issinc                 String?
+  coibfetoken                   String?
+  coibfekey                     String?
+  coibfeapikeyprivate           String?
+  coibfedevicetype              String?
+  coibfedevicestatus            String?
+  coibfeservername              String?
+  coibfepaydate                 String?
+  coibfeid                      String   @unique
+  createdat                     DateTime @default(now())
+  modifiedat                    DateTime @default(now())
+  updatedat                     DateTime @updatedAt
+  counter                       Int?
+  coibfeproductor_id_type       String?
+  coibfeproductor_id_origem     String?
+  coibfe_print                  String?
+
+  @@map("coibfes")
+}
+
+model coibfetecnico {
+  id                             Int      @id @default(autoincrement())
+  ids                            String?
+  tecnicoid                      String   @unique
+  tecnico_name                   String?
+  tecnico_register               String?
+  tecnico_password               String?
+  tecnico_mac                    String?
+  tecnico_status                 String?
+  tecnicolevelaccess             String?
+  tecnicotoken                   String?
+  tecnicoacreditacion            String?
+  tecnicomail                    String?
+  tecnicophone                   String?
+  tecnicoapikeymobile            String?
+  tecnicolocked                  String?
+  tecnicoservername              String?
+  tecnicodevicestatus            String?
+  tecnicokeyprivate              String?
+  tecnicoapikeyhardware          String?
+  tecnicoapikeysoftware          String?
+  tecnicomessages                String?
+  tecnicopasswordremoteassistant String?
+  tecnicogroupusers              String?
+  tecnicoissync                  String?
+  tecnicouniqueid                String?
+  tecnico_vpa_id                 String    @unique
+  tecnico_key                    String?
+  createdat                      DateTime @default(now())
+  modifiedat                     DateTime @default(now())
+  updatedat                      DateTime @updatedAt
+  counter                        Int?
+
+  @@map("coibfetecnicos")
+}
+
+model coibfeuser {
+  id                          Int      @id @default(autoincrement())
+  ids                         String?
+  userid                      String   @unique
+  user_name                   String?
+  user_register               String?
+  user_password               String?
+  user_mac                    String?
+  user_status                 String?
+  user_locked                 String?
+  user_type                   String?
+  userlevelaccess             String?
+  usertoken                   String?
+  useracreditacion            String?
+  usermail                    String?
+  userphone                   String?
+  userapikeymobile            String?
+  userlocked                  String?
+  userservername              String?
+  userlocalserverip           String?
+  userdevicestatus            String?
+  userkeyprivate              String?
+  userapikeyhardware          String?
+  userapikeysoftware          String?
+  usermessages                String?
+  userpasswordremoteassistant String?
+  usergroupusers              String?
+  userissync                  String?
+  useruniqueid                String?
+  userchatid                  String?
+  user_vpa_id                 String?
+  user_key                    String?
+  createdat                   DateTime @default(now())
+  modifiedat                  DateTime @default(now())
+  updatedat                   DateTime @updatedAt
+  counter                     Int?
+
+  @@map("coibfeusers")
+}
+
+model serverconfig {
+  id                                  Int      @id @default(autoincrement())
+  ids                                 String?
+  serverconfiglocked                  String?
+  serverconfigservernamelocal         String?
+  serverconfigservernameremote        String?
+  serverconfigchatid                  String?
+  serverconfigsendsigor               String?
+  serverconfigid                      String?
+  serverconfig_name                   String?
+  serverconfig_key                    String?
+  serverconfig_register               String?
+  serverconfig_password               String?
+  serverconfig_mac                    String?
+  serverconfig_status                 String?
+  serverconfiglevelaccess             String?
+  serverconfigtoken                   String?
+  serverconfigacreditacion            String?
+  serverconfigmail                    String?
+  serverconfigphone                   String?
+  serverconfigapikeymobile            String?
+  serverconfigdevicestatus            String?
+  serverconfigkeyprivate              String?
+  serverconfigapikeyhardware          String?
+  serverconfigapikeysoftware          String?
+  serverconfigmessages                String?
+  serverconfigpasswordremoteassistant String?
+  serverconfiggroupusers              String?
+  serverconfigissync                  String?
+  serverconfiguniqueid                String?
+  createdat                           DateTime @default(now())
+  modifiedat                          DateTime @default(now())
+  updatedat                           DateTime @updatedAt
+
+  @@map("serverconfigs")
+}

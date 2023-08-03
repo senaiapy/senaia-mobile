@@ -1,0 +1,510 @@
+@apiLocalUrl = http://localhost:3333/api/v0/senaia
+@apiSVr = http://38.242.202.1:3333/api/v0/senaia
+@apiSVlinode = http://172.104.31.117:3333/api/v0/senaia
+
+
+@apiSENAIA = http://208.117.87.29:3333/api/v0/senaia
+@apiSENAIAFrontUrl = http://208.117.87.29:3333/api/v0/sicoga/front
+
+@apiSENAIAWdb = http://208.117.87.29:3333/api/v0/senaia/wdb
+@apiLocalSENAIAWdb = http://localhost:3333/api/v0/senaia/wdb
+
+@apiCUXO = http://208.117.87.29:3333/api/v0/senaia
+@apiCUXOWdb = http://208.117.87.29:3333/api/v0/senaia/wdb
+@apiLocalCUXO = http://localhost:3333/api/v0/senaia
+
+### GET 
+
+GET {{apiLocalUrl}}/ HTTP/1.1
+
+### GET test
+
+GET {{apiSVlinode}}/ HTTP/1.1
+
+### GET test
+
+GET {{apiLocalUrl}}/hello/marcelo HTTP/1.1
+
+#https 
+# ================= TESTE ======================= #
+# ================= TESTE ======================= #
+
+# /api/v0/senaia/teste  , GET       // GET ALL
+# /api/v0/senaia/teste/id  , GET    // GET by id
+# /api/v0/senaia/teste  , POST      // CREATE 
+# /api/v0/senaia/id  , PATCH         // UPDATE 
+# /api/v0/senaia/teste/login-token  , DELETE`
+#{role: 'teste'}
+
+############################################
+############################################
+#https 
+# ================= TESTES ======================= #
+# ================= TESTES ======================= #
+
+# /api/v0/senaia/testes  , GET       // GET ALL
+# /api/v0/senaia/testes/id  , GET    // GET by id
+# /api/v0/senaia/testes  , POST      // CREATE 
+# /api/v0/senaia/id  , PATCH         // UPDATE 
+# /api/v0/senaia/testes/login-token  , DELETE`
+#{role: 'testes'}
+
+############################################
+
+# ================= LOGIN ======================= #
+
+POST {{apiLocalUrl}}/usuario/login
+Content-Type: application/json
+
+{
+    "username": "marcelu.phd@gmail.com", 
+    "password": "iloveyou"
+}
+
+###
+
+POST {{apiSENAIA}}/usuario/login
+Content-Type: application/json
+
+{
+    "username": "mar@gmail.com", 
+    "password": "1111"
+}
+
+###
+GET {{apiLocalUrl}}/test-auth
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJuYW1lIjoidXNlcjJAdXNlci5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTYzMTAyODQ4OSwiZXhwIjoxNjMxMDI4NTQ5fQ.yBCRo-oXwLWPtQ9V552dsO4B-h0cJ1zJkXEGpUONYP8
+
+#https 
+# ================= USUARIO ======================= #
+# ================= USUARIO ======================= #
+
+# /api/v0/senaia/usuario/listar  , GET
+# /api/v0/senaia/usuario/cadastrar  , POST
+# /api/v0/senaia/usuario/login  , POST
+# /api/v0/senaia/usuario/login-token  , POST`
+#{role: 'usuario'}
+
+############################################
+############################################
+### CREATE
+
+// @name create  usuario 
+POST {{apiLocalUrl}}/usuario/cadastrar  HTTP/1.1
+content-type: application/json
+
+{
+            "email": "Marcelua@gmail.com",            
+            "nome": "Marcelu anjus",
+            "senha": "hola",
+            "telefone": "(11) 995",            
+            "cpf": "069.118"
+}
+
+############################################
+
+// @name create del usuario 
+POST {{apiLocalUrl}}/usuario/cadastrar  HTTP/1.1
+content-type: application/json
+
+{
+            "email": "marcelu.phd@gmail.com",            
+            "nome": "Marcelu anjus",
+            "senha": "iloveyou",
+            "telefone": "(11) 99500-",            
+            "cpf": "8089161",
+             "user_name_register": "marcelo",
+             "user_status": "active",
+             "user_locked": "unlocked",
+             "user_key_hardware": "abc123",
+             "user_level_access": "10",
+             "user_vpa": "9999",
+             "user_token": "0001"
+
+}
+############################################
+
+// @name create del usuario 
+POST {{apiSENAIA}}/usuario/cadastrar  HTTP/1.1
+content-type: application/json
+
+{
+            "email": "marcelu@gmail.com",            
+            "nome": "Marcelu anjus",
+            "senha": "iloveyou",
+            "telefone": "(11) 99500-99",            
+            "cpf": "069.118.878-52",
+             "user_name_register": "marcelo",
+             "user_status": "active",
+             "user_locked": "unlocked",
+             "user_key_hardware": "abc123",
+             "user_level_access": "10",
+             "user_vpa": "9999",
+             "user_token": "0001"
+}
+############################################
+
+// @name create del usuario 
+POST {{apiSENAIA}}/usuario/cadastrar  HTTP/1.1
+content-type: application/json
+
+{
+            "email": "projetoslinux@gmail.com",            
+            "nome": "Marcelo Anjos",
+            "senha": "4555",
+            "telefone": "0993547294",            
+            "cpf": "9999",
+             "user_key_hardware": "abc123",
+             "user_vpa": "9999"
+}
+### GET  usuarios
+// @name findAll usuario
+GET {{apiLocalUrl}}/usuario/listar
+
+### GET all usuarios
+// @name findAll usuario
+GET {{apiLocalUrl}}/usuario/listall
+
+//http://208.117.87.29:3333/api/v0/senaia/usuario/listall
+
+### GET all usuarios
+// @name findAll usuario
+GET {{apiSENAIA}}/usuario/listall
+
+############################################
+############################################
+### login
+// @name findOne usuario
+POST {{apiLocalUrl}}/usuario/login
+
+############################################
+############################################
+
+### login token
+// @name token
+POST  {{apiLocalUrl}}/usuario/login-token  HTTP/1.1
+content-type: application/json
+
+{
+            "dbversion": "1.0"          
+}
+
+############################################
+### GET by id
+// @name get by user
+GET {{apiLocalUrl}}/usuario/1
+
+############################################
+############################################
+### UPDATE
+// @name UPDATE user
+PATCH  {{apiLocalUrl}}/usuario/1  HTTP/1.1
+content-type: application/json
+
+{
+            "nome": "MarceloCarlos",
+            "email": "marcelu@gmail.com"
+           
+}
+############################################
+############################################
+### UPDATE
+// @name UPDATE user
+PUT  {{apiLocalUrl}}/usuario/1  HTTP/1.1
+content-type: application/json
+
+{
+            "nome": "MarceloCarlos",
+            "email": "marcelu@gmail.com"
+           
+}
+
+############################################
+############################################
+### DELETE
+// @name remove delusuario
+DELETE {{apiLocalUrl}}/usuario/1
+### DELETE
+// @name remove delusuario
+DELETE {{apiSENAIA}}/usuario/1
+
+############################################
+############################################
+# ================= NFT ======================= #
+# ================= NFT ======================= #
+
+# /api/v0/senaia/nft/listall  , GET       // GET ALL
+# /api/v0/senaia/nft/listar  , GET    // GET by id
+# /api/v0/senaia/nft/cadastrar  , POST      // CREATE 
+# /api/v0/senaia/id  , PATCH         // UPDATE 
+# /api/v0/senaia/nft/login-token  , DELETE`
+#{role: 'nft'}
+
+############################################
+############################################
+// @name create del nft 
+POST {{apiLocalUrl}}/nft/cadastrar  HTTP/1.1
+content-type: application/json
+
+{
+  "nft_id": "string",
+  "nft_description": "string",
+  "nft_created_date": "string",
+  "nft_sales": "string",
+  "nft_total_supply": "string",
+  "nft_screen": "string",
+  "nft_symbol": "string",
+  "nft_name": "string",
+  "nft_search": "string",
+  "nft_charge": "string",
+  "nft_create": "string",
+  "nft_price": "string",
+  "nft_chain": "string",
+  "nft_chain_market": "string",
+  "nft_chain_url": "string",
+  "nft_chain_public_key": "string",
+  "nft_chain_private_key": "string",
+  "nft_device_token_id": "string",
+  "nft_wallet_id": "string"
+}
+############################################
+
+// @name create  nft 
+POST {{apiSENAIA}}/nft/cadastrar  HTTP/1.1
+content-type: application/json
+
+{
+  "nft_id": "string",
+  "nft_description": "string",
+  "nft_created_date": "string",
+  "nft_sales": "string",
+  "nft_total_supply": "string",
+  "nft_screen": "string",
+  "nft_symbol": "string",
+  "nft_name": "string",
+  "nft_search": "string",
+  "nft_charge": "string",
+  "nft_create": "string",
+  "nft_price": "string",
+  "nft_chain": "string",
+  "nft_chain_market": "string",
+  "nft_chain_url": "string",
+  "nft_chain_public_key": "string",
+  "nft_chain_private_key": "string",
+  "nft_device_token_id": "string",
+  "nft_wallet_id": "string"
+}
+### GET all usuarios
+// @name findAll nft
+GET {{apiLocalUrl}}/nft/listar
+
+### GET all usuarios
+// @name findAll nft
+GET {{apiLocalUrl}}/nft/listall
+
+############################################
+############################################
+### login
+// @name findOne nft
+POST {{apiLocalUrl}}/nft/login
+
+############################################
+############################################
+
+### login token
+// @name token
+POST  {{apiLocalUrl}}/nft/login-token  HTTP/1.1
+content-type: application/json
+
+{
+            "dbversion": "1.0"          
+}
+
+############################################
+### GET by id
+// @name get by nft
+GET {{apiLocalUrl}}/nft/1
+
+############################################
+############################################
+### UPDATE
+// @name UPDATE user
+PATCH  {{apiLocalUrl}}/nft/1  HTTP/1.1
+content-type: application/json
+
+{
+            "firstname": "MarceloCarlos",
+            "email": "marcelu@gmail.com"
+           
+}
+
+############################################
+############################################
+### DELETE
+// @name remove nft
+DELETE {{apiLocalUrl}}/nft/1
+
+############################################
+############################################
+# ================= getuser ======================= #
+# ================= getuser ======================= #
+
+### GET all users
+// @name getAllUsers
+GET {{apiLocalUrl}}/users
+
+############################################
+############################################
+### CREATE
+
+// @name create user
+POST {{apiLocalUrl}}/user  HTTP/1.1
+content-type: application/json
+
+{
+            "firstname": "Marcelo",
+            "password": "CM701",
+            "email": "marcelo@simpson.com"
+}
+
+############################################
+############################################
+### CREATE SERVER
+
+// @name create user
+POST {{apiSVr}}/user  HTTP/1.1
+content-type: application/json
+
+{
+            "firstname": "Marcelo",
+            "password": "CM701",
+            "email": "marcelo@simpson.com"
+}
+
+### GET all users
+// @name getAllUsers
+GET {{apiSVr}}/users
+
+############################################
+############################################
+### GET by id
+
+// @name get by user
+GET {{apiLocalUrl}}/user/cl0k412xw0002kwa6qeamppc4
+
+############################################
+############################################
+### UPDATE
+
+// @name UPDATE user
+PATCH  {{apiLocalUrl}}/user/cl0k412xw0002kwa6qeamppc4  HTTP/1.1
+content-type: application/json
+
+{
+            "firstname": "MarceloCarlos",
+            "email": "marcelu@gmail.com"
+           
+}
+
+############################################
+############################################
+### DELETE
+
+// @name deluser
+DELETE {{apiLocalUrl}}/user/cl0k412xw0002kwa6qeamppc4
+
+############################################
+
+# ================= databaseversion ======================= #
+
+############################################
+############################################
+### CREATE
+
+// @name create del databaseversion 
+POST {{apiLocalUrl}}/databaseversion  HTTP/1.1
+content-type: application/json
+
+{
+            "dbversion": "0"
+}
+
+### GET all databaseversions
+// @name findAll deldatabaseversion
+GET {{apiLocalUrl}}/databaseversions
+
+############################################
+############################################
+### GET by id
+
+// @name findOne deldatabaseversion
+GET {{apiLocalUrl}}/databaseversion/ckz9vs5nc00006ua65pe9cws4
+
+############################################
+############################################
+
+### UPDATE
+// @name update deldatabaseversion
+PATCH  {{apiLocalUrl}}/databaseversion/ckz9vs5nc00006ua65pe9cws4  HTTP/1.1
+content-type: application/json
+
+{
+            "dbversion": "1.0"          
+}
+
+############################################
+############################################
+
+### DELETE
+// @name remove deldatabaseversion
+DELETE {{apiLocalUrl}}/databaseversion/ckz9vs5nc00006ua65pe9cws4
+
+############################################
+############################################
+
+# ================= tecnico ======================= #
+
+############################################
+############################################
+### CREATE
+// @name create del tecnico 
+POST {{apiLocalUrl}}/tecnico  HTTP/1.1
+content-type: application/json
+
+{
+            "tecnicoUniqueId": "04",
+            "tecnico_password": "123456",
+            "tecnico_vpa_id": "1006"
+}
+
+### GET all tecnicos
+// @name findAll deltecnico
+GET {{apiLocalUrl}}/tecnicos
+
+############################################
+############################################
+
+### GET by id
+// @name findOne deltecnico
+GET {{apiLocalUrl}}/tecnico/cl5ijfy1i0000fca6n22e5avi
+
+############################################
+############################################
+
+### UPDATE
+// @name update deltecnico
+PATCH  {{apiLocalUrl}}/tecnico/cl5ijfy1i0000fca6n22e5avi  HTTP/1.1
+content-type: application/json
+
+{
+            "tecnicoPhone": "1.0"          
+}
+############################################
+############################################
+
+### DELETE
+// @name remove deltecnico
+DELETE {{apiLocalUrl}}/tecnico/cl5ijfy1i0000fca6n22e5avi
+
+############################################
+############################################
