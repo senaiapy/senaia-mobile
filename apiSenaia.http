@@ -1,5 +1,3 @@
-## http://24.199.112.85:3333/api/v0/senaia/swagger
-## https://senaiaweb.online/api/v0/senaia/swagger
 
 @apiSenaia = http://pyfoundation.online:3333/api/v0/senaia
 
@@ -24,6 +22,8 @@
 @apiNSENAIA = http://24.199.112.85:3333/api/v0/senaia
 
 @apiNSENAIAWdb = http://24.199.112.85:3333/api/v0/senaia/wdb
+
+@apiNLSENAIAWdb = http://localhost:3333/api/v0/senaia/wdb
 
 ############################################
 ############################################
@@ -465,9 +465,16 @@ content-type: application/json
 GET http://208.117.87.29:3333/api/v0/senaia/wdb/coibfecoibfes  HTTP/1.1
 content-type: application/json
 
-{
- 
-}
+
+### get coibfes LOCALHOST
+// @name   coibfes 
+GET {{apiNLSENAIAWdb}}/coibfecoibfes  HTTP/1.1
+content-type: application/json
+
+### get coibfes LOCALHOST
+// @name   coibfes 
+GET {{apiNLSENAIAWdb}}/coibfecoibfes/180  HTTP/1.1
+content-type: application/json
 
 ############################################
 ############################################
@@ -735,9 +742,10 @@ content-type: application/json
 GET {{apiNSENAIAWdb}}/usuarios
 
 ###
+###
 ### GET all usuarios USER
 // @name findAll usuarios
-GET {{apiNSENAIAWdb}}/usuario/22
+GET {{apiNSENAIAWdb}}/usuario/2
 
 ### GET by OBJ
 // @name get by usuario VPA
@@ -750,7 +758,7 @@ GET {{apiNSENAIAWdb}}/usuario/search/user_vpa/1234
 
 ####
 ### UPDATE by id
-PATCH {{apiNSENAIAWdb}}/usuario/23
+PATCH {{apiNSENAIAWdb}}/usuario/2
 content-type: application/json
 
 {
@@ -780,12 +788,12 @@ content-type: application/json
 {
    "user_status": "active",
   "user_locked": "unlocked",
-  "user_token": "0" 
+  "user_token": "1" 
 }
 
 ### UPDATE by id ACTIVATE
 // @name get by usuario
-PATCH {{apiNSENAIAWdb}}/usuario/23
+PATCH {{apiNSENAIAWdb}}/usuario/2
 content-type: application/json
 
 {
@@ -798,7 +806,7 @@ content-type: application/json
 
 ### DELETE USER
 // @name mark to remove delusuario/ 
-DELETE {{apiNSENAIAWdb}}/usuario/22
+DELETE {{apiNSENAIAWdb}}/usuario/20
 ############################################
 ############################################
 
@@ -810,187 +818,100 @@ content-type: application/json
  
 }
 ############################################
-############################################
-############################################
-### CADASTRAR wdb/usuario/cadastrar
-### CREATE usuario USERE
-// @name post usuario
-POST {{apiNSENAIAWdb}}/usuario/cadastrar
+
+// @name    local 
+POST {{apiNLSENAIAWdb}}/general  HTTP/1.1
 content-type: application/json
 
 {
-    "nome": "Marcelo Anjos",
-    "email": "marcelu.phd@gmail.com",
-    "senha": "289828",
-    "telefone": "0993547294",
-    "cpf": "1234",
-    "user_status": "inactive",
-    "user_locked": "locked",
-    "user_key_hardware": "MzAwNzREOEEzMTk1W29iamVjdCBPYmplY3Rd",
-    "user_level_access": "10",
-    "user_vpa": "1234",
-    "user_token": "1",
-    "Status": "ACTIVE"
+ "generalId": "11",
+  "generalUniqueId": "111",
+  "general_vacuna": [
+    "1","2","3"
+  ],
+  "general_raza": [
+    "4","2","3"
+  ],
+  "general_classificacion": [
+    "5","2","3"
+  ],
+  "general_dispositivo": [
+    "6","2","3"
+  ],
+  "general_color": [
+    "7","2","3"
+  ],
+  "general_categoria": [
+    "8","2","3"
+  ],
+  "general_modalidad": [
+    "9","2","3"
+  ],
+  "general_destino": [
+    "10","2","3"
+  ],
+  "general_permission": [
+    "11","2","3"
+  ],
+  "general_1": [
+    "1","2","3"
+  ],
+  "general_2": [
+    "1","2","3"
+  ],
+  "general_3": [
+    "1","2","3"
+  ],
+  "general_4": [
+    "1","2","3"
+  ],
+  "general_5": [
+    "1","2","3"
+  ],
+  "general_6": [
+    "1","2","3"
+  ],
+  "general_7": [
+    "1","2","3"
+  ],
+  "general_8": [
+    "1","2","3"
+  ],
+  "general_9": [
+    "1","2","3"
+  ],
+  "general_10": [
+    "1","2","3"
+  ],
+  "general_is_sync": true,
+  "dbversion": "1"
 }
-
-############################################
-### ACTIVAR wdb/usuario/one/status/:id (cpf/vpa)
-### CREATE usuario USERE ACTIVAR ACTIVAR
-// @name post usuario
-PATCH {{apiNSENAIAWdb}}/usuario/one/status/1234
-content-type: application/json
-
-{
-    "user_status": "active",
-    "user_locked": "unlocked",
-    "user_vpa": "1234",
-    "user_token": "0",
-    "Status": "ACTIVE"
-}
-
-############################################
-############################################
-############################################
-### ACTIVAR wdb/usuario/one/status/:id (cpf/vpa)
-### CREATE usuario USERE ACTIVAR ACTIVAR
-// @name post usuario
-PATCH {{apiNSENAIAWdb}}/usuario/one/status/1234
-content-type: application/json
-
-{
-    "user_status": "active",
-    "user_locked": "unlocked",
-    "user_vpa": "1234",
-    "user_token": "0",
-    "Status": "ACTIVE"
-}
-
-############################################
-############################################
-### cadastrarCoibfeId usuario/cadastrarCId
-### CREATE usuario id
-// @name post usuario
-POST {{apiNSENAIAWdb}}/usuario/cadastrarCId
-content-type: application/json
-
-{
-  "cpf": "1234",
-  "user_token": "0",
-  "user_status": "active",    
-  "user_locked": "unlocked" 
-}
-
-############################################
-############################################
-### recoverPassword usuario/recoverPassword
-### pasword usuario id
-// @name post usuario
-POST {{apiNSENAIAWdb}}/usuario/recoverpassword
-content-type: application/json
-
-{
-    "cpf": "1234"
-}
-
-############################################
-############################################
-### simple_login usuario/simple_login
-### CREATE usuario id
-// @name post usuario
-POST {{apiNSENAIAWdb}}/usuario/simple_login
-content-type: application/json
-
-{
-  "email": "marcelu.phd@gmail.com",
-  "password": "289828"
-}
-
-############################################
-############################################
-### loginComToken usuario/login-token
-### CREATE usuario id
-// @name post usuario
-POST {{apiNSENAIAWdb}}/usuario/login-token
-content-type: application/json
-
-{
-  "cpf": "1234",
-  "user_token": "4",
-  "user_status": "active",    
-  "user_locked": "unlocked" 
-}
-
-############################################
-############################################
-############################################
-############################################
-############################################
-############################################
-############################################
-############################################
-############################################
-############################################
-############################################
-
-### GET all usuarios USERES
-// @name findAll usuarios
-GET {{apiNSENAIAWdb}}/usuarios
-
 ###
-### GET all usuarios USER
-// @name findAll usuarios
-GET {{apiNSENAIAWdb}}/usuario/4
+// @name    SERVER 
+GET {{apiNSENAIAWdb}}/general  HTTP/1.1
+###
+// @name    LOCAL 
+GET {{apiNLSENAIAWdb}}/general  HTTP/1.1
+###
 
-### GET by OBJ
-### ACTIVAR wdb/usuario/one/status/:id (cpf/vpa)
-### CREATE usuario USERE ACTIVAR ACTIVAR
-// @name post usuario
-PATCH {{apiNSENAIAWdb}}/usuario/one/status/1234
+// @name    local 
+GET {{apiNLSENAIAWdb}}/general/1  HTTP/1.1
+###
+
+// @name    local 
+PUT {{apiNLSENAIAWdb}}/general/1  HTTP/1.1
 content-type: application/json
 
 {
-    "user_status": "active",
-    "user_locked": "unlocked",
-    "user_vpa": "1234",
-    "user_token": "0",
-    "Status": "ACTIVE"
+  "general_vacuna": [
+    "5","5","3"
+  ]
 }
+###
 
-############################################
-############################################
-
-### DELETE USER
-// @name mark to remove delusuario/ 
-DELETE {{apiNSENAIAWdb}}/usuario/4
-############################################
-############################################
-############################################
-############################################
-############################################
-############################################
-### GET ONE coibfecoibfess COIBFE
-// @name findAll coibfecoibfes
-GET {{apiNSENAIAWdb}}/coibfecoibfes
-
-##
-### GET ONE coibfecoibfess COIBFE
-// @name findAll coibfecoibfes
-GET {{apiNSENAIAWdb}}/coibfecoibfes/1
-
-
-### DELETE ONE coibfecoibfess COIBFE
-// @name findAll coibfecoibfes
-DELETE {{apiNSENAIAWdb}}/coibfecoibfes/343
-
-### UPDATE
-// @name UPDATE coibfes
-
-PUT  {{apiNSENAIAWdb}}/coibfecoibfes/113  HTTP/1.1
+// @name    local 
+DELETE {{apiNLSENAIAWdb}}/general/1  HTTP/1.1
 content-type: application/json
 
-{
-             "coibfeobs": "ANULADO"
-}
 
-############################################
 ############################################
