@@ -372,7 +372,7 @@ const dump = async () => {
 
   await database.write(async () => {
     // console.log('PROPRI', coibfepropriedads);
-    console.log('ALL', inserts);
+    //console.log('ALL', inserts);
     await database.batch(...inserts);
   });
 };
