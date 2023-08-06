@@ -8,6 +8,7 @@
       "@env": ["./src/core/env.js"]
     },
     "esModuleInterop": true,
+    "experimentalDecorators": true,
     "checkJs": true
   },
   "exclude": [
@@ -21,3 +22,21 @@
     "lint-staged.config.js"
   ]
 }
+/*
+"module": "commonjs",
+"lib": [
+  "es2017",
+],
+"allowJs": true ,
+// "checkJs": true, 
+"jsx": "react-native",
+"noEmit": false,
+"isolatedModules": true,
+ "moduleResolution": "node",
+ "resolveJsonModule": true,
+  "allowSyntheticDefaultImports": true ,
+  "esModuleInterop": true ,
+  // "preserveSymlinks": true,  
+  "skipLibCheck": true, 
+  "forceConsistentCasingInFileNames": true,
+*/

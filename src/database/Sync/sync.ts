@@ -22,6 +22,7 @@ import {
   createCoibfeFrigorificoApi,
   createCoibfeProductorApi,
   createCoibfePropriedadApi,
+  createGeneralApi,
   createUserCategoryApi,
   deleteCoibfeFrigorificoApi,
   deleteCoibfeProductorApi,
@@ -177,7 +178,6 @@ const syncAction = async (action: SyncCoibfeAction) => {
       break;
     }
     //------
-
     case 'DELETE_USERCATEGORY': {
       const category = (await action.usercategory.fetch())!;
 
@@ -197,6 +197,44 @@ const syncAction = async (action: SyncCoibfeAction) => {
 
       break;
     }
+    //------
+    //------
+    //------
+    //------
+    case 'CREATE_GENERAL': {
+      const general = (await action.general.fetch())!;
+
+      const serverGeneral = await createGeneralApi(action.payload);
+
+      updates.push(
+        general.prepareUpdate((d: any) => {
+          d.serverId = serverGeneral.id;
+        })
+      );
+
+      break;
+    }
+    //------
+    case 'DELETE_GENERAL': {
+      const general = (await action.general.fetch())!;
+
+      await deleteUserCategoryApi(general.serverId!);
+
+      const children = await fetchChildren(general);
+      children
+        .filter(
+          (child) =>
+            !(child instanceof CoibfeActionModel && child.id === action.id)
+        )
+        .forEach((child) => {
+          updates.push(child.prepareDestroyPermanently());
+        });
+
+      updates.push(general.prepareDestroyPermanently());
+
+      break;
+    }
+    //------
     //------
     case 'CREATE_COIBFEPROPRIEDAD': {
       const propriedad = (await action.coibfepropriedad.fetch())!;

@@ -26,6 +26,7 @@ import type CoibfeCoibfeModel from './CoibfeCoibfe';
 import type CoibfeFrigorificoModel from './CoibfeFrigorifico';
 import type CoibfeProductorModel from './CoibfeProductor';
 import type CoibfePropriedadModel from './CoibfePropriedad';
+import type GeneralModel from './General';
 import type UserCategoryModel from './UserCategory';
 
 export type CoibfeActionType =
@@ -37,6 +38,8 @@ export type CoibfeActionType =
   | 'DELETE_COIBFEFRIGORIFICO'
   | 'CREATE_USERCATEGORY'
   | 'DELETE_USERCATEGORY'
+  | 'CREATE_GENERAL'
+  | 'DELETE_GENERAL'
   | 'CREATE_COIBFECOIBFE'
   | 'DELETE_COIBFECOIBFE';
 
@@ -50,6 +53,8 @@ export type SyncCoibfeAction = Omit<CoibfeActionModel, 'payload'> &
     | { type: 'DELETE_COIBFEFRIGORIFICO' }
     | { type: 'CREATE_USERCATEGORY'; payload: UserCategoryPayload }
     | { type: 'DELETE_USERCATEGORY' }
+    | { type: 'CREATE_GENERAL'; payload: UserCategoryPayload }
+    | { type: 'DELETE_GENERAL' }
     | { type: 'CREATE_COIBFECOIBFE'; payload: CoibfeCoibfesPayload }
     | { type: 'DELETE_COIBFECOIBFE' }
   );
@@ -62,6 +67,7 @@ class CoibfeActionModel extends Model {
     ['coibfeproductors', { type: 'belongs_to', key: 'productor_id' }],
     ['coibfefrigorificos', { type: 'belongs_to', key: 'frigorifico_id' }],
     ['usercategorys', { type: 'belongs_to', key: 'key' }],
+    ['generals', { type: 'belongs_to', key: 'generalId' }],
     ['coibfecoibfes', { type: 'belongs_to', key: 'coibfeid' }]
   );
 
@@ -85,6 +91,9 @@ class CoibfeActionModel extends Model {
 
   @immutableRelation('usercategorys', 'key')
   usercategory!: Relation<UserCategoryModel>;
+
+  @immutableRelation('generals', 'generalId')
+  general!: Relation<GeneralModel>;
 
   @immutableRelation('coibfecoibfes', 'coibfeid')
   coibfecoibfe!: Relation<CoibfeCoibfeModel>;

@@ -45,6 +45,7 @@ import { Frigorifico } from './model/Frigorifico';
 import { Front } from './model/Front';
 import { Frontend } from './model/Frontend';
 import { Game } from './model/Game';
+import GeneralModel from './model/General';
 import Guia from './model/Guia';
 import Identifica from './model/Identifica';
 import { Iot } from './model/Iot';
@@ -153,6 +154,7 @@ const database = new Database({
     CoibfeAction,
     CoibfeTecnico,
     UserCategory,
+    GeneralModel,
   ],
 });
 

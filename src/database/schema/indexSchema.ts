@@ -29,6 +29,7 @@ import { frigorificoSchema } from './frigorificoSchema';
 import { frontendSchema } from './frontendSchema';
 import { frontSchema } from './frontSchema';
 import { gameSchema } from './gameSchema';
+import generalSchema from './generalSchema';
 import guiaSchema from './guiaSchema';
 import identificaSchema from './identificaSchema';
 import { iotSchema } from './iotSchema';
@@ -120,6 +121,7 @@ const schemas = appSchema({
     coibfeAction,
     coibfeTecnico,
     userCategory,
+    generalSchema,
   ],
 });
 

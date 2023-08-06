@@ -26,6 +26,8 @@ const api = <T>(url: RequestInfo, { method, body }: ApiOptions = {}) =>
     body: method === 'POST' ? JSON.stringify(body) : undefined,
   }).then((res) => res.json() as Promise<T>);
 //-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
 
 export type CoibfePropriedadPayload = {
   dbversion?: string;
@@ -94,6 +96,8 @@ const deleteCoibfePropriedadApi = (postId: number) => {
     method: 'DELETE',
   });
 };
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------
 
 export type CoibfeProductorPayload = {
@@ -173,6 +177,8 @@ const deleteCoibfeProductorApi = (postId: number) => {
   });
 };
 //-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
 
 export type CoibfeFrigorificoPayload = {
   dbversion?: string;
@@ -225,6 +231,7 @@ const deleteCoibfeFrigorificoApi = (postId: number) => {
 };
 //-------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
 
 export type UserCategoryPayload = {
   user_id?: number;
@@ -245,8 +252,8 @@ export type UserCategoryPayload = {
   users_category_sync?: boolean;
 
   id?: number;
-  created_at: Date;
-  modified_at: Date;
+  created_at?: number;
+  modified_at?: number;
 };
 
 type ServerUserCategory = {
@@ -267,9 +274,9 @@ type ServerUserCategory = {
   cleaner?: string;
   users_category_sync?: boolean;
 
-  id: number;
-  created_at: Date;
-  modified_at: Date;
+  id?: number;
+  created_at?: number;
+  modified_at?: number;
 };
 
 const createUserCategoryApi = async (
@@ -285,11 +292,128 @@ const createUserCategoryApi = async (
   return returno;
 };
 
+const getUserCategoryApi = async (postId: number) => {
+  const returno = await api<any>(`${servers}/categoryuser/${postId}`, {
+    method: 'GET',
+  });
+  return returno;
+};
+
+const updateUserCategoryApi = async (categoryPayload: any, postId: number) => {
+  const returno = await api<any>(`${servers}/categoryuser/${postId}`, {
+    method: 'PATCH',
+    body: categoryPayload,
+  });
+  return returno;
+};
+
 const deleteUserCategoryApi = (postId: number) => {
   return api<number>(`${server}/categoryuser/${postId}`, {
     method: 'DELETE',
   });
 };
+
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+
+export type GeneralPayload = {
+  generalId?: string;
+  generalUniqueId?: string;
+  general_vacuna?: string;
+  general_raza?: string;
+  general_classificacion?: string;
+  general_dispositivo?: string;
+  general_color?: string;
+  general_categoria?: string;
+  general_modalidad?: string;
+  general_destino?: string;
+  general_permission?: string;
+  general_1?: string;
+  general_2?: string;
+  general_3?: string;
+  general_4?: string;
+  general_5?: string;
+  general_6?: string;
+  general_7?: string;
+  general_8?: string;
+  general_9?: string;
+  general_10?: string;
+  general_is_sync?: boolean;
+  dbversion?: string;
+
+  id?: number;
+  created_at?: number;
+  updated_at?: number;
+};
+
+type ServerGeneral = {
+  generalId: string;
+  generalUniqueId?: string;
+  general_vacuna?: string;
+  general_raza?: string;
+  general_classificacion?: string;
+  general_dispositivo?: string;
+  general_color?: string;
+  general_categoria?: string;
+  general_modalidad?: string;
+  general_destino?: string;
+  general_permission?: string;
+  general_1?: string;
+  general_2?: string;
+  general_3?: string;
+  general_4?: string;
+  general_5?: string;
+  general_6?: string;
+  general_7?: string;
+  general_8?: string;
+  general_9?: string;
+  general_10?: string;
+  general_is_sync?: boolean;
+  dbversion?: string;
+
+  id?: number;
+  created_at?: number;
+  updated_at?: number;
+};
+
+const createGeneralApi = async (generalPayload: GeneralPayload) => {
+  // console.log("SERVER", server);
+  // console.log("DATUS", generalPayload);
+
+  const returno = await api<ServerGeneral>(`${server}/general`, {
+    method: 'POST',
+    body: generalPayload,
+  });
+  return returno;
+};
+
+const getGeneralApi = async (postId: number) => {
+  const returno = await api<any>(`${servers}/general/${postId}`, {
+    method: 'GET',
+  });
+  return returno;
+};
+
+const updateGeneralApi = async (categoryPayload: any, postId: number) => {
+  const returno = await api<any>(`${servers}/general/${postId}`, {
+    method: 'PATCH',
+    body: categoryPayload,
+  });
+  return returno;
+};
+
+const deleteGeneralApi = (postId: number) => {
+  return api<number>(`${server}/general/${postId}`, {
+    method: 'DELETE',
+  });
+};
+
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------
 export type CoibfeCoibfesPayload = {
   dbversion?: string;
@@ -457,13 +581,28 @@ const createCoibfeCoibfesApi = async (coibfeCoibfesPayload: TCoibfes) => {
   // console.log('COIBFE', returno);
   return returno;
 };
+
+const updateUserCoibfeIdApi = async (usuarioPayload: AnyFalsy) => {
+  const returno = await api<any>(`${servers}/usuario/cadastrarCId`, {
+    method: 'POST',
+    body: usuarioPayload,
+  });
+  return returno;
+};
 //-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+
 const downloadDumpApi = async () => {
   type Dump = {
     coibfefrigorificos: ServerCoibfeFrigorifico[];
     coibfepropriedads: ServerCoibfePropriedad[];
     coibfeproductors: ServerCoibfeProductor[];
     categoryusers: ServerUserCategory[];
+    generals: ServerGeneral[];
   };
   const dumps = await api<Dump>(`${server}/coibfecoibfesdump`, {
     method: 'GET',
@@ -498,42 +637,26 @@ export type TUsuarioDto = {
   Status?: string;
 };
 
-const updateUserCoibfeIdApi = async (usuarioPayload: AnyFalsy) => {
-  const returno = await api<any>(`${servers}/usuario/cadastrarCId`, {
-    method: 'POST',
-    body: usuarioPayload,
-  });
-  return returno;
-};
 //-------------------------------------------------------------------------------
-
-const updateUserCategoryApi = async (categoryPayload: any, postId: number) => {
-  const returno = await api<any>(`${servers}/categoryuser/${postId}`, {
-    method: 'PATCH',
-    body: categoryPayload,
-  });
-  return returno;
-};
-
-const getUserCategoryApi = async (postId: number) => {
-  const returno = await api<any>(`${servers}/categoryuser/${postId}`, {
-    method: 'GET',
-  });
-  return returno;
-};
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
 
 export {
   createCoibfeCoibfesApi,
   createCoibfeFrigorificoApi,
   createCoibfeProductorApi,
   createCoibfePropriedadApi,
+  createGeneralApi,
   createUserCategoryApi,
   deleteCoibfeFrigorificoApi,
   deleteCoibfeProductorApi,
   deleteCoibfePropriedadApi,
+  deleteGeneralApi,
   deleteUserCategoryApi,
   downloadDumpApi,
+  getGeneralApi,
   getUserCategoryApi,
+  updateGeneralApi,
   updateUserCategoryApi,
   updateUserCoibfeIdApi,
 };

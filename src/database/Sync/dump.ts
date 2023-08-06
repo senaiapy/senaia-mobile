@@ -14,6 +14,7 @@ import database from '@/database/index';
 import type CoibfeFrigorificoModel from '@/database/model/CoibfeFrigorifico';
 import type CoibfeProductorModel from '@/database/model/CoibfeProductor';
 import type CoibfePropriedadModel from '@/database/model/CoibfePropriedad';
+import type GeneralModel from '@/database/model/General';
 import type UserCategoryModel from '@/database/model/UserCategory';
 import { downloadDumpApi } from '@/database/Sync/apis';
 
@@ -29,6 +30,8 @@ const dump = async () => {
 
   const UserCategorys = database.get<UserCategoryModel>('userscategorys');
 
+  const Generals = database.get<GeneralModel>('generals');
+
   // console.log('CoibfePropriedads', CoibfePropriedads);
   // console.log('CoibfeProductors', CoibfeProductors);
   // console.log('CoibfeFrigorificos', CoibfeFrigorificos);
@@ -39,6 +42,7 @@ const dump = async () => {
     coibfeproductors,
     coibfefrigorificos,
     categoryusers,
+    generals,
   } = await downloadDumpApi();
 
   // console.log('coibfepropriedads', coibfepropriedads);
@@ -47,7 +51,7 @@ const dump = async () => {
   // console.log('categoryusers', categoryusers);
 
   const inserts: Model[] = [];
-
+  //-----------------------------------------------------------
   //-----------------------------------------------------------
   const propriedadIds = coibfepropriedads.map(
     (propriedad) => propriedad.propriedadsigor
@@ -92,6 +96,7 @@ const dump = async () => {
       );
     });
 
+  //-----------------------------------------------------------
   //-----------------------------------------------------------
   const productorIds = coibfeproductors.map(
     (productor) => productor.productor_id
@@ -144,6 +149,7 @@ const dump = async () => {
     });
 
   //-----------------------------------------------------------
+  //-----------------------------------------------------------
   // TAKE ALL IDS RECEIVED
   const frigorificoIds = coibfefrigorificos.map(
     (frigorifico) => frigorifico.frigorifico_id
@@ -181,6 +187,7 @@ const dump = async () => {
       );
     });
   //-----------------------------------------------------------
+  //-----------------------------------------------------------
   // TAKE ALL IDS RECEIVED
   const categoryIds = categoryusers.map((category) => category.key);
 
@@ -197,30 +204,150 @@ const dump = async () => {
     .filter((category) => !existingUserCategoryIds.includes(category.key))
     .forEach((category: any) => {
       inserts.push(
-        UserCategorys.prepareCreate((f) => {
-          f._raw.id = category.id.toString();
-          // f.postId = category.post_id.toString();
-          f.serverId = category.id;
+        UserCategorys.prepareCreate((c) => {
+          c._raw.id = category.id.toString();
+          // c.postId = category.post_id.toString();
+          c.serverId = category.id;
 
-          f.user_id = category.user_id;
-          f.key = category.key;
-          f.title = category.title;
-          f.name = category.name;
-          f.address = category.address;
-          f.price = category.price;
-          f.description = category.description;
-          f.photo = category.photo;
-          f.star = category.star;
-          f.reviews = category.reviews;
-          f.category = category.category;
-          f.img = category.img;
-          f.other = category.other;
-          f.dollar = category.dollar;
-          f.cleaner = category.cleaner;
-          f.users_category_sync = category.users_category_sync;
+          c.user_id = category.user_id;
+          c.key = category.key;
+          c.title = category.title;
+          c.name = category.name;
+          c.address = category.address;
+          c.price = category.price;
+          c.description = category.description;
+          c.photo = category.photo;
+          c.star = category.star;
+          c.reviews = category.reviews;
+          c.category = category.category;
+          c.img = category.img;
+          c.other = category.other;
+          c.dollar = category.dollar;
+          c.cleaner = category.cleaner;
+          c.users_category_sync = category.users_category_sync;
         })
       );
     });
+  //-----------------------------------------------------------
+  //-----------------------------------------------------------
+  // TAKE ALL IDS RECEIVED
+  const generalIds = generals.map((general) => general.generalId);
+
+  // TAKE ALL IDS DB
+  const existingGenerals = await Generals.query(
+    Q.where('generalId', Q.oneOf(generalIds))
+  ).fetch();
+
+  const existingGeneralIds = existingGenerals.map(
+    (general) => general.generalId
+  );
+
+  generals
+    .filter((general) => !existingGeneralIds.includes(general.generalId))
+    .forEach((general: any) => {
+      inserts.push(
+        Generals.prepareCreate((g) => {
+          g._raw.id = general.id.toString();
+          // g.postId = general.post_id.toString();
+          g.serverId = general.id;
+
+          g.generalId = general.generalId;
+          g.generalUniqueId = general.generalUniqueId;
+          // ---------------------------------
+          let general_vacunass = JSON.stringify(general.general_vacuna);
+          general_vacunass = general_vacunass.split('"').join('');
+          general_vacunass = general_vacunass.replace('[', '');
+          general_vacunass = general_vacunass.replace(']', '');
+          //console.log('PRODUCTORSS', general_vacunass);
+          g.general_vacuna = general_vacunass;
+          // ----------------------------------
+
+          let general_razass = JSON.stringify(general.general_raza);
+          general_razass = general_razass.split('"').join('');
+          general_razass = general_razass.replace('[', '');
+          general_razass = general_razass.replace(']', '');
+          //console.log('PRODUCTORSS', general_razass);
+          g.general_raza = general_razass;
+          // ----------------------------------
+
+          let general_classificacionss = JSON.stringify(
+            general.general_classificacion
+          );
+          general_classificacionss = general_classificacionss
+            .split('"')
+            .join('');
+          general_classificacionss = general_classificacionss.replace('[', '');
+          general_classificacionss = general_classificacionss.replace(']', '');
+          //console.log('PRODUCTORSS', general_classificacionss);
+          g.general_classificacion = general_classificacionss;
+          // ----------------------------------
+
+          let general_dispositivoss = JSON.stringify(
+            general.general_dispositivo
+          );
+          general_dispositivoss = general_dispositivoss.split('"').join('');
+          general_dispositivoss = general_dispositivoss.replace('[', '');
+          general_dispositivoss = general_dispositivoss.replace(']', '');
+          //console.log('PRODUCTORSS', general_dispositivoss);
+          g.general_dispositivo = general_dispositivoss;
+          // ----------------------------------
+
+          let general_colorss = JSON.stringify(general.general_color);
+          general_colorss = general_colorss.split('"').join('');
+          general_colorss = general_colorss.replace('[', '');
+          general_colorss = general_colorss.replace(']', '');
+          //console.log('PRODUCTORSS', general_colorss);
+          g.general_color = general_colorss;
+          // ----------------------------------
+
+          let general_categoriass = JSON.stringify(general.general_categoria);
+          general_categoriass = general_categoriass.split('"').join('');
+          general_categoriass = general_categoriass.replace('[', '');
+          general_categoriass = general_categoriass.replace(']', '');
+          //console.log('PRODUCTORSS', general_categoriass);
+          g.general_categoria = general_categoriass;
+          // ----------------------------------
+
+          let general_modalidadss = JSON.stringify(general.general_modalidad);
+          general_modalidadss = general_modalidadss.split('"').join('');
+          general_modalidadss = general_modalidadss.replace('[', '');
+          general_modalidadss = general_modalidadss.replace(']', '');
+          //console.log('PRODUCTORSS', general_modalidadss);
+          g.general_modalidad = general_modalidadss;
+          // ----------------------------------
+
+          let general_destinoss = JSON.stringify(general.general_destino);
+          general_destinoss = general_destinoss.split('"').join('');
+          general_destinoss = general_destinoss.replace('[', '');
+          general_destinoss = general_destinoss.replace(']', '');
+          //console.log('PRODUCTORSS', general_destinoss);
+          g.general_destino = general_destinoss;
+          // ----------------------------------
+
+          let general_permissionss = JSON.stringify(general.general_permission);
+          general_permissionss = general_permissionss.split('"').join('');
+          general_permissionss = general_permissionss.replace('[', '');
+          general_permissionss = general_permissionss.replace(']', '');
+          //console.log('PRODUCTORSS', general_permissionss);
+          g.general_permission = general_permissionss;
+          // ----------------------------------
+
+          g.general_1 = general.general_1;
+          g.general_2 = general.general_2;
+          g.general_3 = general.general_3;
+          g.general_4 = general.general_4;
+          g.general_5 = general.general_5;
+          g.general_6 = general.general_6;
+          g.general_7 = general.general_7;
+          g.general_8 = general.general_8;
+          g.general_9 = general.general_9;
+          g.general_10 = general.general_10;
+          g.general_is_sync = general.general_is_sync;
+          g.dbversion = general.dbversion;
+        })
+      );
+    });
+  //  //take propriedadprocutors
   //  //take propriedadprocutors
   //const propIds = coibfepropriedads.map(
   //  propriedad => propriedad.propriedadproductors,
@@ -245,7 +372,7 @@ const dump = async () => {
 
   await database.write(async () => {
     // console.log('PROPRI', coibfepropriedads);
-    // console.log('ALL', inserts);
+    console.log('ALL', inserts);
     await database.batch(...inserts);
   });
 };
