@@ -24,8 +24,8 @@ const coibfeProductorSchema = tableSchema({
     { name: 'productorphone', type: 'string' },
     { name: 'productorissync', type: 'string' },
     { name: 'dbversion', type: 'string' },
-    { name: 'createdat', type: 'string' },
-    { name: 'updatedat', type: 'string' },
+    { name: 'created_at', type: 'number' },
+    { name: 'updated_at', type: 'number' },
 
     { name: 'body', type: 'string' },
     { name: 'post_id', type: 'string', isIndexed: true },

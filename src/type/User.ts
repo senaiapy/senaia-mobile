@@ -29,6 +29,6 @@ export type User = {
   userDeviceStatus: string;
   userKeyPrivate: string;
   userApiKeyHardware: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 };

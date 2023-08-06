@@ -2,8 +2,8 @@
 // ########################################
 export interface CoibfePropriedadDTO {
   id?: number;
-  createdat: number;
-  updatedat: number;
+  created_at?: number;
+  updated_at?: number;
   dbversion?: string;
   propriedad_id?: string;
   propriedadname: string;

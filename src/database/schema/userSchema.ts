@@ -41,8 +41,8 @@ const userSchema = tableSchema({
     { name: 'userDeviceStatus', type: 'string' },
     { name: 'userKeyPrivate', type: 'string' },
     { name: 'userApiKeyHardware', type: 'string' },
-    { name: 'createdAt', type: 'string' },
-    { name: 'updatedAt', type: 'string' },
+    { name: 'created_at', type: 'number' },
+    { name: 'updated_at', type: 'number' },
   ],
 });
 

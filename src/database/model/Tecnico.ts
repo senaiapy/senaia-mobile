@@ -90,12 +90,12 @@ class Tecnico extends Model {
   user_system_type?: string;
 
   //@readonly
-  @date('createdat')
-  createdat: any;
+  @date('created_at')
+  created_at?: any;
 
   //@readonly
-  @date('updatedat')
-  updatedat: any;
+  @date('updated_at')
+  updated_at?: any;
 }
 
 export { Tecnico };

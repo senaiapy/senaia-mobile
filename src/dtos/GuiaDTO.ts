@@ -15,6 +15,6 @@ export interface GuiaDTO {
   guiaCategoria?: string;
   guiaCorral?: string;
   guiaModalidad?: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }

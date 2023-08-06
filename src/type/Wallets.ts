@@ -25,6 +25,6 @@ export type Wallets = {
   wallets_messages: string;
   wallets_card: string;
   wallets_chatid: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 };

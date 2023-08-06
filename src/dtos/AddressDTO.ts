@@ -9,6 +9,6 @@ export interface AddressDTO {
   zip: string;
   customerId: string;
   tecnicoId: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }

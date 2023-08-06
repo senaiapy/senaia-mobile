@@ -43,12 +43,12 @@ class Liquidacion extends Model {
   dbversion!: string;
 
   //@readonly
-  @date('createdAt')
-  createdAt: any;
+  @date('created_at')
+  created_at?: any;
 
   //@readonly
-  @date('updatedAt')
-  updatedAt: any;
+  @date('updated_at')
+  updated_at?: any;
 
   @text('title')
   title?: string;

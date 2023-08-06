@@ -71,7 +71,7 @@ export interface ITecnico {
   Counter: string;
   tecnicoId: string;
   tecnicoUniqueId: string;
-  tecnicoCreatedAt: string;
+  tecnicocreatedAt?: string;
   tecnicoModifiedAt: string;
   tecnicoOBS: string;
   tecnicoErroCode: string;

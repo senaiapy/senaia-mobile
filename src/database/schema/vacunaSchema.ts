@@ -33,8 +33,8 @@ const vacunaSchema = tableSchema({
     { name: 'vacuna_caravana', type: 'string' },
 
     { name: 'dbversion', type: 'string' },
-    { name: 'createdAt', type: 'string' },
-    { name: 'updatedAt', type: 'string' },
+    { name: 'created_at', type: 'number' },
+    { name: 'updated_at', type: 'number' },
 
     { name: 'title', type: 'string' },
     { name: 'body', type: 'string', isOptional: true },
@@ -52,8 +52,8 @@ export type VacunaRaw = {
   vacuna_nome?: string;
   vacuna_edad?: string;
   vacuna_caravana?: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 
   title: string;
   body: string;

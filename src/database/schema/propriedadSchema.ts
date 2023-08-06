@@ -30,8 +30,8 @@ const propriedadSchema = tableSchema({
     { name: 'propriedaddepartamento', type: 'string' },
     { name: 'propriedaddistrito', type: 'string' },
     { name: 'dbversion', type: 'string' },
-    { name: 'createdat', type: 'string' },
-    { name: 'updatedat', type: 'string' },
+    { name: 'created_at', type: 'number' },
+    { name: 'updated_at', type: 'number' },
   ],
 });
 

@@ -45,6 +45,6 @@ export type Coibfe = {
   coibfeErroMessage: string;
   coibfe_issinc: string;
   dbversion: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 };

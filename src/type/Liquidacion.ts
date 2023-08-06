@@ -12,6 +12,6 @@ export type Liquidacion = {
   liquidacionPrecio_kg_carcasa: string;
   liquidacionPrecio_total: string;
   dbversion: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 };

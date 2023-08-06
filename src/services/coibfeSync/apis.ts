@@ -58,8 +58,8 @@ type ServerCoibfePropriedad = {
   title: string;
   body: string;
 
-  createdat: number;
-  updatedat: number;
+  created_at?: number;
+  updated_at?: number;
 };
 
 /*
@@ -136,8 +136,8 @@ type ServerCoibfeProductor = {
   id: number;
   post_id: number;
   body: string;
-  createdat: number;
-  updatedat: number;
+  created_at?: number;
+  updated_at?: number;
 
   productordocnroprop?: string;
   productordocdigprop?: string;
@@ -196,8 +196,8 @@ type ServerCoibfeFrigorifico = {
   id: number;
   post_id: number;
   body: string;
-  createdat: number;
-  updatedat: number;
+  created_at?: number;
+  updated_at?: number;
 };
 
 const createCoibfeFrigorificoApi = async (
@@ -271,8 +271,8 @@ export type CoibfeCoibfesPayload = {
   id: number;
   title: string;
   body: string;
-  createdat: number;
-  updatedat: number;
+  created_at?: number;
+  updated_at?: number;
 };
 
 export type ServerCoibfeCoibfes = {
@@ -325,8 +325,8 @@ export type ServerCoibfeCoibfes = {
   id: number;
   post_id: number;
   body: string;
-  createdat: number;
-  updatedat: number;
+  created_at?: number;
+  updated_at?: number;
 };
 
 export type TCoibfes = {

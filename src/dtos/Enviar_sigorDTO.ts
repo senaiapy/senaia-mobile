@@ -27,6 +27,6 @@ export interface Enviar_sigorDTO {
   coibfeDocOrigAbrev: string; // ": "NA",
   coibfeDocTipoAbrev: string;
   dbversion: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }

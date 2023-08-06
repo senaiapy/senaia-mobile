@@ -8,8 +8,8 @@ export interface VacunaDTO {
   vacuna_nome?: string;
   vacuna_edad?: string;
   vacuna_caravana?: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }
 
 export interface SalidaDTO {
@@ -47,8 +47,8 @@ export interface SalidaDTO {
   salida_nombre_identificaccion?: string;
   salida_custo_total?: string;
 
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }
 export interface RazaDTO {
   dbversion?: string;
@@ -58,8 +58,8 @@ export interface RazaDTO {
   razaIdRaca?: string;
   razaNomeRaca?: string;
   razaOrdemExibicao?: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }
 
 export interface PesoDTO {
@@ -71,8 +71,8 @@ export interface PesoDTO {
   pesoPesoFinal?: string;
   pesoPesoEntrada?: string;
   pesoEdad?: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }
 
 export interface LiquidacionDTO {
@@ -89,8 +89,8 @@ export interface LiquidacionDTO {
   liquidacionFecha_faena?: string;
   liquidacionPrecio_kg_carcasa?: string;
   liquidacionPrecio_total?: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }
 
 export interface IdentificaDTO {
@@ -113,8 +113,8 @@ export interface IdentificaDTO {
   identificaPeso?: string;
   identificaCodErro?: string;
   identificaDataIdentificacao?: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }
 
 export interface GuiaDTO {
@@ -131,8 +131,8 @@ export interface GuiaDTO {
   guiaCategoria?: string;
   guiaCorral?: string;
   guiaModalidad?: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }
 
 export interface EntradaDTO {
@@ -167,8 +167,8 @@ export interface EntradaDTO {
   entrada_costo_curativo?: string;
   entrada_costo_protocolo?: string;
 
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }
 
 export interface AnimalDTO {
@@ -191,6 +191,6 @@ export interface AnimalDTO {
   animalProductor_ID?: string;
   animalPropriedad_ID?: string;
   animalMarcaFuego?: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }

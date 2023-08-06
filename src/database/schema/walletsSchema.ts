@@ -47,8 +47,8 @@ const walletsSchema = tableSchema({
     { name: 'wallets_messages', type: 'string' },
     { name: 'wallets_card', type: 'string' },
     { name: 'wallets_chatid', type: 'string' },
-    { name: 'createdAt', type: 'string' },
-    { name: 'updatedAt', type: 'string' },
+    { name: 'created_at', type: 'number' },
+    { name: 'updated_at', type: 'number' },
   ],
 });
 

@@ -15,6 +15,6 @@ export interface LiquidacionDTO {
   liquidacionFecha_faena?: string;
   liquidacionPrecio_kg_carcasa?: string;
   liquidacionPrecio_total?: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }

@@ -26,6 +26,6 @@ export type Tokens = {
   tokens_price: string;
   tokens_logo: string;
   tokens_chain: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 };

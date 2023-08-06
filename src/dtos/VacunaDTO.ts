@@ -11,6 +11,6 @@ export interface VacunaDTO {
   vacuna_nome?: string;
   vacuna_edad?: string;
   vacuna_caravana?: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }

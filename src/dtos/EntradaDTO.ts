@@ -31,6 +31,6 @@ export interface EntradaDTO {
   entrada_costo_diario?: string;
   entrada_costo_curativo?: string;
   entrada_costo_protocolo?: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }

@@ -33,6 +33,6 @@ export type LocalDb = {
   user_vpa?: string;
   user_token?: string;
 
-  createdAt?: any;
-  updatedAt?: any;
+  created_at?: any;
+  updated_at?: any;
 };

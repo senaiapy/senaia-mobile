@@ -29,10 +29,10 @@ const dump = async () => {
 
   const UserCategorys = database.get<UserCategoryModel>('userscategorys');
 
-  // console.log("CoibfePropriedads",CoibfePropriedads);
-  // console.log("CoibfeProductors",CoibfeProductors);
-  // console.log("CoibfeFrigorificos",CoibfeFrigorificos);
-  // console.log("UserCategorys",UserCategorys);
+  // console.log('CoibfePropriedads', CoibfePropriedads);
+  // console.log('CoibfeProductors', CoibfeProductors);
+  // console.log('CoibfeFrigorificos', CoibfeFrigorificos);
+  // console.log('UserCategorys', UserCategorys);
 
   const {
     coibfepropriedads,
@@ -41,10 +41,10 @@ const dump = async () => {
     categoryusers,
   } = await downloadDumpApi();
 
-  // console.log("coibfepropriedads",coibfepropriedads);
-  // console.log("coibfeproductors",coibfeproductors);
-  // console.log("coibfeproductors",coibfeproductors);
-  // console.log("categoryusers",categoryusers);
+  // console.log('coibfepropriedads', coibfepropriedads);
+  // console.log('coibfeproductors', coibfeproductors);
+  // console.log('coibfeproductors', coibfeproductors);
+  // console.log('categoryusers', categoryusers);
 
   const inserts: Model[] = [];
 

@@ -41,6 +41,6 @@ export type Customer = {
   groups: string;
   nb_commands: any;
   total_spent: any;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 };

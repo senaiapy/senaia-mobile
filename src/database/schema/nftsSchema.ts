@@ -28,8 +28,8 @@ const nftsSchema = tableSchema({
     { name: 'nfts_name', type: 'string' },
     { name: 'nfts_value', type: 'string' },
     { name: 'nfts_chain', type: 'string' },
-    { name: 'createdAt', type: 'string' },
-    { name: 'updatedAt', type: 'string' },
+    { name: 'created_at', type: 'number' },
+    { name: 'updated_at', type: 'number' },
   ],
 });
 

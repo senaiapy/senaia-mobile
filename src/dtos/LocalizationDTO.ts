@@ -10,6 +10,6 @@ export interface LocalizationDTO {
   loc_tec_indice: string;
   loc_pdd_indice: string;
   dbversion: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }

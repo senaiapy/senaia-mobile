@@ -31,8 +31,8 @@ const statementSchema = tableSchema({
     { name: 'total', type: 'string' },
     { name: 'wallets_id', type: 'string' },
     { name: 'customer_id', type: 'string' },
-    { name: 'createdAt', type: 'string' },
-    { name: 'updatedAt', type: 'string' },
+    { name: 'created_at', type: 'number' },
+    { name: 'updated_at', type: 'number' },
   ],
 });
 

@@ -30,12 +30,12 @@ class Frigorifico extends Model {
   dbversion!: string;
 
   //@readonly
-  @date('createdat')
-  createdat: any;
+  @date('created_at')
+  created_at?: any;
 
   //@readonly
-  @date('updatedat')
-  updatedAt: any;
+  @date('updated_at')
+  updated_at?: any;
 }
 
 export { Frigorifico };

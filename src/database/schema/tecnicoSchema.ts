@@ -44,8 +44,8 @@ const tecnicoSchema = tableSchema({
     { name: 'tecnicoapikeyhardware', type: 'string' },
     { name: 'tecnicopermission', type: 'string' },
     { name: 'tecnicoaddress', type: 'string' },
-    { name: 'createdat', type: 'string' },
-    { name: 'updatedat', type: 'string' },
+    { name: 'created_at', type: 'number' },
+    { name: 'updated_at', type: 'number' },
     { name: 'user_system_type', type: 'string' },
   ],
 });

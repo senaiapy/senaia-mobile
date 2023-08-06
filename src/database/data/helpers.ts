@@ -18,7 +18,7 @@
 import database from '@/database/index';
 
 export type Weight = {
-  createdAt?: Date;
+  created_at?: Date;
   weight: string | number;
   note: string | undefined;
 };

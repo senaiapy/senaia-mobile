@@ -29,6 +29,6 @@ export default class Weight extends Model {
   weight!: string | number;
 
   //@readonly
-  @date('createdat')
-  createdAt!: Date;
+  @date('created_at')
+  created_at!: Date;
 }

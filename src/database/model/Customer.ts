@@ -145,12 +145,12 @@ class Customer extends Model {
   total_spent!: any;
 
   //@readonly
-  @date('createdAt')
-  createdAt: any;
+  @date('created_at')
+  created_at?: any;
 
   //@readonly
-  @date('updatedAt')
-  updatedAt: any;
+  @date('updated_at')
+  updated_at?: any;
 }
 
 export { Customer };

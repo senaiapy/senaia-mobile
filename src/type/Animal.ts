@@ -14,6 +14,6 @@ export type Animal = {
   animalProductor_ID: string;
   animalPropriedad_ID: string;
   dbversion: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 };

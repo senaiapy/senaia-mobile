@@ -69,8 +69,8 @@ const coibfeSchema = tableSchema({
     { name: 'coibfeanimales', type: 'string' },
     { name: 'coibfe_issinc', type: 'string' },
 
-    { name: 'createdat', type: 'string' },
-    { name: 'updatedat', type: 'string' },
+    { name: 'created_at', type: 'number' },
+    { name: 'updated_at', type: 'number' },
   ],
 });
 

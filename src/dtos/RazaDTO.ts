@@ -9,6 +9,6 @@ export interface RazaDTO {
   razaIdRaca?: string;
   razaNomeRaca?: string;
   razaOrdemExibicao?: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }

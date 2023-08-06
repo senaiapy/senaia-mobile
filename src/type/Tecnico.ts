@@ -22,6 +22,6 @@ export type Tecnico = {
   tecnicoApiKeyHardware: string;
   tecnicoPermission: string;
   tecnicoAddress: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 };

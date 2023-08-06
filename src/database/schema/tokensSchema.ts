@@ -33,8 +33,8 @@ const tokensSchema = tableSchema({
     { name: 'tokens_price', type: 'string' },
     { name: 'tokens_logo', type: 'string' },
     { name: 'tokens_chain', type: 'string' },
-    { name: 'createdAt', type: 'string' },
-    { name: 'updatedAt', type: 'string' },
+    { name: 'created_at', type: 'number' },
+    { name: 'updated_at', type: 'number' },
   ],
 });
 

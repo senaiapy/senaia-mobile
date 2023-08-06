@@ -85,6 +85,6 @@ export interface IotDTO {
   sensorLed4: string;
   sensorLed5: string;
   dbversion: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }

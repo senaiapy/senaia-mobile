@@ -8,6 +8,6 @@ export type Statement = {
   total: string;
   wallets_id: string;
   customer_id: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 };

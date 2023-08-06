@@ -1,0 +1,1587 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+enum Role {
+  ADMIN
+  MANAGER
+  USER
+}
+
+enum Permission {
+  ROOT
+  ADMIN
+  MANAGER
+  CLIENT
+  USER
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
+model Databaseversion {
+  id        String  @id @default(cuid())
+  dbversion String? @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("databaseversions")
+}
+// ------------------------------------------------------------------
+// --------------------------ECOMMERCE-------------------------------
+
+model Product {
+  id          Int    @id @default(autoincrement())
+  name        String
+  price       Float
+  description String
+  image       String
+  brand       String
+  quantity    Int?   @default(0)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Payment {
+  id           Int @id @default(autoincrement())
+  exampleField Int
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Post {
+  id    Int    @id @default(autoincrement())
+  title String
+  body  String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("posts")
+}
+
+model Comment {
+  id      Int    @id @default(autoincrement())
+  post_id Int
+  body    String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("comments")
+}
+
+model Order {
+  id                       Int     @id @default(autoincrement())
+  ids                      String? @default("")
+  orders_id                String? @default("")
+  order_company            String? @default("")
+  orders_type              String? @default("")
+  orders_animal_amount     String? @default("")
+  orders_execute_date      String? @default("")
+  orders_address           String? @default("")
+  orders_user_bank_account String? @default("")
+  orders_user_bank_ci      String? @default("")
+  orders_user_bank_name    String? @default("")
+  orders_mail              String? @default("")
+  orders_phone             String? @default("")
+  orders_keyprivate        String? @default("")
+  orders_apikeyhardware    String? @default("")
+  orders_apikeysoftware    String? @default("")
+  orders_messages          String? @default("")
+  orders_passwordremote    String? @default("")
+  orders_group             String? @default("")
+  orders_uniqueid          String? @default("")
+  orders_key               String? @default("")
+  orders_system_type       String? @default("")
+  orders_issync            String? @default("")
+  counter                  Int?    @default(0)
+
+  orders_user_id String @default("")
+
+  @@map("orders")
+}
+
+model Review {
+  id                     Int     @id @default(autoincrement())
+  ids                    String? @default("")
+  reviews_id             String? @default("")
+  reviews_company        String? @default("")
+  reviews_title          String? @default("")
+  reviews_description    String? @default("")
+  reviews_obs            String? @default("")
+  reviews_value          String? @default("")
+  reviews_servername     String? @default("")
+  reviews_devicestatus   String? @default("")
+  reviews_keyprivate     String? @default("")
+  reviews_apikeyhardware String? @default("")
+  reviews_apikeysoftware String? @default("")
+  reviews_messages       String? @default("")
+  reviews_passwordremote String? @default("")
+  reviews_group          String? @default("")
+  reviews_uniqueid       String? @default("")
+  reviews_key            String? @default("")
+  reviews_system_type    String? @default("")
+  reviews_issync         String? @default("")
+  counter                Int?    @default(0)
+
+  reviews_user_id              String @default("")
+  reviews_user_professional_id String @default("")
+
+  @@map("reviews")
+}
+
+model CategoryUser {
+  id                  Int      @id @default(autoincrement())
+  user_id             Int?     @default(0)
+  key                 Int      @default(autoincrement())
+  title               String?  @default("")
+  name                String?  @default("")
+  address             String?  @default("")
+  price               String?  @default("")
+  description         String?  @default("")
+  photo               String?  @default("")
+  star                String?  @default("")
+  reviews             String?  @default("")
+  category            String?  @default("")
+  img                 String?  @default("")
+  other               String?  @default("")
+  dollar              String?  @default("")
+  cleaner             String?  @default("")
+  users_category_sync Boolean? @default(false)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("category_users")
+}
+
+// ------------------------------------------------------------------
+// --------------------------GENERAL---------------------------------
+
+model Message {
+  id                      Int     @id @default(autoincrement())
+  ids                     String? @default("")
+  messages_id             String? @default("")
+  messages_title          String? @default("")
+  messages_description    String? @default("")
+  messages_status         String? @default("")
+  messages_token          String? @default("")
+  messages_phone          String? @default("")
+  messages_company         String? @default("")
+  messages_user            String? @default("")
+  messages_apikeymobile   String? @default("")
+  messages_locked         String? @default("")
+  messages_servername     String? @default("")
+  messages_devicestatus   String? @default("")
+  messages_keyprivate     String? @default("")
+  messages_apikeyhardware String? @default("")
+  messages_apikeysoftware String? @default("")
+  messages_messages       String? @default("")
+  messages_passwordremote String? @default("")
+  messages_group_messages String? @default("")
+  messages_uniqueid       String? @default("")
+  messages_vpa_id         String? @default("")
+  messages_key            String? @default("")
+  messages_system_type    String? @default("")
+  messages_issync         String? @default("")
+  counter                 Int?    @default(0)
+
+  messages_user_send_id    String? @default("")
+  messages_user_receive_id String? @default("")
+
+  @@map("messages")
+}
+
+model Association {
+  id                          Int     @id @default(autoincrement())
+  ids                         String? @default("")
+  associations_id             String? @default("")
+  associations_name           String? @default("")
+  associations_company        String? @default("")
+  associations_register       String? @default("")
+  associations_password       String? @default("")
+  associations_mac            String? @default("")
+  associations_status         String? @default("")
+  associations_levelaccess    String? @default("")
+  associations_execute_date   String? @default("")
+  associations_budget         String? @default("")
+  associations_mail           String? @default("")
+  associations_phone          String? @default("")
+  associations_apikeymobile   String? @default("")
+  associations_contact        String? @default("")
+  associations_vpa_name       String? @default("")
+  associations_devicestatus   String? @default("")
+  associations_keyprivate     String? @default("")
+  associations_apikeyhardware String? @default("")
+  associations_apikeysoftware String? @default("")
+  associations_messages       String? @default("")
+  associations_passwordremote String? @default("")
+  associations_group          String? @default("")
+  associations_uniqueid       String? @default("")
+  associations_key            String? @default("")
+  associations_system_type    String? @default("")
+  associations_issync         String? @default("")
+  counter                     Int?    @default(0)
+
+  @@map("associations")
+}
+
+model Service {
+  id                      Int     @id @default(autoincrement())
+  ids                     String? @default("")
+  services_id             String? @default("")
+  services_company        String? @default("")
+  services_title          String? @default("")
+  services_type           String? @default("")
+  services_description    String? @default("")
+  services_obs            String? @default("")
+  services_status         String? @default("")
+  services_price          String? @default("")
+  services_token          String? @default("")
+  services_duration       String? @default("")
+  services_comission      String? @default("")
+  services_coordinates    String? @default("")
+  services_address        String? @default("")
+  services_recurrency     String? @default("")
+  services_review         String? @default("")
+  services_devicestatus   String? @default("")
+  services_keyprivate     String? @default("")
+  services_apikeyhardware String? @default("")
+  services_apikeysoftware String? @default("")
+  services_messages       String? @default("")
+  services_group          String? @default("")
+  services_uniqueid       String? @default("")
+  services_key            String? @default("")
+  services_system_type    String? @default("")
+  services_issync         String? @default("")
+  counter                 Int?    @default(0)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  services_user_id              String @default("")
+  services_user_professional_id String @default("")
+
+  @@map("services")
+}
+
+model ServiceType {
+  id                           Int     @id @default(autoincrement())
+  ids                          String? @default("")
+  servicestypes_id             String? @default("")
+  servicestypes_title          String? @default("")
+  servicestypes_type           String? @default("")
+  servicestypes_description    String? @default("")
+  servicestypes_obs            String? @default("")
+  servicestypes_status         String? @default("")
+  servicestypes_price          String? @default("")
+  servicestypes_devicestatus   String? @default("")
+  servicestypes_keyprivate     String? @default("")
+  servicestypes_apikeyhardware String? @default("")
+  servicestypes_apikeysoftware String? @default("")
+  servicestypes_messages       String? @default("")
+  servicestypes_group          String? @default("")
+  servicestypes_uniqueid       String? @default("")
+  servicestypes_key            String? @default("")
+  servicestypes_system_type    String? @default("")
+  servicestypes_issync         String? @default("")
+  counter                      Int?    @default(0)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  services_service_id String? @default("")
+
+  @@map("servicetypes")
+}
+
+model Todo {
+  id         Int      @id @default(autoincrement())
+  title      String?  @default("")
+  completed  Boolean? @default(false)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("todos")
+}
+
+model SimpleUser {
+  id Int @id @default(autoincrement())
+
+  username           String
+  email              String   @unique
+  hashedPassword     String
+  hashedRefreshToken String?
+  created_at         DateTime @default(now())
+  updated_at         DateTime @updatedAt
+
+  @@map("simpleusers")
+}
+
+model Owner {
+  id         Int      @id @default(autoincrement())
+  name       String
+  dogs       Dog[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("owners")
+}
+
+model Dog {
+  id         Int      @id @default(autoincrement())
+  name       String
+  ownerId    Int?
+  owner      Owner?   @relation(fields: [ownerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("dogs")
+}
+
+model Mobile {
+  id        String  @id @default(cuid())
+  dbversion String? @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("mobiles")
+}
+
+model Localization {
+  id        String  @id @default(cuid())
+  dbversion String? @default("")
+
+  loc_indice       String? @default("") // integer 
+  loc_tag          String? @default("") // bigint
+  loc_descricao    String? @default("") // character varying(25)
+  loc_latitude     String? @default("") // character varying(10)
+  loc_longitude    String? @default("") // character varying(10)
+  loc_data_fixacao String? @default("") // timestamp without time zone
+  loc_tec_indice   String? @default("") // integer
+  loc_pdd_indice   String? @default("") // integer
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("localizations")
+}
+
+model Log {
+  id        String  @id @default(cuid())
+  dbversion String? @default("")
+
+  user String? @default("")
+  logs String? @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("logs")
+}
+
+model Token {
+  id        String  @id @default(cuid())
+  dbversion String? @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("tokens")
+}
+
+model Lista {
+  id        String  @id @default(cuid())
+  dbversion String? @default("")
+
+  status     String? @default("") //  "created"
+  group      String? @default("") //  "CINE SKY"
+  id_        String? @default("") //  2
+  logo       String? @default("") //  "http://asbx.xyz:80/images/711b1f8b9a30ceff12f0e72268a2b765.png"
+  name       String? @default("") //  "Cine Sky Ação"
+  token      String? @default("") //  null
+  url        String? @default("") //  "http://asbx.xyz:80/live/fuinha01/123321/71616.m3u8"
+  modelClass String? @default("") //  group cinesky
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("listas")
+}
+
+model Check_online {
+  id        String  @id @default(cuid())
+  dbversion String? @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("check_onlines")
+}
+
+model Front {
+  id        String  @id @default(cuid())
+  dbversion String? @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("fronts")
+}
+
+// ------------------------------------------------------------------
+// --------------------------BLOCKCHAIN------------------------------
+
+model Wallets {
+  id                    String   @id @default(cuid())
+  first_name            String?  @default("")
+  last_name             String?  @default("")
+  address               String?  @default("")
+  stateAbbr             String?  @default("")
+  city                  String?  @default("")
+  zipcode               String?  @default("")
+  avatar                String?  @default("")
+  birthday              String?  @default("")
+  first_seen            String?  @default("")
+  last_seen             String?  @default("")
+  has_ordered           Boolean?
+  latest_purchase       String?  @default("")
+  has_newsletter        Boolean?
+  nb_commands           Int?     @default(0)
+  total_spent           Int?     @default(0)
+  wallets_id            String?  @default("")
+  wallets_pin           String?  @default("")
+  wallets_mail          String?  @default("")
+  wallets_balance       String?  @default("")
+  wallets_tokens        String?  @default("")
+  wallets_transactions  String?  @default("")
+  wallets_messages      String?  @default("")
+  wallets_card          String?  @default("")
+  wallets_chatid        String?  @default("")
+  walletsPermission     String?  @default("")
+  walletsId             String
+  walletsEmail          String?  @default("")
+  walletsPhone          String?  @default("")
+  walletsUniqueId       String
+  walletsLocked         String?  @default("")
+  walletsServerName     String?  @default("")
+  wallets_vpa_id        String?  @default("")
+  wallets_name          String?  @default("")
+  wallets_register      String?  @default("")
+  wallets_password      String?  @default("")
+  wallets_mac           String?  @default("")
+  wallets_status        String?  @default("")
+  wallets_key           String?  @default("")
+  walletsApiKeyMobile   String?  @default("")
+  walletsApiKeySoftware String?  @default("")
+  walletsKeyPrivate     String?  @default("")
+  walletsLevelAccess    String?  @default("")
+  walletsToken          String?  @default("")
+  walletsDeviceStatus   String?  @default("")
+  walletsApiKeyHardware String?  @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("walletss")
+}
+
+model Statement {
+  id                          String    @id @default(cuid())
+  data                        DateTime?
+  type                        String?   @default("")
+  status                      String?   @default("")
+  date                        DateTime?
+  total                       Int?
+  amount                      Int?
+  balance                     Int?
+  description                 String?   @default("")
+  customer_id                 String?   @default("")
+  wallet_id                   String?   @default("")
+  transaction_id              String?   @default("")
+  statement_chain             String?   @default("")
+  statement_chain_public_key  String?   @default("")
+  statement_chain_private_key String?   @default("")
+  statement_device_token_id   String?   @default("")
+  first_name                  String?   @default("")
+  last_name                   String?   @default("")
+  email                       String?   @default("")
+  password                    String?   @default("")
+  address                     String?   @default("")
+  city                        String?   @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("statements")
+}
+
+model Nfts {
+  id                     String   @id @default(cuid())
+  nfts_id                String?  @default("")
+  nfts_description       String?  @default("")
+  nfts_created_date      String?  @default("")
+  nfts_sales             String?  @default("")
+  nfts_total_supply      String?  @default("")
+  nfts_screen            String?  @default("")
+  nfts_symbol            String?  @default("")
+  nfts_name              String?  @default("")
+  nfts_search            String?  @default("")
+  nfts_charge            String?  @default("")
+  nfts_create            String?  @default("")
+  nfts_price             String?  @default("")
+  nfts_chain             String?  @default("")
+  nfts_chain_market      String?  @default("")
+  nfts_chain_url         String?  @default("")
+  nfts_chain_public_key  String?  @default("")
+  nfts_chain_private_key String?  @default("")
+  nfts_device_token_id   String?  @default("")
+  nfts_wallet_id         String?  @default("")
+  first_name             String?  @default("")
+  last_name              String?  @default("")
+  address                String?  @default("")
+  stateAbbr              String?  @default("")
+  city                   String?  @default("")
+  zipcode                String?  @default("")
+  avatar                 String?  @default("")
+  birthday               String?  @default("")
+  first_seen             String?  @default("")
+  last_seen              String?  @default("")
+  has_ordered            Boolean?
+  latest_purchase        String?  @default("")
+  has_newsletter         Boolean?
+  total_spent            Int?
+  nfts_wallets_id        String?  @default("")
+  nfts_value             String?  @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("nftss")
+}
+
+model Tokens {
+  tokensId             String
+  tokensEmail          String? @default("")
+  tokensPhone          String? @default("")
+  tokensUniqueId       String
+  tokensLocked         String? @default("")
+  tokensServerName     String? @default("")
+  tokens_vpa_id        String? @default("")
+  tokens_register      String? @default("")
+  tokens_password      String
+  tokens_mac           String? @default("")
+  tokens_status        String? @default("")
+  tokens_key           String? @default("")
+  tokensApiKeyMobile   String? @default("")
+  tokensApiKeySoftware String? @default("")
+  tokensKeyPrivate     String? @default("")
+  tokensLevelAccess    String? @default("")
+  tokensToken          String? @default("")
+  tokensDeviceStatus   String? @default("")
+  tokensApiKeyHardware String? @default("")
+
+  id                String   @id @default(cuid())
+  first_name        String?  @default("")
+  last_name         String?  @default("")
+  address           String?  @default("")
+  stateAbbr         String?  @default("")
+  city              String?  @default("")
+  zipcode           String?  @default("")
+  avatar            String?  @default("")
+  birthday          String?  @default("")
+  first_seen        String?  @default("")
+  last_seen         String?  @default("")
+  has_ordered       Boolean?
+  latest_purchase   String?  @default("")
+  has_newsletter    Boolean?
+  nb_commands       Int?     @default(0)
+  total_spent       Int?     @default(0)
+  tokens_wallets    String?  @default("")
+  tokens_wallets_id String?  @default("")
+  tokens_name       String?  @default("")
+  tokens_symbol     String?  @default("")
+  tokens_type       String?  @default("")
+  tokens_decimal    String?  @default("")
+  tokens_balance    String?  @default("")
+  tokens_price      String?  @default("")
+  tokens_logo       String?  @default("")
+  tokens_chain      String?  @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("tokenss")
+}
+
+model Customer {
+  id                     String      @id @default(cuid())
+  customerId             String      @default(cuid())
+  customerEmail          String?     @default("")
+  customerPhone          String?     @default("")
+  customerUniqueId       String      @unique
+  customerLocked         String?     @default("")
+  customerServerName     String?     @default("")
+  customer_vpa_id        String?     @default("")
+  customer_name          String?     @default("")
+  customer_register      String?     @default("")
+  customer_password      String
+  customer_mac           String?     @default("")
+  customer_status        String?     @default("locked")
+  customer_key           String?     @default("")
+  customerApiKeyMobile   String?     @default("")
+  customerApiKeySoftware String?     @default("")
+  customerKeyPrivate     String?     @default("")
+  customerLevelAccess    String?     @default("0")
+  customerToken          String?     @default("")
+  customerDeviceStatus   String?     @default("")
+  customerApiKeyHardware String?     @default("")
+  avatar                 String?     @default("")
+  avatar_face            String?     @default("")
+  wallet                 String?     @default("")
+  customerPermission     Permission?
+
+  first_name      String?  @default("")
+  last_name       String?  @default("")
+  address         String?  @default("")
+  stateAbbr       String?  @default("")
+  city            String?  @default("")
+  zipcode         String?  @default("")
+  birthday        String?  @default("")
+  first_seen      String?  @default("")
+  last_seen       String?  @default("")
+  has_ordered     Boolean?
+  latest_purchase String?  @default("")
+  has_newsletter  Boolean?
+  groups          Role?
+  nb_commands     Int?     @default(0)
+  total_spent     Int?     @default(0)
+
+  customerAddress Address[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  // rename table name
+  @@map("customers")
+}
+
+model Address {
+  id       String  @id @default(cuid())
+  street   String? @default("")
+  number   String? @default("")
+  district String? @default("")
+  obs      String? @default("")
+  country  String? @default("")
+  zip      String? @default("")
+
+  customer   Customer? @relation(fields: [customerId], references: [id])
+  //user       User?     @relation(fields: [user_id], references: [id])
+  customerId String?   @default("")
+  tecnicoId  Int?      @default(0)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  // rename table name
+  @@map("addresss")
+}
+
+// ------------------------------------------------------------------
+// --------------------------IOT-------------------------------------
+
+model Iot {
+  id                      String   @id @default(cuid())
+  created_at               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+  sensorMaintenance       String?  @default("")
+  sensorWarning           String?  @default("")
+  sensorUserName          String?  @default("")
+  sensorUserPassword      String?  @default("")
+  sensorUserMail          String?  @default("")
+  sensorUserLevelAcess    String?  @default("")
+  sensorUserLocked        String?  @default("")
+  sensorId                String?  @default("")
+  sensorKey               String?  @default("")
+  sensorKeyPrivate        String?  @default("")
+  sensorUniqueId          String?  @default("")
+  sensorName              String?  @default("")
+  sensorStatus            String?  @default("")
+  sensorLocked            String?  @default("")
+  sensorInTotal           String?  @default("")
+  sensorOutTotal          String?  @default("")
+  sensorInParcial         String?  @default("")
+  sensorOutParcial        String?  @default("")
+  sensorParcialClear      String?  @default("")
+  sensorCredits           String?  @default("")
+  sensorCreditsFactor     String?  @default("")
+  sensorWeight            String?  @default("")
+  sensorEnergyKW          String?  @default("")
+  sensorEnergyV           String?  @default("")
+  sensorEnergyAS          String?  @default("")
+  sensorEnergyI           String?  @default("")
+  sensorEnergyP           String?  @default("")
+  sensorEnergyVA          String?  @default("")
+  sensorEnergyKWH         String?  @default("")
+  sensorEnergyCurrent     String?  @default("")
+  sensorEnergyVoltage     String?  @default("")
+  sensorEnergyPower       String?  @default("")
+  sensorEnergyCalibration String?  @default("")
+  sensorEnergyPf          String?  @default("")
+  sensorEnergyTariff      String?  @default("")
+  sensorType              String?  @default("")
+  sensorPrivateKey        String?  @default("")
+  sensorPublicKey         String?  @default("")
+  sensorSaveLog           String?  @default("")
+  sensorUserId            String?  @default("")
+  sensorDate              String?  @default("")
+  sensorTime              String?  @default("")
+  sensorLong              String?  @default("")
+  sensorLati              String?  @default("")
+  sensorPres              String?  @default("")
+  sensorTem1              String?  @default("")
+  sensorTem2              String?  @default("")
+  sensorTem3              String?  @default("")
+  sensorTem4              String?  @default("")
+  sensorTem5              String?  @default("")
+  sensorHumi              String?  @default("")
+  sensorAceX              String?  @default("")
+  sensorAceY              String?  @default("")
+  sensorAceZ              String?  @default("")
+  sensorMagX              String?  @default("")
+  sensorMagY              String?  @default("")
+  sensorMagZ              String?  @default("")
+  sensorGyrX              String?  @default("")
+  sensorGyrY              String?  @default("")
+  sensorGyrZ              String?  @default("")
+  sensorPuls              String?  @default("")
+  sensorOxim              String?  @default("")
+  sensorMapX              String?  @default("")
+  sensorMapY              String?  @default("")
+  sensorMapZ              String?  @default("")
+  sensorSeco              String?  @default("")
+  sensorSno2              String?  @default("")
+  sensorSnh3              String?  @default("")
+  sensorLigh              String?  @default("")
+  sensorSoun              String?  @default("")
+  sensorAna1              String?  @default("")
+  sensorAna2              String?  @default("")
+  sensorAna3              String?  @default("")
+  sensorBut1              String?  @default("")
+  sensorBut2              String?  @default("")
+  sensorBut3              String?  @default("")
+  sensorBut4              String?  @default("")
+  sensorBut5              String?  @default("")
+  sensorLed1              String?  @default("")
+  sensorLed2              String?  @default("")
+  sensorLed3              String?  @default("")
+  sensorLed4              String?  @default("")
+  sensorLed5              String?  @default("")
+
+  @@map("iots")
+}
+
+// ------------------------------------------------------------------
+// --------------------------GAME------------------------------------
+
+model Game {
+  id String @id @default(cuid())
+
+  dbversion String? @default("")
+
+  gameUser             String? @default("")
+  gameBio              String? @default("")
+  gameAvatar           String? @default("")
+  gameToken            String? @default("")
+  gameGroupUser        String? @default("")
+  gameDeviceType       String? @default("")
+  gameApiKeyHardware   String? @default("")
+  gameApiKeyMobile     String? @default("")
+  gameApiKeySoftware   String? @default("")
+  gameJackpot1Locked   String? @default("")
+  gameJackpot2Locked   String? @default("")
+  gameJackpot3Locked   String? @default("")
+  gameMaintenance      String? @default("")
+  gameWarning          String? @default("")
+  gameUserName         String? @default("")
+  gameUserPassword     String? @default("")
+  gameUserMail         String? @default("")
+  gameUserLevelAcess   String? @default("")
+  gameUserLocked       String? @default("")
+  gameId               String? @default("")
+  game_id              String? @default("")
+  gameRelative_cashin  String? @default("")
+  gameRelative_cashout String? @default("")
+  gameKey              String? @default("")
+  gameKeyPrivate       String? @default("")
+  gameUniqueId         String? @default("")
+  gameName             String? @default("")
+  gameStatus           String? @default("")
+  gameLocked           String? @default("")
+  gameInTotal          String? @default("")
+  gameOutTotal         String? @default("")
+  gameInParcial        String? @default("")
+  gameOutParcial       String? @default("")
+  gameParcialClear     String? @default("")
+  gameCredits          String? @default("")
+  gameCreditsFactor    String? @default("")
+  gameJackpot1         String? @default("")
+  gameJackpot2         String? @default("")
+  gameJackpot3         String? @default("")
+  gameWeight           String? @default("")
+  gameRegister1        String? @default("")
+  gameRegister2        String? @default("")
+  gameRegister3        String? @default("")
+  gameRegister4        String? @default("")
+  gameRegister5        String? @default("")
+  gameRegister6        String? @default("")
+  gameRegister7        String? @default("")
+  gameRegister8        String? @default("")
+  gameRegister9        String? @default("")
+  gameRegister10       String? @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("games")
+}
+
+// ------------------------------------------------------------------
+// --------------------------COIBFE----------------------------------
+
+model CoibfeFrigorifico {
+  id                                 Int     @id @default(autoincrement())
+  ids                                String? @default("")
+  frigorificoname                    String? @default("")
+  frigorifico_id                     String  @unique @default("") // @unique
+  frigorificoacreditacion            String? @default("")
+  frigorificopassword                String? @default("")
+  frigorificodepartamento            String? @default("")
+  frigorificodistrito                String? @default("")
+  frigorificomail                    String? @default("")
+  frigorificophone                   String? @default("")
+  frigorificolevelaccess             String? @default("")
+  frigorificoapikeymobile            String? @default("")
+  frigorificokey                     String? @default("")
+  frigorificostatus                  String? @default("")
+  frigorificolocked                  String? @default("")
+  frigorificotoken                   String? @default("")
+  frigorificoservername              String? @default("")
+  frigorificokeyprivate              String? @default("")
+  frigorificoapikeyhardware          String? @default("")
+  frigorificoapikeysoftware          String? @default("")
+  frigorificomessages                String? @default("")
+  frigorificopasswordremoteassistant String? @default("")
+  frigorificogroupusers              String? @default("")
+  frigorificodevicestatus            String? @default("")
+  frigorificoissync                  String? @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("coibfefrigorificos")
+}
+
+model CoibfeProductor {
+  id                               Int     @id @default(autoincrement())
+  ids                              String? @default("")
+  productorname                    String? @default("")
+  productor_id_type                String? @default("")
+  productor_id_origem              String? @default("")
+  productoracreditacion            String? @default("")
+  productor_propriedad_id          String? @default("")
+  productorpassword                String? @default("")
+  productormail                    String? @default("")
+  productorphone                   String? @default("")
+  productorlevelaccess             String? @default("")
+  productorapikeymobile            String? @default("")
+  productorkey                     String? @default("")
+  productorstatus                  String? @default("")
+  productorlocked                  String? @default("")
+  productortoken                   String? @default("")
+  productorsitrap                  String? @default("")
+  productorservername              String? @default("")
+  productordocnroprop              String? @default("")
+  productordocdigprop              String? @default("")
+  productordocorigabrev            String? @default("")
+  productordoctipoabrev            String? @default("")
+  productorissync                  String? @default("")
+  productorkeyprivate              String? @default("")
+  productorapikeyhardware          String? @default("")
+  productorapikeysoftware          String? @default("")
+  productormessages                String? @default("")
+  productorpasswordremoteassistant String? @default("")
+  productorgroupusers              String? @default("")
+  productordevicestatus            String? @default("")
+  productor_id                     String  @default("") // @unique
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  // propriedads   CoibfePropriedad? @relation(fields: [productor_id], references: [propriedadsigor])
+
+  @@map("coibfeproductors")
+}
+
+model CoibfePropriedad {
+  id                                Int      @id @default(autoincrement())
+  ids                               String?  @default("")
+  propriedadname                    String?  @default("")
+  propriedad_id                     String?  @default("")
+  propriedaddevicestatus            String?  @default("")
+  propriedadpropietario             String?  @default("")
+  propriedadacreditacion            String?  @default("")
+  propriedadpassword                String?  @default("")
+  propriedadmail                    String?  @default("")
+  propriedadphone                   String?  @default("")
+  propriedadlevelaccess             String?  @default("")
+  propriedadapikeymobile            String?  @default("")
+  propriedadstatus                  String?  @default("")
+  propriedadlocked                  String?  @default("")
+  propriedadtoken                   String?  @default("")
+  propriedadsitrap                  String?  @default("")
+  propriedaddepartamento            String?  @default("")
+  propriedaddistrito                String?  @default("")
+  propriedadlocalidad               String?  @default("")
+  propriedadservername              String?  @default("")
+  propriedadkey                     String?  @default("")
+  propriedadissync                  String?  @default("")
+  propriedadkeyprivate              String?  @default("")
+  propriedadapikeyhardware          String?  @default("")
+  propriedadapikeysoftware          String?  @default("")
+  propriedadmessages                String?  @default("")
+  propriedadpasswordremoteassistant String?  @default("")
+  propriedadgroupusers              String?  @default("")
+  propriedadsigor                   String   @unique @default("") // @unique
+  counter                           Int?     @default(0)
+  //productors                      CoibfeProductor[]
+
+  propriedadproductors String[] @default(dbgenerated())
+  created_at           DateTime @default(now())
+  updated_at           DateTime @updatedAt
+
+  @@map("coibfepropriedads")
+}
+
+model CoibfeTecnico {
+  id                             Int      @id @default(autoincrement())
+  ids                            String?  @default("")
+  tecnicoid                      String   @default("")
+  tecnico_name                   String?  @default("")
+  tecnico_register               String?  @default("")
+  tecnico_password               String?  @default("")
+  tecnico_mac                    String?  @default("")
+  tecnico_status                 String?  @default("")
+  tecnicolevelaccess             String?  @default("")
+  tecnicotoken                   String?  @default("")
+  tecnicoacreditacion            String?  @default("")
+  tecnicomail                    String?  @default("")
+  tecnicophone                   String?  @default("")
+  tecnicoapikeymobile            String?  @default("")
+  tecnicolocked                  String?  @default("")
+  tecnicoservername              String?  @default("")
+  tecnicodevicestatus            String?  @default("")
+  tecnicokeyprivate              String?  @default("")
+  tecnicoapikeyhardware          String?  @default("")
+  tecnicoapikeysoftware          String?  @default("")
+  tecnicomessages                String?  @default("")
+  tecnicopasswordremoteassistant String?  @default("")
+  tecnicogroupusers              String?  @default("")
+  tecnicoissync                  String?  @default("")
+  tecnicouniqueid                String?  @default("")
+  tecnico_vpa_id                 String   @unique @default("")
+  tecnico_key                    String?  @default("")
+  counter                        Int?     @default(0)
+  user_system_type               String?  @default("")
+
+  created_at           DateTime @default(now())
+  updated_at           DateTime @updatedAt
+
+  @@map("coibfetecnicoss")
+}
+
+model CoibfeCoibfe {
+  id                            Int      @id @default(autoincrement())
+  ids                           String?  @default("")
+  coibfeuniqueid                String?  @default("")
+  coibfesaltkey                 String?  @default("")
+  coibfecodigov                 String?  @default("")
+  coibfetransporte              String?  @default("")
+  coibfefinalidad               String?  @default("")
+  coibfedestino                 String?  @default("")
+  coibfeanimales                String?  @default("")
+  coibfeaninovillos             String?  @default("")
+  coibfeanitoros                String?  @default("")
+  coibfeanivacas                String?  @default("")
+  coibfeanivaquillas            String?  @default("")
+  coibfeaniotros                String?  @default("")
+  coibfeanitotal                String?  @default("")
+  coibfeanihilton               String?  @default("")
+  coibfetecnico_vpa_id          String?  @default("")
+  coibfetecniconame             String?  @default("")
+  coibfefrigorificoname         String?  @default("")
+  coibfefrigorifico_id          String?  @default("")
+  coibfeproductorname           String?  @default("")
+  coibfeproductor_id            String?  @default("")
+  coibfeproductorsitrap         String?  @default("")
+  coibfepropriedadname          String?  @default("")
+  coibfepropriedad_id           String?  @default("")
+  coibfepropriedadsigor         String?  @default("")
+  coibfepropriedadsitrap        String?  @default("")
+  coibfepropriedaddepartamento  String?  @default("")
+  coibfepropriedaddistrito      String?  @default("")
+  coibfepropriedad_productor_id String?  @default("")
+  coibfeprecinto1               String?  @default("")
+  coibfeprecinto2               String?  @default("")
+  coibfeprecinto3               String?  @default("")
+  coibfecaravanas               String?  @default("")
+  coibfepos_id                  String?  @default("")
+  coibfeposdate                 String?  @default("")
+  coibfeposapikeymobile         String?  @default("")
+  coibfeposlatitud              String?  @default("")
+  coibfeposlongitud             String?  @default("")
+  coibfeobs                     String?  @default("")
+  coibfedocnroprop              String?  @default("")
+  coibfedocdigprop              String?  @default("")
+  coibfedocorigabrev            String?  @default("")
+  coibfedoctipoabrev            String?  @default("")
+  coibfeerrocode                String?  @default("")
+  coibfeerromessage             String?  @default("")
+  coibfe_issinc                 String?  @default("false")
+  coibfetoken                   String?  @default("")
+  coibfekey                     String?  @default("")
+  coibfeapikeyprivate           String?  @default("")
+  coibfedevicetype              String?  @default("")
+  coibfedevicestatus            String?  @default("")
+  coibfeservername              String?  @default("")
+  coibfepaydate                 String?  @default("")
+  coibfeid                      String   @unique // @unique
+  counter                       Int?     @default(0)
+  coibfeproductor_id_type       String?  @default("")
+  coibfeproductor_id_origem     String?  @default("")
+  coibfe_print                  String?  @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("coibfecoibfes")
+}
+
+model CoibfePropriedad_Productor {
+  id                         Int      @id @default(autoincrement())
+  ids                        String?  @default("")
+  propriedadproductorkey     String?  @default("")
+  propriedadsigor            String   @default("")
+  productor_id               String   @default("")
+  coibfeid                   String?  @default("")
+  propriedadindice           String?  @default("")
+  productorindice            String?  @default("")
+  propriedad_productorissync String?  @default("")
+  counter                    Int?     @default(0)
+
+  // propriedadsigor   CoibfePropriedad? @relation(fields: [propriedadsigor], references: [propriedadsigor])
+  // productor_id   CoibfeProductor? @relation(fields: [productor_id], references: [productor_id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("coibfepropriedad_productors")
+}
+
+model CoibfeTecnicoStatus {
+  id                             Int      @id @default(autoincrement())
+  ids                            String?  @default("")
+  tecnicoid                      String?  @default("")
+  tecnico_name                   String?  @default("")
+  tecnico_register               String?  @default("")
+  tecnico_password               String?  @default("")
+  tecnico_mac                    String?  @default("")
+  tecnico_status                 String?  @default("")
+  tecnicolevelaccess             String?  @default("")
+  tecnicotoken                   String?  @default("")
+  tecnicoacreditacion            String?  @default("")
+  tecnicomail                    String?  @default("")
+  tecnicophone                   String?  @default("")
+  tecnicoapikeymobile            String?  @default("")
+  tecnicolocked                  String?  @default("")
+  tecnicoservername              String?  @default("")
+  tecnicodevicestatus            String?  @default("")
+  tecnicokeyprivate              String?  @default("")
+  tecnicoapikeyhardware          String?  @default("")
+  tecnicoapikeysoftware          String?  @default("")
+  tecnicomessages                String?  @default("")
+  tecnicopasswordremoteassistant String?  @default("")
+  tecnicogroupusers              String?  @default("")
+  tecnicoissync                  String?  @default("")
+  tecnicouniqueid                String?  @default("")
+  tecnico_vpa_id                 String   @default("")
+  tecnico_key                    String?  @default("")
+  counter                        Int?     @default(0)
+  tecnicolastcoibfe              String?  @default("")
+  tecnicolastprinter             String?  @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("coibfetecnicostatuss")
+}
+
+model CoibfePropProd {
+  id              Int     @id @default(autoincrement())
+  propriedadsigor String? @default("")
+  productor_id    String? @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("coibfepropprods")
+}
+
+// ------------------------------------------------------------------
+// --------------------------IDENTIFICA------------------------------
+
+model Animal {
+  id        String  @id @default(cuid())
+  dbversion String? @default("")
+
+  animalId                String? @default("")
+  animal_company          String? @default("")
+  animalUniqueId          String  @unique
+  animalNroTag            String? @default("")
+  animalDataNascimento    String? @default("")
+  animalDataQuarentena    String? @default("")
+  animalIdRaca            String? @default("")
+  animalSexo              String? @default("")
+  animalIdClassificacao   String? @default("")
+  animalUltimoPeso        String? @default("")
+  animalDataUltimapesagem String? @default("")
+  animalListaNegra        String? @default("")
+  animal_raza             String? @default("")
+  animal_color            String? @default("")
+  animal_edad             String? @default("")
+  animalProductor_ID      String? @default("")
+  animalPropriedad_ID     String? @default("")
+  animalMarcaFuego        String? @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("animals")
+}
+
+model Entrada {
+  id String @id @default(cuid())
+
+  entradaId        String? @default("")
+  entrada_UniqueId String
+  entrada_company  String? @default("")
+
+  entrada_guia     String? @default("")
+  entrada_lote     String? @default("")
+  entrada_caravana String? @default("")
+
+  entrada_numero_anterior      String? @default("")
+  entrada_sigla_anterior       String? @default("")
+  entrada_corral_origem        String? @default("")
+  entrada_dispositivo_anterior String? @default("")
+  entrada_color_anterior       String? @default("")
+
+  entrada_numero_actual      String? @default("")
+  entrada_sigla_actual       String? @default("")
+  entrada_dispositivo_actual String? @default("")
+  entrada_color_actual       String? @default("")
+  entrada_angus              String? @default("")
+  entrada_peso_actual        String? @default("")
+  entrada_categoria          String? @default("")
+
+  entrada_fecha_entrada      String? @default("")
+  entrada_fecha_aplicaccion  String? @default("")
+  entrada_corral_actual      String? @default("")
+  entrada_modalidade         String? @default("")
+  entrada_propietario_origem String? @default("")
+
+  entrada_ms_cab_dia      String? @default("")
+  entrada_costo_compra    String? @default("")
+  entrada_costo_diario    String? @default("")
+  entrada_costo_curativo  String? @default("")
+  entrada_costo_protocolo String? @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  dbversion String? @default("")
+
+  @@map("entradas")
+}
+
+model Salida {
+  id String @id @default(cuid())
+
+  salidaId        String? @default("")
+  salida_UniqueId String
+  salida_company  String? @default("")
+
+  salida_guia     String? @default("")
+  salida_caravana String? @default("")
+
+  entrada_fecha_entrada     String? @default("")
+  entrada_modalidade        String? @default("")
+  salida_ms_cab_dia         String? @default("")
+  salida_costo_compra       String? @default("")
+  salida_costo_diaria       String? @default("")
+  salida_costo_curativo     String? @default("")
+  salida_costo_protocolo    String? @default("")
+  salida_corral             String? @default("")
+  salida_peso_entrada       String? @default("")
+  salida_categoria          String? @default("")
+  salida_angus              String? @default("")
+  salida_propietario_origem String? @default("")
+
+  salida_peso_salida       String? @default("")
+  salida_dias_confinamento String? @default("")
+  salida_lote              String? @default("")
+  salida_fecha_salida      String? @default("")
+  salida_peso_proyectado   String? @default("")
+  salida_cms_pv            String? @default("")
+  salida_cms_total         String? @default("")
+  salida_gmd               String? @default("")
+  salida_destino           String? @default("")
+  salida_controlador       String? @default("")
+  salida_tipo_salida       String? @default("")
+  salida_cantidad          String? @default("")
+
+  salida_nombre_identificaccion String? @default("")
+  salida_custo_total            String? @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  dbversion String? @default("")
+
+  @@map("salidas")
+}
+
+model Identifica {
+  id        String  @id @default(cuid())
+  dbversion String? @default("")
+
+  identificaId                  String? @default("")
+  identificaUniqueId            String
+  identifica_company            String? @default("")
+  identificaIdAnimal            String? @default("")
+  identificaNroTag              String? @default("")
+  identificaIdTecnico           String? @default("")
+  identificaNumeroIdentificador String? @default("")
+  identificaDataNascimento      String? @default("")
+  identificaSexo                String? @default("")
+  identificaIdRaca              String? @default("")
+  identificaMarcaFogo           String? @default("")
+  identificaLatitude            String? @default("")
+  identificaLongitude           String? @default("")
+  identificaCarimbo             String? @default("")
+  identificaLoteVacina          String? @default("")
+  identificaPeso                String? @default("")
+  identificaCodErro             String? @default("")
+  identificaDataIdentificacao   String? @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("identificas")
+}
+
+model Liquidacion {
+  id        String  @id @default(cuid())
+  dbversion String? @default("")
+
+  liquidacionId                String? @default("")
+  liquidacionUniqueId          String? @default("")
+  liquidacion_company          String? @default("")
+  liquidacionGuias             String? @default("")
+  liquidacionCantidad          String? @default("")
+  liquidacionFaena_kg_total    String? @default("")
+  liquidacionPromedio_animal   String? @default("")
+  liquidacionPrecio_venta      String? @default("")
+  liquidacionFecha_salida      String? @default("")
+  liquidacionFecha_faena       String? @default("")
+  liquidacionPrecio_kg_carcasa String? @default("")
+  liquidacionPrecio_total      String? @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("liquidacions")
+}
+
+model Guia {
+  id        String  @id @default(cuid())
+  dbversion String? @default("")
+
+  guiaId           String? @default("")
+  guiaUniqueId     String? @default("")
+  guia_company     String? @default("")
+  guiaOrden        String? @default("")
+  guiaGuias        String? @default("")
+  guiaContrato     String? @default("")
+  guiaFechaEntrada String? @default("")
+  guiaCantidad     String? @default("")
+  guiaOrigen       String? @default("")
+  guiaCategoria    String? @default("")
+  guiaCorral       String? @default("")
+  guiaModalidad    String? @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("guias")
+}
+
+model Peso {
+  id        String  @id @default(cuid())
+  dbversion String? @default("")
+
+  pesoId          String? @default("")
+  pesoUniqueId    String
+  peso_company    String? @default("")
+  pesoPesoActual  String? @default("")
+  pesoPesoFinal   String? @default("")
+  pesoPesoEntrada String? @default("")
+  pesoEdad        String? @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("pesos")
+}
+
+model Raza {
+  id        String  @id @default(cuid())
+  dbversion String? @default("")
+
+  razaId            String? @default("")
+  razaUniqueId      String? @default("")
+  raza_company      String? @default("")
+  razaIdRaca        String? @default("")
+  razaNomeRaca      String? @default("")
+  razaOrdemExibicao String? @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("razas")
+}
+
+model Vacuna {
+  id        String  @id @default(cuid())
+  dbversion String? @default("")
+
+  vacunaId        String? @default("")
+  vacunaUniqueId  String
+  vacuna_company  String? @default("")
+  vacuna_lote     String? @default("")
+  vacuna_codigo   String? @default("")
+  vacuna_nome     String? @default("")
+  vacuna_edad     String? @default("")
+  vacuna_caravana String? @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("vacunas")
+}
+
+// ------------------------------------------------------------------
+// --------------------------USUARIO---------------------------------
+
+model Usuario {
+  id      Int     @id @default(autoincrement())
+  //id                          String  @id @default(cuid())
+  ids     String? @default("")
+  user_id String? @default("")
+
+  nome                String? @default("")
+  email               String  @unique
+  password            String
+  senha               String? @default("")
+  telefone            String? @default("")
+  cpf                 String? @default("")
+  firstname           String? @default("")
+  lastname            String? @default("")
+  // posts                      Posts[]
+  user_company        String? @default("")
+  user_name           String? @default("")
+  user_register       String? @default("")
+  user_password       String? @default("")
+  user_mail           String? @default("")
+  user_phone          String? @default("")
+  user_cpf            String? @default("")
+  user_pos_id         String? @default("")
+  user_levelaccess    String? @default("")
+  user_acreditacion   String? @default("")
+  user_apikeymobile   String? @default("")
+  user_servername     String? @default("")
+  user_devicestatus   String? @default("")
+  user_keyprivate     String? @default("")
+  user_apikeyhardware String? @default("")
+  user_apikeysoftware String? @default("")
+  user_messages       String? @default("")
+  user_passwordremote String? @default("")
+  user_groupusers     String? @default("")
+  user_issync         String? @default("")
+  user_uniqueid       String? @default("")
+  user_vpa_id         String? @default("")
+  user_key            String? @default("")
+
+  user_name_register String? @default("")
+  user_status        String? @default("")
+  user_locked        String? @default("")
+  user_key_hardware  String? @default("")
+  user_level_access  String? @default("0")
+  user_vpa           String  @unique
+  user_token         String? @default("")
+  user_public_key    String? @default("")
+  user_private_key   String? @default("")
+  user_wallet_id     String? @default("")
+  user_system_type   String? @default("")
+
+  user_mail_verify       String? @default("")
+  user_phone_verify      String? @default("")
+  user_professional_type String? @default("")
+  user_gender            String? @default("")
+  user_born_date         String? @default("")
+  user_nation            String? @default("")
+  user_photo_ci          String? @default("")
+  user_photo             String? @default("")
+  user_bank_name         String? @default("")
+  user_bank_user_name    String? @default("")
+  user_bank_account      String? @default("")
+  user_bank_agency       String? @default("")
+  user_bank_user_cpf     String? @default("")
+  user_date_register     String? @default("")
+  user_otp_verify        String? @default("")
+  user_latitude          String? @default("")
+  user_longitude         String? @default("")
+  user_coordinates       String? @default("")
+  user_number_services   String? @default("")
+  Status                 String? @default("")
+  servicos               String? @default("")
+  user_issinc            String? @default("")
+  counter                Int?    @default(0)
+
+  @@map("usuarios")
+}
+
+model User {
+  id                  Int     @id @default(autoincrement())
+  //id           String  @id @default(cuid())
+  user_id             String? @default("")
+  user_name           String? @default("")
+  user_email          String  @unique // email UNIQUE
+  user_password       String  @default("") // password 
+  user_mobile         String  @unique // mobile UNIQUE
+  user_ids            String? @default("")
+  user_firstname      String? @default("")
+  user_lastname       String? @default("")
+  user_company        String? @default("")
+  user_name_register  String? @default("")
+  user_pos_id         String? @default("")
+  user_levelaccess    String? @default("")
+  user_apikeymobile   String? @default("")
+  user_servername     String? @default("")
+  user_devicestatus   String? @default("")
+  user_keyprivate     String? @default("")
+  user_apikeyhardware String? @default("")
+  user_apikeysoftware String? @default("")
+  user_messages       String? @default("")
+  user_groupusers     String? @default("")
+  user_uniqueid       String? @default("")
+  user_key            String? @default("")
+
+  user_key_hardware String? @default("")
+  user_token        String? @default("")
+  user_locked       String? @default("")
+  user_status       String? @default("")
+  user_public_key   String? @default("")
+  user_private_key  String? @default("")
+  user_wallet_id    String? @default("")
+  user_system_type  String? @default("")
+
+  user_mail_verify       String?  @default("")
+  user_phone_verify      String?  @default("")
+  user_professional_type String?  @default("")
+  user_gender            String?  @default("")
+  user_born_date         String?  @default("")
+  user_nation            String?  @default("")
+  user_photo_ci          String?  @default("")
+  user_photo             String?  @default("")
+  user_bank_name         String?  @default("")
+  user_bank_user_name    String?  @default("")
+  user_bank_account      String?  @default("")
+  user_bank_agency       String?  @default("")
+  user_bank_user_cpf     String?  @default("")
+  user_date_register     String?  @default("")
+  user_otp_verify        String?  @default("")
+  user_latitude          String?  @default("")
+  user_longitude         String?  @default("")
+  user_coordinates       String?  @default("")
+  user_number_services   String?  @default("")
+  Status                 String?  @default("")
+  servicos               String?  @default("")
+  user_sync              Boolean? @default(false)
+  counter                Int?     @default(0)
+
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+
+  @@map("users")
+}
+
+model General {
+  id Int     @id @default(1)
+
+  generalId       String? @default("")
+  generalUniqueId String? @default("")
+
+  general_vacuna         String[] @default(dbgenerated())
+  general_raza           String[] @default(dbgenerated())
+  general_classificacion String[] @default(dbgenerated())
+  general_dispositivo    String[] @default(dbgenerated())
+  general_color          String[] @default(dbgenerated())
+  general_categoria      String[] @default(dbgenerated())
+  general_modalidad      String[] @default(dbgenerated())
+  general_destino        String[] @default(dbgenerated())
+  general_permission     String[] @default(dbgenerated())
+  general_1              String[] @default(dbgenerated())
+  general_2              String[] @default(dbgenerated())
+  general_3              String[] @default(dbgenerated())
+  general_4              String[] @default(dbgenerated())
+  general_5              String[] @default(dbgenerated())
+  general_6              String[] @default(dbgenerated())
+  general_7              String[] @default(dbgenerated())
+  general_8              String[] @default(dbgenerated())
+  general_9              String[] @default(dbgenerated())
+  general_10             String[] @default(dbgenerated())
+
+  general_is_sync Boolean? @default(false)
+  dbversion       String?  @default("")
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+
+  @@map("generals")
+}
+
+// ------------------------------------------------------------------
+// --------------------------USUARIO---------------------------------

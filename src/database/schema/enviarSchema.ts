@@ -23,8 +23,8 @@ const enviarSchema = tableSchema({
   name: 'enviars',
   columns: [
     { name: 'dbversion', type: 'string' },
-    { name: 'createdAt', type: 'string' },
-    { name: 'updatedAt', type: 'string' },
+    { name: 'created_at', type: 'number' },
+    { name: 'updated_at', type: 'number' },
   ],
 });
 

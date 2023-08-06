@@ -2,8 +2,8 @@
 // ########################################
 export interface ProductorDTO {
   id?: number;
-  createdat: number;
-  updatedat: number;
+  created_at?: number;
+  updated_at?: number;
   dbversion?: string;
   productorname: string;
   productor_id: string;

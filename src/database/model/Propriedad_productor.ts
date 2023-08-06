@@ -29,12 +29,12 @@ class Propriedad_productor extends Model {
   dbversion!: string;
 
   //@readonly
-  @date('createdat')
-  createdat: any;
+  @date('created_at')
+  created_at?: any;
 
   //@readonly
-  @date('updatedat')
-  updatedat: any;
+  @date('updated_at')
+  updated_at?: any;
 }
 
 export { Propriedad_productor };

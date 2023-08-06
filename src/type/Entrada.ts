@@ -22,6 +22,6 @@ export type Entrada = {
   peso_entrada: string;
   propietario_origem: string;
   dbversion: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 };

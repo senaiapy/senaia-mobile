@@ -63,8 +63,8 @@ const customerSchema = tableSchema({
     { name: 'groups', type: 'string' },
     { name: 'nb_commands', type: 'string' },
     { name: 'total_spent', type: 'string' },
-    { name: 'createdAt', type: 'string' },
-    { name: 'updatedAt', type: 'string' },
+    { name: 'created_at', type: 'number' },
+    { name: 'updated_at', type: 'number' },
   ],
 });
 

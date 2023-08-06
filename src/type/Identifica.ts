@@ -18,6 +18,6 @@ export type Identifica = {
   identificaCodErro: string;
   identificaDataIdentificacao: string;
   dbversion: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 };

@@ -186,7 +186,7 @@ content-type: application/json
     "coibfeDeviceStatus": "string",
     "coibfeerverName": "string",
     "coibfePayDate": "string",
-    "createdAt": "instance",
+    "created_at": "instance",
     "modifiedAt": "instance"
         
 }
@@ -834,7 +834,7 @@ content-type: application/json
     "coibfeDeviceStatus": "string",
     "coibfeerverName": "string",
     "coibfePayDate": "string",
-    "createdAt": "instance",
+    "created_at": "instance",
     "modifiedAt": "instance"
         
 }

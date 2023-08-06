@@ -8,6 +8,6 @@ export type Propiedad = {
   propriedadDepartamento: string;
   propriedadDistrito: string;
   dbversion: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 };

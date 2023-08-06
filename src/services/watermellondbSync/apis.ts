@@ -33,8 +33,8 @@ type ServerPost = {
   id: number;
   title: string;
   body: string;
-  createdat: number;
-  updatedat: number;
+  created_at?: number;
+  updated_at?: number;
 };
 
 const createPostApi = (postPayload: PostPayload) => {
@@ -58,8 +58,8 @@ type ServerComment = {
   id: number;
   post_id: number;
   body: string;
-  createdat: number;
-  updatedat: number;
+  created_at?: number;
+  updated_at?: number;
 };
 
 const createCommentApi = (postId: number, commentPayload: CommentPayload) => {

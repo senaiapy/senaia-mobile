@@ -56,6 +56,6 @@ export type Game = {
   gameRegister10: string;
 
   dbversion: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 };

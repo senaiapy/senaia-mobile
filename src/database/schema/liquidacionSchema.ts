@@ -36,8 +36,8 @@ const liquidacionSchema = tableSchema({
     { name: 'liquidacionPrecio_kg_carcasa', type: 'string' },
     { name: 'liquidacionPrecio_total', type: 'string' },
     { name: 'dbversion', type: 'string' },
-    { name: 'createdAt', type: 'string' },
-    { name: 'updatedAt', type: 'string' },
+    { name: 'created_at', type: 'number' },
+    { name: 'updated_at', type: 'number' },
 
     { name: 'title', type: 'string' },
     { name: 'body', type: 'string', isOptional: true },
@@ -59,8 +59,8 @@ export type LiquidacionRaw = {
   liquidacionFecha_faena?: string;
   liquidacionPrecio_kg_carcasa?: string;
   liquidacionPrecio_total?: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 
   title: string;
   body: string;

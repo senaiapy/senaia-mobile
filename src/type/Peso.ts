@@ -6,6 +6,6 @@ export type Peso = {
   pesoPesoFinal: string;
   pesoPesoEntrada: string;
   dbversion: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 };

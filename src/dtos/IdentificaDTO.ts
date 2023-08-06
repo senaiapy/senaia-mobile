@@ -20,6 +20,6 @@ export interface IdentificaDTO {
   identificaPeso?: string;
   identificaCodErro?: string;
   identificaDataIdentificacao?: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }

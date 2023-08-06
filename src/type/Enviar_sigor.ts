@@ -27,6 +27,6 @@ export type Enviar_sigor = {
   coibfeDocTipoAbrev: string;
 
   dbversion: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 };

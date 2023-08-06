@@ -2,8 +2,8 @@
 // ########################################
 export interface PostDTO {
   id: number;
-  createdat: number;
-  updatedat: number;
+  created_at?: number;
+  updated_at?: number;
   title: string;
   body: string;
   publisheds: boolean;

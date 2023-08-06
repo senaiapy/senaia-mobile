@@ -27,11 +27,11 @@ class CoibfeFrigorificoModel extends Model {
   @field('dbversion')
   dbversion?: string;
   //@readonly
-  @date('createdat')
-  createdat: any;
+  @date('created_at')
+  created_at?: any;
   //@readonly
-  @date('updatedat')
-  updatedAt: any;
+  @date('updated_at')
+  updated_at?: any;
 
   @text('title')
   title?: string;

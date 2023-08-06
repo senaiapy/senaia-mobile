@@ -30,8 +30,8 @@ const addressSchema = tableSchema({
     { name: 'zip', type: 'string' },
     { name: 'customerId', type: 'string' },
     { name: 'tecnicoId', type: 'string' },
-    { name: 'createdAt', type: 'string' },
-    { name: 'updatedAt', type: 'string' },
+    { name: 'created_at', type: 'number' },
+    { name: 'updated_at', type: 'number' },
   ],
 });
 

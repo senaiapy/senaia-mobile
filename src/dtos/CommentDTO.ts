@@ -4,6 +4,6 @@ export interface CommentDTO {
   id: number;
   post_id: any;
   body: string;
-  createdat: number;
-  updatedat: number;
+  created_at?: number;
+  updated_at?: number;
 }

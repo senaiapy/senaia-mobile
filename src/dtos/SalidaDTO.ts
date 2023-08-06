@@ -34,6 +34,6 @@ export interface SalidaDTO {
   salida_cantidad?: string;
   salida_nombre_identificaccion?: string;
   salida_custo_total?: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }

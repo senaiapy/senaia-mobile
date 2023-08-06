@@ -107,8 +107,8 @@ const iotSchema = tableSchema({
     { name: 'sensorLed5', type: 'string' },
 
     { name: 'sensordbversion', type: 'string' },
-    { name: 'sensorcreatedAt', type: 'string' },
-    { name: 'sensorupdatedAt', type: 'string' },
+    { name: 'sensorcreated_at', type: 'string' },
+    { name: 'sensorupdated_at', type: 'string' },
   ],
 });
 

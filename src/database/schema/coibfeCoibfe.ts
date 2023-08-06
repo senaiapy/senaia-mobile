@@ -59,8 +59,8 @@ const coibfeCoibfeSchema = tableSchema({
     { name: 'coibfeerromessage', type: 'string' },
     { name: 'coibfeanimales', type: 'string' },
     { name: 'coibfe_issinc', type: 'string' },
-    { name: 'createdat', type: 'string' },
-    { name: 'updatedat', type: 'string' },
+    { name: 'created_at', type: 'number' },
+    { name: 'updated_at', type: 'number' },
 
     { name: 'title', type: 'string' },
     { name: 'body', type: 'string', isOptional: true },
@@ -114,8 +114,8 @@ export type CoibfeCoibfeRaw = {
   coibfeerromessage?: string;
   coibfeanimales?: string;
   coibfe_issinc?: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 
   title: string;
   body: string;

@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/filename-case */
 export interface Registrar {
   dbversion: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }

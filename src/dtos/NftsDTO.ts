@@ -22,6 +22,6 @@ export type NftsDTO = {
   nfts_name: string;
   nfts_value: string;
   nfts_chain: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 };

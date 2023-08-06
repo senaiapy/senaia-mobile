@@ -32,8 +32,8 @@ const serverSchema = tableSchema({
     { name: 'serverConfigSendSigor', type: 'string' },
 
     { name: 'dbversion', type: 'string' },
-    { name: 'createdAt', type: 'string' },
-    { name: 'updatedAt', type: 'string' },
+    { name: 'created_at', type: 'number' },
+    { name: 'updated_at', type: 'number' },
   ],
 });
 

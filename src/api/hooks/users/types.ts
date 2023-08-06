@@ -56,7 +56,7 @@ export type CreateUserSuccessPayload = {
   name: string;
   job: string;
   id: string;
-  createdAt: string;
+  created_at?: any;
 };
 
 export type ModifyUserRequestPayload = {
@@ -68,7 +68,7 @@ export type ModifyUserRequestPayload = {
 export type ModifyUserSuccessPayload = {
   name: string;
   job: string;
-  updatedAt: string;
+  updated_at?: any;
 };
 
 export type DeleteUserRequestPayload = {

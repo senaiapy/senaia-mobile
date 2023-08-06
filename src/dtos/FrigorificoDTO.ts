@@ -2,8 +2,8 @@
 // ########################################
 export interface FrigorificoDTO {
   id?: number;
-  createdat: number;
-  updatedat: number;
+  created_at?: number;
+  updated_at?: number;
   dbversion?: string;
   frigorificoname: string;
   frigorifico_id: string;

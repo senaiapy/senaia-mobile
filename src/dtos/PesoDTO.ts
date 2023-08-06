@@ -10,6 +10,6 @@ export interface PesoDTO {
   pesoPesoFinal?: string;
   pesoPesoEntrada?: string;
   pesoEdad?: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }

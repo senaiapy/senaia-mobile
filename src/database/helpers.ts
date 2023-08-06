@@ -20,7 +20,7 @@ import { database } from '@/database/index';
 import type { LocalDb } from '@/type/LocalDb';
 
 export type Weight = {
-  createdAt?: Date;
+  created_at?: Date;
   weight: string | number;
   note: string | undefined;
 };

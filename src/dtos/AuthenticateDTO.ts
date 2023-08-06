@@ -15,6 +15,6 @@ export interface AuthenticateDTO {
   userKeyPrivate: string;
   userApiKeyHardware: string;
   dbversion: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }

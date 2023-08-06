@@ -6,6 +6,6 @@ export type Raza = {
   razaNomeRaca: string;
   razaOrdemExibicao: string;
   dbversion: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 };

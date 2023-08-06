@@ -21,6 +21,6 @@ export interface AnimalDTO {
   animalProductor_ID?: string;
   animalPropriedad_ID?: string;
   animalMarcaFuego?: string;
-  createdAt: any;
-  updatedAt: any;
+  created_at?: any;
+  updated_at?: any;
 }
