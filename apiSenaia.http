@@ -786,9 +786,10 @@ PATCH {{apiNSENAIAWdb}}/usuario/search/user_vpa/1234
 content-type: application/json
 
 {
-   "user_status": "active",
+  "user_token": "0",
+  "user_status": "active",
   "user_locked": "unlocked",
-  "user_token": "1" 
+  "Status": "ACTIVE" 
 }
 
 ### UPDATE by id ACTIVATE
@@ -806,7 +807,8 @@ content-type: application/json
 
 ### DELETE USER
 // @name mark to remove delusuario/ 
-DELETE {{apiNSENAIAWdb}}/usuario/20
+DELETE {{apiNSENAIAWdb}}/usuario/7
+
 ############################################
 ############################################
 

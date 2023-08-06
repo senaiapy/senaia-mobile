@@ -468,9 +468,9 @@ const downloadDumpApi = async () => {
   const dumps = await api<Dump>(`${server}/coibfecoibfesdump`, {
     method: 'GET',
   });
-  console.log('DUMP', server);
+  // console.log('DUMP', server);
   console.log('DUMP');
-  console.log('DUMPS', dumps);
+  // console.log('DUMPS', dumps);
 
   return dumps;
 };
