@@ -58,7 +58,7 @@ const generalSchema = tableSchema({
 });
 
 export type GeneralRaw = {
-  generalId?: string;
+  generalId: string;
   generalUniqueId?: string;
   general_vacuna?: string;
   general_raza?: string;

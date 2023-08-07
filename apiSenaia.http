@@ -899,7 +899,6 @@ GET {{apiNLSENAIAWdb}}/general  HTTP/1.1
 // @name    local 
 GET {{apiNLSENAIAWdb}}/general/1  HTTP/1.1
 ###
-
 // @name    local 
 PUT {{apiNLSENAIAWdb}}/general/1  HTTP/1.1
 content-type: application/json
@@ -910,10 +909,65 @@ content-type: application/json
   ]
 }
 ###
+###
+// @name    local 
+PUT {{apiNLSENAIAWdb}}/general/1  HTTP/1.1
+content-type: application/json
 
+{
+  "generalId": "1"
+}
+###
+###
+// @name    SERVER 
+PUT {{apiNSENAIAWdb}}/general/1  HTTP/1.1
+content-type: application/json
+
+{
+  "generalId": "1"
+}
+###
 // @name    local 
 DELETE {{apiNLSENAIAWdb}}/general/1  HTTP/1.1
 content-type: application/json
 
 
+############################################
+
+############################################
+############################################
+############################################
+
+// @name    prop 
+GET {{apiNSENAIAWdb}}/coibfecoibfesdump  HTTP/1.1
+content-type: application/json
+############################################
+
+// @name    prop 
+GET {{apiNSENAIAWdb}}/coibfepropriedaddump  HTTP/1.1
+content-type: application/json
+############################################
+
+// @name    prop 
+GET {{apiNSENAIAWdb}}/coibfeproductordump  HTTP/1.1
+content-type: application/json
+############################################
+
+// @name    prop 
+GET {{apiNSENAIAWdb}}/coibfefrigorificodump  HTTP/1.1
+content-type: application/json
+############################################
+
+// @name    prop 
+GET {{apiNSENAIAWdb}}/categoryuserdump  HTTP/1.1
+content-type: application/json
+############################################
+
+// @name    prop 
+GET {{apiNSENAIAWdb}}/generaldump  HTTP/1.1
+content-type: application/json
+
+
+############################################
+############################################
 ############################################

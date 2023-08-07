@@ -14,14 +14,15 @@ import { fetchChildren } from '@nozbe/watermelondb/Model/helpers';
 import { PermissionsAndroid } from 'react-native';
 
 import database from '@/database/index';
-import type { SyncCoibfeAction } from '@/database/model/CoibfeAction';
-import CoibfeActionModel from '@/database/model/CoibfeAction';
+import type { SyncSenaiaAction } from '@/database/model/SenaiaActionModel';
+import SenaiaActionModel from '@/database/model/SenaiaActionModel';
 
 import {
   createCoibfeCoibfesApi,
   createCoibfeFrigorificoApi,
   createCoibfeProductorApi,
   createCoibfePropriedadApi,
+  createGeneralApi,
   createUserCategoryApi,
   deleteCoibfeFrigorificoApi,
   deleteCoibfeProductorApi,
@@ -106,7 +107,7 @@ const requestReadStoragePermission = async () => {
 // ###############################   PERMISSIONS  ############################
 
 //---------------------------------------------------
-const syncAction = async (action: SyncCoibfeAction) => {
+const syncAction = async (action: SyncSenaiaAction) => {
   const updates: Model[] = [];
 
   switch (action.type) {
@@ -151,7 +152,7 @@ const syncAction = async (action: SyncCoibfeAction) => {
       children
         .filter(
           (child) =>
-            !(child instanceof CoibfeActionModel && child.id === action.id)
+            !(child instanceof SenaiaActionModel && child.id === action.id)
         )
         .forEach((child) => {
           updates.push(child.prepareDestroyPermanently());
@@ -177,7 +178,6 @@ const syncAction = async (action: SyncCoibfeAction) => {
       break;
     }
     //------
-
     case 'DELETE_USERCATEGORY': {
       const category = (await action.usercategory.fetch())!;
 
@@ -187,7 +187,7 @@ const syncAction = async (action: SyncCoibfeAction) => {
       children
         .filter(
           (child) =>
-            !(child instanceof CoibfeActionModel && child.id === action.id)
+            !(child instanceof SenaiaActionModel && child.id === action.id)
         )
         .forEach((child) => {
           updates.push(child.prepareDestroyPermanently());
@@ -197,6 +197,44 @@ const syncAction = async (action: SyncCoibfeAction) => {
 
       break;
     }
+    //------
+    //------
+    //------
+    //------
+    case 'CREATE_GENERAL': {
+      const general = (await action.general.fetch())!;
+
+      const serverGeneral = await createGeneralApi(action.payload);
+
+      updates.push(
+        general.prepareUpdate((d: any) => {
+          d.serverId = serverGeneral.id;
+        })
+      );
+
+      break;
+    }
+    //------
+    case 'DELETE_GENERAL': {
+      const general = (await action.general.fetch())!;
+
+      await deleteUserCategoryApi(general.serverId!);
+
+      const children = await fetchChildren(general);
+      children
+        .filter(
+          (child) =>
+            !(child instanceof SenaiaActionModel && child.id === action.id)
+        )
+        .forEach((child) => {
+          updates.push(child.prepareDestroyPermanently());
+        });
+
+      updates.push(general.prepareDestroyPermanently());
+
+      break;
+    }
+    //------
     //------
     case 'CREATE_COIBFEPROPRIEDAD': {
       const propriedad = (await action.coibfepropriedad.fetch())!;
@@ -224,7 +262,7 @@ const syncAction = async (action: SyncCoibfeAction) => {
       children
         .filter(
           (child) =>
-            !(child instanceof CoibfeActionModel && child.id === action.id)
+            !(child instanceof SenaiaActionModel && child.id === action.id)
         )
         .forEach((child) => {
           updates.push(child.prepareDestroyPermanently());
@@ -264,7 +302,7 @@ const syncAction = async (action: SyncCoibfeAction) => {
       children
         .filter(
           (child) =>
-            !(child instanceof CoibfeActionModel && child.id === action.id)
+            !(child instanceof SenaiaActionModel && child.id === action.id)
         )
         .forEach((child) => {
           updates.push(child.prepareDestroyPermanently());
@@ -285,14 +323,14 @@ const syncAction = async (action: SyncCoibfeAction) => {
 };
 //---------------------------------------------------
 const sync = async () => {
-  const Actions = database.collections.get<CoibfeActionModel>('coibfeactions');
+  const Actions = database.collections.get<SenaiaActionModel>('senaiactions');
   console.log('[sync]', await Actions.query().fetchCount());
 
   const actions = await Actions.query(Q.take(1)).fetch();
   const action = actions[0];
 
   if (action) {
-    await syncAction(action as SyncCoibfeAction);
+    await syncAction(action as SyncSenaiaAction);
   }
 };
 //---------------------------------------------------

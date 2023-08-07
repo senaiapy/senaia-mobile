@@ -65,6 +65,7 @@ import { Propriedad_productor } from './model/Propriedad_productor';
 import Raza from './model/Raza';
 import { Registrar } from './model/Registrar';
 import Salida from './model/Salida';
+import SenaiaActionModel from './model/SenaiaActionModel';
 import { Server } from './model/Server';
 import { SkillModel } from './model/SkillModel';
 import { Statement } from './model/Statement';
@@ -155,6 +156,7 @@ const database = new Database({
     CoibfeTecnico,
     UserCategory,
     GeneralModel,
+    SenaiaActionModel,
   ],
 });
 

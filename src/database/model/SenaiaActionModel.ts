@@ -18,10 +18,11 @@ import type {
   CoibfeFrigorificoPayload,
   CoibfeProductorPayload,
   CoibfePropriedadPayload,
+  GeneralPayload,
   UserCategoryPayload,
 } from '@/database/Sync/apis';
 
-import type { CoibfeActionRaw } from '../schema/coibfeAction';
+import type { SenaiaActionRaw } from '../schema/senaiaActionSchema';
 import type CoibfeCoibfeModel from './CoibfeCoibfe';
 import type CoibfeFrigorificoModel from './CoibfeFrigorifico';
 import type CoibfeProductorModel from './CoibfeProductor';
@@ -29,7 +30,7 @@ import type CoibfePropriedadModel from './CoibfePropriedad';
 import type GeneralModel from './General';
 import type UserCategoryModel from './UserCategory';
 
-export type CoibfeActionType =
+export type SenaiaActionType =
   | 'CREATE_COIBFEPROPRIEDAD'
   | 'DELETE_COIBFEPROPRIEDAD'
   | 'CREATE_COIBFEPRODUCTOR'
@@ -43,7 +44,7 @@ export type CoibfeActionType =
   | 'CREATE_COIBFECOIBFE'
   | 'DELETE_COIBFECOIBFE';
 
-export type SyncCoibfeAction = Omit<CoibfeActionModel, 'payload'> &
+export type SyncSenaiaAction = Omit<SenaiaActionModel, 'payload'> &
   (
     | { type: 'CREATE_COIBFEPROPRIEDAD'; payload: CoibfePropriedadPayload }
     | { type: 'DELETE_COIBFEPROPRIEDAD' }
@@ -53,14 +54,14 @@ export type SyncCoibfeAction = Omit<CoibfeActionModel, 'payload'> &
     | { type: 'DELETE_COIBFEFRIGORIFICO' }
     | { type: 'CREATE_USERCATEGORY'; payload: UserCategoryPayload }
     | { type: 'DELETE_USERCATEGORY' }
-    | { type: 'CREATE_GENERAL'; payload: UserCategoryPayload }
+    | { type: 'CREATE_GENERAL'; payload: GeneralPayload }
     | { type: 'DELETE_GENERAL' }
     | { type: 'CREATE_COIBFECOIBFE'; payload: CoibfeCoibfesPayload }
     | { type: 'DELETE_COIBFECOIBFE' }
   );
 
-class CoibfeActionModel extends Model {
-  static table = 'coibfeactions';
+class SenaiaActionModel extends Model {
+  static table = 'senaiaactions';
 
   static associations = associations(
     ['coibfepropriedads', { type: 'belongs_to', key: 'propriedadSigor' }],
@@ -72,10 +73,10 @@ class CoibfeActionModel extends Model {
   );
 
   // @ts-ignore
-  _raw!: RawRecord & CoibfeActionRaw;
+  _raw!: RawRecord & SenaiaActionRaw;
 
   @field('type')
-  type!: CoibfeActionType;
+  type!: SenaiaActionType;
 
   @json('payload', identity)
   payload?: any;
@@ -99,4 +100,4 @@ class CoibfeActionModel extends Model {
   coibfecoibfe!: Relation<CoibfeCoibfeModel>;
 }
 
-export default CoibfeActionModel;
+export default SenaiaActionModel;

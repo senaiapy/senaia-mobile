@@ -49,6 +49,7 @@ import { propriedadSchema } from './propriedadSchema';
 import razaSchema from './razaSchema';
 import { registrarSchema } from './registrarSchema';
 import salidaSchema from './salidaSchema';
+import senaiaActionSchema from './senaiaActionSchema';
 import { serverSchema } from './serverSchema';
 import { skillSchema } from './skillSchema';
 import { statementSchema } from './statementSchema';
@@ -122,6 +123,7 @@ const schemas = appSchema({
     coibfeTecnico,
     userCategory,
     generalSchema,
+    senaiaActionSchema,
   ],
 });
 
