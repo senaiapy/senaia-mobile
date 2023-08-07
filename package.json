@@ -1,6 +1,6 @@
 {
   "name": "senaia",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "private": true,
   "scripts": {
     "+++++++++  VERY IMPORTANT++++++++++++": "+++++++++++++++++++++++++++++++",
@@ -12,7 +12,6 @@
     "android-libs": "cp -av downloads/ node_modules/expo-modules-core/android/build/ && cp -av downloads/ node_modules/react-native-reanimated/android/build/ && cp -av downloads/ node_modules/react-native-mmkv/android/build/",
     "xcode-reset": "sudo xcode-select --reset",
     "clean": "npx react-native-clean-project",
-
     "start-dev": "APP_ENV=development pnpm run start",
     "android-dev": "APP_ENV=development pnpm run android",
     "ios-dev": "APP_ENV=development pnpm run ios",
@@ -20,9 +19,7 @@
     "prebuild": "EXPO_NO_DOTENV=1 pnpm expo prebuild",
     "android": "EXPO_NO_DOTENV=1 expo run:android",
     "ios": "EXPO_NO_DOTENV=1 expo run:ios",
-
     "doctor": "npx expo-doctor@latest",
-
     "pods": "npx pod-install",
     "build-android": "npx expo run:android --variant release",
     "build-ios": "npx expo run:ios --configuration release",
@@ -34,15 +31,12 @@
     "eject": "npx expo eject",
     "fix": "pnpm lint --fix --quiet",
     "gradlew": "cd android && sudo ./gradlew clean",
-
     "android-unsigned": "cp -av sign_header/AndroidManifest.xml.unsigned android/app/src/main/AndroidManifest.xml",
     "android-signed": "cp -av sign_header/AndroidManifest.xml.signed android/app/src/main/AndroidManifest.xml",
     "ios-unsigned": "cp -av sign_header/Expo.plist.unsigned ios/senaia/Supporting/Expo.plist",
     "ios-signed": "cp -av sign_header/Expo.plist.signed ios/senaia/Supporting/Expo.plist",
-
     "++++++++  VERY IMPORTANT++++++++++++": "+++++++++++++++++++++++++++++++",
     "start:dev": "APP_ENV=development pnpm run start",
-
     "preinstall": "npx only-allow pnpm",
     "start:staging": "APP_ENV=staging pnpm run start",
     "prebuild:staging": "APP_ENV=staging pnpm run prebuild",
@@ -69,7 +63,6 @@
     "test:watch": "pnpm run test --watch",
     "eas-build-pre-install": "./eas-pre-install",
     "============================================================================": "========================",
-    
     "clean-ios": "cd ios && rm -rf Pods && rm -rf build && rm Podfile.lock && cd ..",
     "clean-android": "cd android && ./gradlew clean",
     "clean-node": "rm -rf node_modules",
@@ -78,7 +71,7 @@
     "podsf": "NO_FLIPPER=1 npx pod-install",
     "permissions": "scripts/./clear-permissions-error.sh",
     "cache": "npx react-native start --reset-cache",
-      "-----------------------": "---------------------------------",
+    "-----------------------": "---------------------------------",
     "test:badges": "pnpm test:ci  && jest-coverage-badges --input coverage/coverage-summary.json --output __badges__",
     "______": "____________",
     "startss": "npx expo start --dev-client",

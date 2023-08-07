@@ -2,7 +2,7 @@
 // ########################################
 
 export interface GeneralDTO {
-  generalId?: string;
+  generalId: string;
   generalUniqueId?: string;
   general_vacuna?: string;
   general_raza?: string;

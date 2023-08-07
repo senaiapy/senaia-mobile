@@ -1552,7 +1552,7 @@ model User {
 model General {
   id Int     @id @default(1)
 
-  generalId       String? @default("")
+  generalId       String @default("1")
   generalUniqueId String? @default("")
 
   general_vacuna         String[] @default(dbgenerated())

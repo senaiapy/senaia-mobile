@@ -109,7 +109,7 @@ export default class Protek {
       console.log('DeviceVersion', DeviceVersion); // e.g. 9.0
       console.log('BundleId', BundleId); // e.g. com.learnium.mobile
       console.log('BuildNumber', BuildNumber); // e.g. 89
-      console.log('AppVersion', AppVersion); // e.g. 1.1.1.9
+      console.log('AppVersion', AppVersion); // e.g. 1.1.1.10
       console.log('UserAgent', UserAgent); // e.g. Dalvik/2.1.0 (Linux; U; Android 5.1; Google Nexus 4 - 5.1.0 - API 22 - 768x1280 Build/LMY47D)
       console.log('BuildId', BuildId); // e.g. Dalvik/2.1.0 (Linux; U; Android 5.1; Google Nexus 4 - 5.1.0 - API 22 - 768x1280 Build/LMY47D)
       console.log('Carrier', Carrier); //  // "walleye"
