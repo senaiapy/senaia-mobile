@@ -21,6 +21,7 @@ import {
 import { Cadastro } from '@/pages/Core/Cadastro/index';
 import { LoginScreen } from '@/pages/Core/LoginScreen/index';
 import { Printer } from '@/pages/Core/Printer';
+import { PrinterInventario } from '@/pages/Core/PrinterInventario';
 import Privacy_Policy from '@/pages/Core/Privacy_Policy';
 import { Servico } from '@/pages/Core/Servico/index';
 import Terms_Conditions from '@/pages/Core/Terms_Conditions';
@@ -152,7 +153,11 @@ export const Root = () => {
         component={Printer}
         options={{ headerShown: false }}
       />
-
+      <Stack.Screen
+        name={'PrinterInventario'}
+        component={PrinterInventario}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="Root" component={Root} />
       <Stack.Screen name="NewPost" component={NewPost} />
       <Stack.Screen name="Privacy_Policy" component={Privacy_Policy} />

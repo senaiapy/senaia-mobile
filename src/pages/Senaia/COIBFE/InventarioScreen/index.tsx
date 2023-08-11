@@ -512,7 +512,7 @@ const InventarioScreen: React.FC = () => {
 
     setIsLoadingS(false);
     onlyPrinter = true; // one printed
-    navigation.navigate('Printer');
+    navigation.navigate('PrinterInventario');
   };
   // ----------------------------------------------
   const inventoryFinal = async () => {

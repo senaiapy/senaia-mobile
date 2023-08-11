@@ -811,7 +811,16 @@ DELETE {{apiNSENAIAWdb}}/usuario/7
 
 ############################################
 ############################################
+###########################################
 
+// @name    SERVER COIBFE 
+GET {{apiSENAIAWdb}}/coibfecoibfes  HTTP/1.1
+content-type: application/json
+
+{
+ 
+}
+############################################
 // @name    prop 
 GET {{apiNSENAIAWdb}}/coibfecoibfes  HTTP/1.1
 content-type: application/json

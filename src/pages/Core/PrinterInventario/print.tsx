@@ -631,7 +631,6 @@ export const Print = (data: any) => {
           Printer.printRaw(base64String);
         }
         setIsPrinting(true);
-        await savePrintCounter();
       };
       getDataURL();
       setIsPrinting(true);
@@ -696,111 +695,107 @@ export const Print = (data: any) => {
     if (Env.DEBUG === 'true') {
       console.log('HAVE DATA2', PRINTER_COUNTER);
     }
-    if (PRINTER_COUNTER > 0) {
-      setLoading(true);
-      let coibfeFinalidad = storage?.coibfeFinalidad;
-      if (coibfeFinalidad === 'F') {
-        coibfeFinalidad = 'Faena';
-      } else {
-        coibfeFinalidad = 'Otros';
-      }
-
-      let coibfeDestino = storage?.coibfeDestino;
-      if (coibfeDestino === 'UE') {
-        coibfeDestino = 'UNION EUROPEA';
-      }
-
-      let coibfeTransporte = storage?.coibfeTransporte;
-      if (storage?.coibfeTransporte === 'O') {
-        coibfeTransporte = 'OTROS';
-      } else if (storage?.coibfeTransporte === 'F') {
-        coibfeTransporte = 'FLUVIAL';
-      } else if (storage?.coibfeTransporte === 'T') {
-        coibfeTransporte = 'TERRESTRE';
-      }
-
-      var tempData = storage?.coibfePosDate; //2021-02-05T10:11:55
-      var dias = tempData.substring(8, 10);
-      var mess = tempData.substring(5, 7);
-      var anos = tempData.substring(0, 4);
-      var horas = tempData.slice(11, 5);
-      tempData = dias + '/' + mess + '/' + anos + '  ' + tempData;
-      // console.log('date', tempData, 'dias', dias, 'mess', mess, 'anos', anos);
-
-      const BOLD_ON = COMMANDS.TEXT_FORMAT.TXT_BOLD_ON;
-      const BOLD_OFF = COMMANDS.TEXT_FORMAT.TXT_BOLD_OFF;
-      const CENTER = COMMANDS.TEXT_FORMAT.TXT_ALIGN_CT;
-      const OFF_CENTER = COMMANDS.TEXT_FORMAT.TXT_ALIGN_LT;
-      try {
-        const getDataURL = () => {
-          (QrRef as any).toDataURL(callback);
-        };
-        const callback = async (dataURL: string) => {
-          let qrProcessed = dataURL.replace(/(\r\n|\n|\r)/gm, '');
-          // Can print android and ios with the same type or with encoder for android
-          if (Platform.OS === 'android' || Platform.OS === 'ios') {
-            const Printer: typeof BLEPrinter = printerList[selectedValue];
-            await Printer.printImageBase64(base64SenacsaLogo, {
-              imageWidth: 380,
-              imageHeight: 200,
-            });
-
-            var hilton = parseInt(storage?.coibfeAniHilton, 10) || 0;
-            var hiltons = '';
-            if (hilton > 0) {
-              hiltons = `COTA HILTON: \r\n Certifico que los bovinos en ,\r\n cantidad  de ${storage?.coibfeAniHilton} bovinos \r\n cumplen con los\r\n requisitos establecidos por el \r\n SENACSA para la certificacion \r\n de cuota hilton, y han sido \r\n marcados con la letra H.\r\n `;
-            }
-
-            await Printer.printText(
-              `SERVICIO NACIONAL DE CALIDAD Y \n         SALUD ANIMAL \n        S E N A C S A \r\n COIBFE N. ${storage?.coibfeId} \r\n COD. VERIFICADOR:  ${storage?.coibfeCodigoV} \r\n...............................\r\n DESTINO: ${coibfeDestino} \r\n............................... \r\n NOMBRE ESTABLECIMIENTO: \n ${storage?.coibfePropriedadName} \r\n COD.SIGOR ESTABLECIMIENTO: \n ${storage?.coibfePropriedadSigor} \r\n COD.SITRAP ESTABLECIMIENTO: \n ${storage?.coibfePropriedadSitrap} \r\nNOMBRE PROPIETARIO: \n ${storage?.coibfeProductorName} \r\n Cod.SIGOR PROPIETARIO: \r\n ${storage?.coibfeProductor_ID} \r\n DEPARTAMENTO: \n ${storage?.coibfePropriedadDepartamento} \r\n DISTRITO: \n ${storage?.coibfePropriedadDistrito} \r\n COD.SITRAP PRODUCTOR: \n ${storage?.coibfeProductorSitrap} \r\n...............................\r\n El que subscribe Dr.a. \n${storage?.coibfeTecnicoName}\nVeterinario Privado Acreditado\n(VPA) con Acreditacion SENACSA\nN. ${storage?.coibfeTecnico_VPA_ID} certifica:\na)Que los animales estan libres\nde sintomatologia de enfermedad\ninfecto-contagiosas, al momento\nde la inspeccion pre-embarque\nb) Que dichos animales estan\nidentificados con la marca a\nfuego del propietario de los\nmismos. \n c) Que ha identificado ${storage?.coibfeAniTotal} \n bovinos con su numero de \n acreditacion de SENACSA.\n d) Que todos los animales \n certificados estan identi- \n ficados con el correspondi- \n ente D.I. de  acuerdo  al \n reglamento del Sistema de \n Trazabilidad Bovina del \n Paraguay "SITRAP" vigente.\r\n...............................\r\n ANIMALES CERTIFICADOS:\r\n NOVILLOS : ${storage?.coibfeAniNovillos}.\n VACAS    : ${storage?.coibfeAniVacas}\n VAQUILLAS: ${storage?.coibfeAniVaquillas} \n TOROS    : ${storage?.coibfeAniToros}\n OTROS    : ${storage?.coibfeAniOtros} \n TOTAL    : ${storage?.coibfeAniTotal}\n...............................\r\n FINALIDAD: ${coibfeFinalidad} \r\n TRANSPORTE UTILIZADO: \n ${coibfeTransporte} \r\n FRIGORIFICO: \n ${storage?.coibfeFrigorificoName} \r\n Frigorifico Cod. Sigor: \n ${storage?.coibfeFrigorifico_ID} \r\n...............................\r\nSe da cumplimiento a las disposi\r\nciones sanitarias vigentes rela-\r\n cionadas al estado sanitario de\r\n ${storage?.coibfeAniTotal} bovinos embarcados,\r\n y se utilizaron los precintos  \r\n en el vehiculo de transporte \r\n de los animales.\r\n El propietario de los animales \r\n declara que los mismos han \r\n permanecido  al menos tres \r\n meses en el establecimiento\r\n de origen.\r\n\r\n...............................\r\n ${hiltons} \n ...............................\r\n FECHA Y HORA:\r\n ${tempData} \r\n\r\n NUMERO PRECINTOS UTILIZADOS: \r\n ${storage?.coibfePrecinto1} '\r\n ${storage?.coibfePrecinto2} '\r\n ${storage?.coibfePrecinto3} '\r\n##############################\r\n COORDENADAS GPS:\r\n LAT: ${storage?.coibfePosLatitud} \r\n LON: ${storage?.coibfePosLongitud} \r\n...............................\r\n OBSERVACIONES:\r\n ${storage?.coibfeOBS} \r\n...............................\r\n...............................\r\n
-            "El presente certificado es \r\n valido por 72 horas a partir de la\r\n fecha de expedicion del mismo,\r\n y debe ser acompanado por el \r\n Certificado Oficial de Transito\r\n...............................\r\n\r\n\r\n\r\n...............................\r\n Firma y Sello del Veterinario \r\n Privado Acreditado\r\n...............................\r\n...............................\r\nFirma del Responsable Precintado\r\n\n Nombre:........................\r\n\n C.I.:..........................\r\n\n Tipo:...........................\r\n`,
-              { beep: false }
-            );
-
-            // await Printer.printText(
-            //   `...............................\r\n FECHA Y HORA:\r\n ${storage?.coibfePosDateTime} \r\n\r\n NUMERO PRECINTOS UTILIZADOS: \r\n ${storage?.coibfePrecinto1} '\r\n ${storage?.coibfePrecinto2} '\r\n ${storage?.coibfePrecinto3} '\r\n##############################\r\n COORDENADAS GPS:\r\n LAT: ${storage?.coibfePosLatitud} \r\n LON: ${storage?.coibfePosLongitud} \r\n...............................\r\n OBSERVACIONES:\r\n ${storage?.coibfeOBS} \r\n...............................\r\n...............................\r\n
-            // "El presente certificado es \r\n valido por 72 horas a partir de la\r\n fecha de expedicion del mismo,\r\n y debe ser acompanado por el \r\n Certificado Oficial de Transito\r\n...............................\r\n\r\n\r\n\r\n...............................\r\n Firma y Sello del Veterinario \r\n Privado Acreditado\r\n...............................\r\n...............................\r\nFirma del Responsable Precintado\r\n Nombre:........................\r\n C.I.:..........................\r\n Tipo:...........................\r\n`,
-            //   {
-            //     beep: false,
-            //   },
-            // );
-            await Printer.printText('\n');
-            await Printer.printImageBase64(qrProcessed, {
-              imageWidth: 150,
-              imageHeight: 150,
-            });
-          } else {
-            // optional for android
-            // android
-            const Printer = printerList[selectedValue];
-            const encoder = new EscPosEncoder();
-            let _encoder = encoder
-              .initialize()
-              .align('center')
-              .line('BILLING')
-              .qrcode(
-                // 'https://pyfoundation.org/coibfe/' + String(storage?.coibfeId),
-                Env.API_URL +
-                  'wdb/qrcode/coibfecoibfes/' +
-                  String(storage?.coibfeId)
-              )
-              .encode();
-            let base64String = Buffer.from(_encoder).toString('base64');
-            await Printer.printRaw(base64String);
-          }
-          await savePrintCounter();
-        };
-        getDataURL();
-        setLoading(false);
-        // END OF PRINTING
-      } catch (err: any) {
-        console.warn(err);
-        setLoading(false);
-        Alert.alert(err.message || 'ERROR Bluetooth');
-      }
+    setLoading(true);
+    let coibfeFinalidad = storage?.coibfeFinalidad;
+    if (coibfeFinalidad === 'F') {
+      coibfeFinalidad = 'Faena';
     } else {
-      Alert.alert('3 copias Impremidas');
+      coibfeFinalidad = 'Otros';
     }
+
+    let coibfeDestino = storage?.coibfeDestino;
+    if (coibfeDestino === 'UE') {
+      coibfeDestino = 'UNION EUROPEA';
+    }
+
+    let coibfeTransporte = storage?.coibfeTransporte;
+    if (storage?.coibfeTransporte === 'O') {
+      coibfeTransporte = 'OTROS';
+    } else if (storage?.coibfeTransporte === 'F') {
+      coibfeTransporte = 'FLUVIAL';
+    } else if (storage?.coibfeTransporte === 'T') {
+      coibfeTransporte = 'TERRESTRE';
+    }
+
+    var tempData = storage?.coibfePosDate; //2021-02-05T10:11:55
+    var dias = tempData.substring(8, 10);
+    var mess = tempData.substring(5, 7);
+    var anos = tempData.substring(0, 4);
+    var horas = tempData.slice(11, 5);
+    tempData = dias + '/' + mess + '/' + anos + '  ' + tempData;
+    // console.log('date', tempData, 'dias', dias, 'mess', mess, 'anos', anos);
+
+    const BOLD_ON = COMMANDS.TEXT_FORMAT.TXT_BOLD_ON;
+    const BOLD_OFF = COMMANDS.TEXT_FORMAT.TXT_BOLD_OFF;
+    const CENTER = COMMANDS.TEXT_FORMAT.TXT_ALIGN_CT;
+    const OFF_CENTER = COMMANDS.TEXT_FORMAT.TXT_ALIGN_LT;
+    try {
+      const getDataURL = () => {
+        (QrRef as any).toDataURL(callback);
+      };
+      const callback = async (dataURL: string) => {
+        let qrProcessed = dataURL.replace(/(\r\n|\n|\r)/gm, '');
+        // Can print android and ios with the same type or with encoder for android
+        if (Platform.OS === 'android' || Platform.OS === 'ios') {
+          const Printer: typeof BLEPrinter = printerList[selectedValue];
+          await Printer.printImageBase64(base64SenacsaLogo, {
+            imageWidth: 380,
+            imageHeight: 200,
+          });
+
+          var hilton = parseInt(storage?.coibfeAniHilton, 10) || 0;
+          var hiltons = '';
+          if (hilton > 0) {
+            hiltons = `COTA HILTON: \r\n Certifico que los bovinos en ,\r\n cantidad  de ${storage?.coibfeAniHilton} bovinos \r\n cumplen con los\r\n requisitos establecidos por el \r\n SENACSA para la certificacion \r\n de cuota hilton, y han sido \r\n marcados con la letra H.\r\n `;
+          }
+
+          await Printer.printText(
+            `SERVICIO NACIONAL DE CALIDAD Y \n         SALUD ANIMAL \n        S E N A C S A \r\n COIBFE N. ${storage?.coibfeId} \r\n COD. VERIFICADOR:  ${storage?.coibfeCodigoV} \r\n...............................\r\n DESTINO: ${coibfeDestino} \r\n............................... \r\n NOMBRE ESTABLECIMIENTO: \n ${storage?.coibfePropriedadName} \r\n COD.SIGOR ESTABLECIMIENTO: \n ${storage?.coibfePropriedadSigor} \r\n COD.SITRAP ESTABLECIMIENTO: \n ${storage?.coibfePropriedadSitrap} \r\nNOMBRE PROPIETARIO: \n ${storage?.coibfeProductorName} \r\n Cod.SIGOR PROPIETARIO: \r\n ${storage?.coibfeProductor_ID} \r\n DEPARTAMENTO: \n ${storage?.coibfePropriedadDepartamento} \r\n DISTRITO: \n ${storage?.coibfePropriedadDistrito} \r\n COD.SITRAP PRODUCTOR: \n ${storage?.coibfeProductorSitrap} \r\n...............................\r\n El que subscribe Dr.a. \n${storage?.coibfeTecnicoName}\nVeterinario Privado Acreditado\n(VPA) con Acreditacion SENACSA\nN. ${storage?.coibfeTecnico_VPA_ID} certifica:\na)Que los animales estan libres\nde sintomatologia de enfermedad\ninfecto-contagiosas, al momento\nde la inspeccion pre-embarque\nb) Que dichos animales estan\nidentificados con la marca a\nfuego del propietario de los\nmismos. \n c) Que ha identificado ${storage?.coibfeAniTotal} \n bovinos con su numero de \n acreditacion de SENACSA.\n d) Que todos los animales \n certificados estan identi- \n ficados con el correspondi- \n ente D.I. de  acuerdo  al \n reglamento del Sistema de \n Trazabilidad Bovina del \n Paraguay "SITRAP" vigente.\r\n...............................\r\n ANIMALES CERTIFICADOS:\r\n NOVILLOS : ${storage?.coibfeAniNovillos}.\n VACAS    : ${storage?.coibfeAniVacas}\n VAQUILLAS: ${storage?.coibfeAniVaquillas} \n TOROS    : ${storage?.coibfeAniToros}\n OTROS    : ${storage?.coibfeAniOtros} \n TOTAL    : ${storage?.coibfeAniTotal}\n...............................\r\n FINALIDAD: ${coibfeFinalidad} \r\n TRANSPORTE UTILIZADO: \n ${coibfeTransporte} \r\n FRIGORIFICO: \n ${storage?.coibfeFrigorificoName} \r\n Frigorifico Cod. Sigor: \n ${storage?.coibfeFrigorifico_ID} \r\n...............................\r\nSe da cumplimiento a las disposi\r\nciones sanitarias vigentes rela-\r\n cionadas al estado sanitario de\r\n ${storage?.coibfeAniTotal} bovinos embarcados,\r\n y se utilizaron los precintos  \r\n en el vehiculo de transporte \r\n de los animales.\r\n El propietario de los animales \r\n declara que los mismos han \r\n permanecido  al menos tres \r\n meses en el establecimiento\r\n de origen.\r\n\r\n...............................\r\n ${hiltons} \n ...............................\r\n FECHA Y HORA:\r\n ${tempData} \r\n\r\n NUMERO PRECINTOS UTILIZADOS: \r\n ${storage?.coibfePrecinto1} '\r\n ${storage?.coibfePrecinto2} '\r\n ${storage?.coibfePrecinto3} '\r\n##############################\r\n COORDENADAS GPS:\r\n LAT: ${storage?.coibfePosLatitud} \r\n LON: ${storage?.coibfePosLongitud} \r\n...............................\r\n OBSERVACIONES:\r\n ${storage?.coibfeOBS} \r\n...............................\r\n...............................\r\n
+            "El presente certificado es \r\n valido por 72 horas a partir de la\r\n fecha de expedicion del mismo,\r\n y debe ser acompanado por el \r\n Certificado Oficial de Transito\r\n...............................\r\n\r\n\r\n\r\n...............................\r\n Firma y Sello del Veterinario \r\n Privado Acreditado\r\n...............................\r\n...............................\r\nFirma del Responsable Precintado\r\n\n Nombre:........................\r\n\n C.I.:..........................\r\n\n Tipo:...........................\r\n`,
+            { beep: false }
+          );
+
+          // await Printer.printText(
+          //   `...............................\r\n FECHA Y HORA:\r\n ${storage?.coibfePosDateTime} \r\n\r\n NUMERO PRECINTOS UTILIZADOS: \r\n ${storage?.coibfePrecinto1} '\r\n ${storage?.coibfePrecinto2} '\r\n ${storage?.coibfePrecinto3} '\r\n##############################\r\n COORDENADAS GPS:\r\n LAT: ${storage?.coibfePosLatitud} \r\n LON: ${storage?.coibfePosLongitud} \r\n...............................\r\n OBSERVACIONES:\r\n ${storage?.coibfeOBS} \r\n...............................\r\n...............................\r\n
+          // "El presente certificado es \r\n valido por 72 horas a partir de la\r\n fecha de expedicion del mismo,\r\n y debe ser acompanado por el \r\n Certificado Oficial de Transito\r\n...............................\r\n\r\n\r\n\r\n...............................\r\n Firma y Sello del Veterinario \r\n Privado Acreditado\r\n...............................\r\n...............................\r\nFirma del Responsable Precintado\r\n Nombre:........................\r\n C.I.:..........................\r\n Tipo:...........................\r\n`,
+          //   {
+          //     beep: false,
+          //   },
+          // );
+          await Printer.printText('\n');
+          await Printer.printImageBase64(qrProcessed, {
+            imageWidth: 150,
+            imageHeight: 150,
+          });
+        } else {
+          // optional for android
+          // android
+          const Printer = printerList[selectedValue];
+          const encoder = new EscPosEncoder();
+          let _encoder = encoder
+            .initialize()
+            .align('center')
+            .line('BILLING')
+            .qrcode(
+              // 'https://pyfoundation.org/coibfe/' + String(storage?.coibfeId),
+              Env.API_URL +
+                'wdb/qrcode/coibfecoibfes/' +
+                String(storage?.coibfeId)
+            )
+            .encode();
+          let base64String = Buffer.from(_encoder).toString('base64');
+          await Printer.printRaw(base64String);
+        }
+      };
+      getDataURL();
+      setLoading(false);
+      // END OF PRINTING
+    } catch (err: any) {
+      console.warn(err);
+      setLoading(false);
+      Alert.alert(err.message || 'ERROR Bluetooth');
+    }
+
     setLoading(false);
   };
   // ------------------------------------------------------------------------------------------------------

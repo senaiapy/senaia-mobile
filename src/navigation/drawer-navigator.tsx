@@ -47,6 +47,7 @@ import { Agenda } from '@/pages/Core/Agenda/index';
 import { Cadastro } from '@/pages/Core/Cadastro/index';
 import { LoginScreen } from '@/pages/Core/LoginScreen/index';
 import { Printer } from '@/pages/Core/Printer';
+import { PrinterInventario } from '@/pages/Core/PrinterInventario';
 import Privacy_Policy from '@/pages/Core/Privacy_Policy';
 import { Servico } from '@/pages/Core/Servico/index';
 import Terms_Conditions from '@/pages/Core/Terms_Conditions';
@@ -223,6 +224,8 @@ export const CustomDrawerNavigator: FC = () => {
       <Drawer.Screen name="Inventario" component={Inventario} />
 
       <Drawer.Screen name="Printer" component={Printer} />
+      <Drawer.Screen name="PrinterInventario" component={PrinterInventario} />
+
       <Drawer.Screen name="ContactA" component={ContactA} />
       <Drawer.Screen name="ContactB" component={ContactB} />
       <Drawer.Screen name="Details" component={Details} />
