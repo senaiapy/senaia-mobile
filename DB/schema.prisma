@@ -37,6 +37,7 @@ model Databaseversion {
 
   @@map("databaseversions")
 }
+
 // ------------------------------------------------------------------
 // --------------------------ECOMMERCE-------------------------------
 
@@ -1552,8 +1553,8 @@ model User {
 model General {
   id Int     @id @default(1)
 
-  generalId       String @default("1")
-  generalUniqueId String? @default("")
+  generalId       String? @default("1")
+  generalUniqueId String? @default("11")
 
   general_vacuna         String[] @default(dbgenerated())
   general_raza           String[] @default(dbgenerated())
@@ -1583,5 +1584,34 @@ model General {
   @@map("generals")
 }
 
+model Modelo {
+  id        String  @id @default(cuid())
+
+  dadus1              String @default("")
+  dadus2              String @default("")
+  dadus3              String @default("")
+  dadus4              String @default("")
+  dadus5              String @default("")
+  dadus6              String @default("")
+  dadus7              String @default("")
+  dadus8              String @default("")
+  dadus9              String @default("")
+  dadus10             String @default("")
+  dadus11              String @default("")
+  dadus12              String @default("")
+  dadus13              String @default("")
+  dadus14              String @default("")
+  dadus15              String @default("")
+  dadus16              String @default("")
+  dadus17              String @default("")
+  dadus18              String @default("")
+  dadus19              String @default("")
+  dadus20             String @default("")
+
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+
+  @@map("modelos")
+}
 // ------------------------------------------------------------------
 // --------------------------USUARIO---------------------------------
