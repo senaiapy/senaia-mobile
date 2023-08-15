@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { useAuth } from '@/core';
+import { useAuths } from '@/core';
 import { useSoftKeyboardEffect } from '@/core/keyboard';
+import { FocusAwareStatusBar } from '@/ui';
 
 import type { LoginFormProps } from './login-form';
 import { LoginForm } from './login-form';
-import { FocusAwareStatusBar } from '@/ui';
 
 export const Login = () => {
-  const signIn = useAuth.use.signIn();
+  const signIn = useAuths.use.signIn();
   useSoftKeyboardEffect();
 
   const onSubmit: LoginFormProps['onSubmit'] = (data) => {
