@@ -1539,7 +1539,7 @@ export default function formInit() {
   // ##################################################
   // ##################################################
   useEffect(() => {
-    function onBoot() { }
+    function onBoot() {}
     onBoot();
     return () =>
       BackHandler.removeEventListener('hardwareBackPress', () => true);

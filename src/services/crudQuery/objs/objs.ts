@@ -16,9 +16,7 @@ import ApiClient from '../index';
 
 export async function getObjsNoPages<T>(endpoints: string) {
   try {
-    const response = await ApiClient.get<T>(
-      `${Env.API_URL}/${endpoints}`
-    );
+    const response = await ApiClient.get<T>(`${Env.API_URL}/${endpoints}`);
     return response.data;
   } catch (error) {
     console.error('getObjs - Error: ', error);
@@ -31,19 +29,16 @@ export async function getObjs<T>(
   { pageParam, per_page }: any
 ) {
   try {
-    const response = await ApiClient.get<T>(
-      `${Env.API_URL}/${endpoints}`,
-      {
-        params: {
-          ...(pageParam && {
-            page: pageParam,
-          }),
-          ...(per_page && {
-            per_page,
-          }),
-        },
-      }
-    );
+    const response = await ApiClient.get<T>(`${Env.API_URL}/${endpoints}`, {
+      params: {
+        ...(pageParam && {
+          page: pageParam,
+        }),
+        ...(per_page && {
+          per_page,
+        }),
+      },
+    });
     return response.data;
   } catch (error) {
     console.error('getObjs - Error: ', error);

@@ -8,8 +8,7 @@
 
 import { Env } from '@env';
 //const server = 'localhost:3000';
-const server =
-  Env.API_HTTP + Env.API_API + Env.API_WDB;
+const server = Env.API_HTTP + Env.API_API + Env.API_WDB;
 // const server = Env.API_WDB;
 
 type ApiOptions = {

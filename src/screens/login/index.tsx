@@ -16,7 +16,7 @@ export const Login = () => {
     signIn({ access: 'access-token', refresh: 'refresh-token' });
   };
   <>
-  <FocusAwareStatusBar />
-  <LoginForm onSubmit={onSubmit} />
-</>
+    <FocusAwareStatusBar />
+    <LoginForm onSubmit={onSubmit} />
+  </>;
 };

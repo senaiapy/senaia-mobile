@@ -202,9 +202,9 @@ export const Print = (data: any) => {
     const connect = async () => {
       try {
         switch (
-        selectedValue === DevicesEnum.net
-          ? selectedNetPrinter.printerType
-          : selectedPrinter.printerType
+          selectedValue === DevicesEnum.net
+            ? selectedNetPrinter.printerType
+            : selectedPrinter.printerType
         ) {
           case 'ble':
             if (selectedPrinter?.inner_mac_address) {
@@ -781,8 +781,8 @@ export const Print = (data: any) => {
               .qrcode(
                 // 'https://pyfoundation.org/coibfe/' + String(storage?.coibfeId),
                 Env.API_URL +
-                'wdb/qrcode/coibfecoibfes/' +
-                String(storage?.coibfeId)
+                  'wdb/qrcode/coibfecoibfes/' +
+                  String(storage?.coibfeId)
               )
               .encode();
             let base64String = Buffer.from(_encoder).toString('base64');

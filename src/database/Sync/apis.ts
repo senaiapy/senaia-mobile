@@ -13,8 +13,7 @@ import type { AnyFalsy } from 'underscore';
 //const server = 'https://senaiaweb.online/api/v0/senaia/wdb'
 const server = Env.API_HTTP + Env.API_API + Env.API_WDB;
 // /tebusco
-const servers =
-  Env.API_HTTP + Env.API_API + Env.API_WDB;
+const servers = Env.API_HTTP + Env.API_API + Env.API_WDB;
 
 type ApiOptions = {
   method?: 'GET' | 'POST' | 'DELETE' | 'PATCH';
