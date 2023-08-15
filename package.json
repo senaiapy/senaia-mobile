@@ -82,6 +82,7 @@
     "__________": "________EAS_________",
     "my": "eas whoami",
     "eas-install": "npm install -g eas-cli",
+    "eas-create": "npx create-expo-app --template bare-minimum",
     "eas-login": "npx eas login",
     "eas-config-update": "npx eas update:configure",
     "eas-config-build": "npx eas build:configure",

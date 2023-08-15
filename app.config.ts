@@ -17,10 +17,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     resizeMode: 'cover',
     backgroundColor: '#F75469',
   },
+  runtimeVersion: "1",
   updates: {
+    enabled: true,
     fallbackToCacheTimeout: 30000,
     url: 'https://senaia.online/api/manifest',
-    enabled: true,
     codeSigningCertificate: './code-signing/certificate.pem',
     codeSigningMetadata: {
       keyid: 'main',
