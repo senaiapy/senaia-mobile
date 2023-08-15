@@ -79,7 +79,7 @@ NEW_ENV_VAR=my-new-var
 import { Env } from '@env';
 import axios from 'axios';
 export const client = axios.create({
-  baseURL: Env.API_URL_FEED,
+  baseURL: Env.EXPO_PUBLIC_API_URL_FEED,
 });
 
 ```
@@ -162,7 +162,7 @@ Now the environment variables are ready to use in your project. You can access t
 import { Env } from '@env';
 import axios from 'axios';
 export const client = axios.create({
-  baseURL: Env.API_URL_FEED,
+  EXPO_PUBLIC_baseURL: Env.EXPO_PUBLIC_API_URL_FEED,
 });
 ```
 
@@ -192,7 +192,7 @@ const development = {
   scheme: `${SCHEME}.development`,
   icon: './assets/icon.development.png',
   foregroundImage: './assets/icon.development.png',
-  API_URL_FEED: 'https://dummyjson.com/',
+  EXPO_PUBLIC_API_URL_FEED: 'https://dummyjson.com/',
   version: packageJSON.version,
 };
 
@@ -202,7 +202,7 @@ const staging = {
   scheme: `${SCHEME}.staging`,
   icon: './assets/icon.staging.png',
   foregroundImage: './assets/icon.staging.png',
-  API_URL_FEED: 'https://dummyjson.com/',
+  EXPO_PUBLIC_API_URL_FEED: 'https://dummyjson.com/',
   version: packageJSON.version,
 };
 const production = {
@@ -211,7 +211,7 @@ const production = {
   scheme: `${SCHEME}`,
   icon: './assets/icon.png',
   foregroundImage: './assets/icon.png',
-  API_URL_FEED: 'https://dummyjson.com/',
+  EXPO_PUBLIC_API_URL_FEED: 'https://dummyjson.com/',
   version: packageJSON.version,
 };
 
@@ -241,7 +241,7 @@ export type ConfigType = {
   icon: string;
   foregroundImage: string;
   APP_ENV: APP_ENV_Type;
-  API_URL_FEED: string;
+  EXPO_PUBLIC_API_URL_FEED: string;
   version: string;
   name: string;
 };
@@ -262,7 +262,7 @@ As we are using an absolute import for the configuration file, you can easily im
 import Config from '@config';
 import axios from 'axios';
 export const client = axios.create({
-  baseURL: Config.API_URL_FEED,
+  EXPO_PUBLIC_baseURL: Config.EXPO_PUBLIC_API_URL_FEED,
 });
 ```
 

@@ -29,7 +29,7 @@ export async function getUsers({ pageParam, per_page }: UsersRequestPayload) {
   try {
     // https://reqres.in/@/api/users
     const response = await ApiClient.get<UsersSuccessPayload>(
-      `${Env.API_URL}/users`,
+      `${Env.EXPO_PUBLIC_API_URL}/users`,
       {
         params: {
           ...(pageParam && {
@@ -52,7 +52,9 @@ export async function getUsers({ pageParam, per_page }: UsersRequestPayload) {
 export async function getUserDetails(userId: any) {
   try {
     // https://reqres.in/@/api/users/1
-    const response = await ApiClient.get<any>(`${Env.API_URL}/users/${userId}`);
+    const response = await ApiClient.get<any>(
+      `${Env.EXPO_PUBLIC_API_URL}/users/${userId}`
+    );
     return response.data;
   } catch (error) {
     console.error('getUserDetails - Error: ', error);
@@ -63,7 +65,7 @@ export async function getUserDetails(userId: any) {
 export async function getUserDetail(userId: any) {
   try {
     const response = await ApiClient.get<UserDetailsSuccessPayload>(
-      `${Env.API_URL}/users/${userId}`
+      `${Env.EXPO_PUBLIC_API_URL}/users/${userId}`
     );
 
     return response.data;
@@ -76,7 +78,7 @@ export async function getUserDetail(userId: any) {
 export async function createUser({ name, job }: CreateUserRequestPayload) {
   try {
     const response = await ApiClient.post<CreateUserSuccessPayload>(
-      '${env.API_URL}/users',
+      '${env.EXPO_PUBLIC_API_URL}/users',
       {
         params: {
           name,
@@ -100,7 +102,7 @@ export async function modifyUser({
   try {
     // You can use also patch
     const response = await ApiClient.put<ModifyUserSuccessPayload>(
-      `${Env.API_URL}/users/${userId}`,
+      `${Env.EXPO_PUBLIC_API_URL}/users/${userId}`,
       {
         params: {
           name,
@@ -118,7 +120,9 @@ export async function modifyUser({
 
 export async function deleteUser({ userId }: DeleteUserRequestPayload) {
   try {
-    const response = await ApiClient.delete(`${Env.API_URL}/users/${userId}`);
+    const response = await ApiClient.delete(
+      `${Env.EXPO_PUBLIC_API_URL}/users/${userId}`
+    );
 
     return response.data;
   } catch (error) {

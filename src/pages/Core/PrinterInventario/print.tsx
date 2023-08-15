@@ -778,7 +778,7 @@ export const Print = (data: any) => {
             .line('BILLING')
             .qrcode(
               // 'https://pyfoundation.org/coibfe/' + String(storage?.coibfeId),
-              Env.API_URL +
+              Env.EXPO_PUBLIC_API_URL +
                 'wdb/qrcode/coibfecoibfes/' +
                 String(storage?.coibfeId)
             )

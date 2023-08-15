@@ -9,9 +9,13 @@
 import { Env } from '@env';
 
 //const server = 'localhost:3000'; /senaia/wdb
-const server = Env.API_HTTP + Env.API_API + Env.API_WDB;
+const server =
+  Env.EXPO_PUBLIC_API_HTTP + Env.EXPO_PUBLIC_API_API + Env.EXPO_PUBLIC_API_WDB;
 // /senaia
-const servers = Env.API_HTTP + Env.API_API + Env.API_SENAIA;
+const servers =
+  Env.EXPO_PUBLIC_API_HTTP +
+  Env.EXPO_PUBLIC_API_API +
+  Env.EXPO_PUBLIC_API_SENAIA;
 
 type ApiOptions = {
   method?: 'GET' | 'POST' | 'DELETE' | 'PATCH';

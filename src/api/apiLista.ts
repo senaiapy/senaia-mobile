@@ -24,7 +24,7 @@ import axios from 'axios';
 export const key = '5542d7faf4df0ab380d0bde036b34b06';
 
 const apiLista = axios.create({
-  baseURL: Env.baseURL,
+  baseURL: Env.EXPO_PUBLIC_baseURL,
   timeout: 60000,
   /*
   withCredentials: true,

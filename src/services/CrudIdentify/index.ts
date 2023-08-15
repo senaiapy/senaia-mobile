@@ -13,7 +13,7 @@ import axios from 'axios';
 class CrudIdentify {
   async create(object: string, data: any) {
     return axios({
-      url: Env.API_URL + 'wdb/' + object,
+      url: Env.EXPO_PUBLIC_API_URL + 'wdb/' + object,
       method: 'POST',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
@@ -29,7 +29,7 @@ class CrudIdentify {
 
   async find(object: string) {
     return axios({
-      url: Env.API_URL + 'wdb/' + object,
+      url: Env.EXPO_PUBLIC_API_URL + 'wdb/' + object,
       method: 'GET',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       headers: { Accept: 'application/json' },
@@ -44,7 +44,7 @@ class CrudIdentify {
 
   async findOne(object: string, id: any) {
     return axios({
-      url: Env.API_URL + 'wdb/' + object + '/' + id,
+      url: Env.EXPO_PUBLIC_API_URL + 'wdb/' + object + '/' + id,
       method: 'GET',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       headers: { Accept: 'application/json' },
@@ -59,7 +59,14 @@ class CrudIdentify {
 
   async findRegister(object: string, register: string, values: any) {
     return axios({
-      url: Env.API_URL + 'wdb/' + object + '/search/' + register + '/' + values,
+      url:
+        Env.EXPO_PUBLIC_API_URL +
+        'wdb/' +
+        object +
+        '/search/' +
+        register +
+        '/' +
+        values,
       method: 'GET',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       headers: { Accept: 'application/json' },
@@ -74,7 +81,7 @@ class CrudIdentify {
 
   async update(object: string, data: any, id: any) {
     return axios({
-      url: Env.API_URL + 'wdb/' + object + '/' + id,
+      url: Env.EXPO_PUBLIC_API_URL + 'wdb/' + object + '/' + id,
       method: 'PATCH',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
@@ -95,7 +102,14 @@ class CrudIdentify {
     values: any
   ) {
     return axios({
-      url: Env.API_URL + 'wdb/' + object + '/search/' + register + '/' + values,
+      url:
+        Env.EXPO_PUBLIC_API_URL +
+        'wdb/' +
+        object +
+        '/search/' +
+        register +
+        '/' +
+        values,
       method: 'PATCH',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
@@ -111,7 +125,7 @@ class CrudIdentify {
 
   async delete(object: string, id: any) {
     return axios({
-      url: Env.API_URL + 'wdb/' + object + '/' + id,
+      url: Env.EXPO_PUBLIC_API_URL + 'wdb/' + object + '/' + id,
       method: 'DELETE',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       headers: { Accept: 'application/json' },
@@ -126,7 +140,7 @@ class CrudIdentify {
 
   async saveToken(id: string, data: any) {
     return axios({
-      url: Env.API_URL + 'wdb/usuario/one/token/' + id,
+      url: Env.EXPO_PUBLIC_API_URL + 'wdb/usuario/one/token/' + id,
       method: 'PATCH',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
@@ -142,7 +156,7 @@ class CrudIdentify {
 
   async cadastrarCoibfeId(data: any) {
     return axios({
-      url: Env.API_URL + 'wdb/usuario/cadastrarCId',
+      url: Env.EXPO_PUBLIC_API_URL + 'wdb/usuario/cadastrarCId',
       method: 'POST',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
@@ -158,7 +172,7 @@ class CrudIdentify {
 
   async recoverPassword(data: any) {
     return axios({
-      url: Env.API_URL + 'wdb/usuario/recoverpassword',
+      url: Env.EXPO_PUBLIC_API_URL + 'wdb/usuario/recoverpassword',
       method: 'POST',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
@@ -174,7 +188,7 @@ class CrudIdentify {
 
   async login(data: any) {
     return axios({
-      url: Env.API_URL + 'wdb/usuario/login',
+      url: Env.EXPO_PUBLIC_API_URL + 'wdb/usuario/login',
       method: 'POST',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
@@ -191,7 +205,7 @@ class CrudIdentify {
 
   async simple_login(data: any) {
     return axios({
-      url: Env.API_URL + 'wdb/usuario/simple_login',
+      url: Env.EXPO_PUBLIC_API_URL + 'wdb/usuario/simple_login',
       method: 'POST',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
@@ -208,7 +222,7 @@ class CrudIdentify {
 
   async loginComToken(data: any) {
     return axios({
-      url: Env.API_URL + 'wdb/usuario/login-token',
+      url: Env.EXPO_PUBLIC_API_URL + 'wdb/usuario/login-token',
       method: 'POST',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
@@ -229,7 +243,7 @@ class CrudIdentify {
 
   async status(data: string) {
     return axios({
-      url: Env.API_URL + 'wdb/usuario/listar_status/' + data,
+      url: Env.EXPO_PUBLIC_API_URL + 'wdb/usuario/listar_status/' + data,
       method: 'GET',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       headers: { Accept: 'application/json' },

@@ -9,9 +9,9 @@ import { Env } from '@env';
 import axios from 'axios';
 
 const api = axios.create({
-  // baseURL: 'http://192.168.100.159:3333'
-  // baseURL: 'http://localhost:3333'
-  baseURL: String(Env.baseURL),
+  // EXPO_PUBLIC_baseURL: 'http://192.168.100.159:3333'
+  // EXPO_PUBLIC_baseURL: 'http://localhost:3333'
+  baseURL: String(Env.EXPO_PUBLIC_baseURL),
   timeout: 60000,
 });
 

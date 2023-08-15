@@ -14,7 +14,7 @@ class ServicoService {
     let token = await AsyncStorage.getItem('TOKEN');
     console.log(data);
     return axios({
-      url: Env.API_URL + 'servico/cadastrar',
+      url: Env.EXPO_PUBLIC_API_URL + 'servico/cadastrar',
       method: 'POST',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
