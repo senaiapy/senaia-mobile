@@ -27,7 +27,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       keyid: 'main',
       alg: 'rsa-v1_5-sha256',
     },
-    // url: 'https://u.expo.dev/728153d8-c232-4b53-b827-2e5b6baa3000',
+    // url: 'https://u.expo.dev/ffbccbaf-973f-4ceb-ab90-8c3fc1c5a78a', // expo
     /*
     url: 'https://senaia.online/api/manifest',
     enabled: true,
@@ -86,7 +86,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   extra: {
     ...ClientEnv,
     eas: {
-      projectId: '728153d8-c232-4b53-b827-2e5b6baa3000',
+      projectId: 'ffbccbaf-973f-4ceb-ab90-8c3fc1c5a78a',
     },
   },
 });
