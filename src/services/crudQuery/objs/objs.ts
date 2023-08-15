@@ -17,7 +17,7 @@ import ApiClient from '../index';
 export async function getObjsNoPages<T>(endpoints: string) {
   try {
     const response = await ApiClient.get<T>(
-      `${Env.EXPO_PUBLIC_API_URL}/${endpoints}`
+      `${Env.API_URL}/${endpoints}`
     );
     return response.data;
   } catch (error) {
@@ -32,7 +32,7 @@ export async function getObjs<T>(
 ) {
   try {
     const response = await ApiClient.get<T>(
-      `${Env.EXPO_PUBLIC_API_URL}/${endpoints}`,
+      `${Env.API_URL}/${endpoints}`,
       {
         params: {
           ...(pageParam && {
@@ -56,7 +56,7 @@ export async function getObjDetails<T>(
   objId: any
 ): Promise<T | undefined> {
   try {
-    const url = `${Env.EXPO_PUBLIC_API_URL}/${endpoint}/${objId}`;
+    const url = `${Env.API_URL}/${endpoint}/${objId}`;
     const response = await ApiClient.get<T>(url);
     return response.data;
   } catch (error) {
@@ -72,7 +72,7 @@ export async function createObj<T>(
 ) {
   try {
     const response = await ApiClient.post<T>(
-      `${Env.EXPO_PUBLIC_API_URL}/${endpoint}`,
+      `${Env.API_URL}/${endpoint}`,
       data
       /*
       {
@@ -99,7 +99,7 @@ export async function modifyObj<T>(
   try {
     // You can use also patch
     const response = await ApiClient.put<T>(
-      `${Env.EXPO_PUBLIC_API_URL}/${endpoint}/${objId}`,
+      `${Env.API_URL}/${endpoint}/${objId}`,
       data
       /*
       {
@@ -120,7 +120,7 @@ export async function modifyObj<T>(
 export async function deleteObj<T>(endpoint: string, objId: any) {
   try {
     const response = await ApiClient.delete<T>(
-      `${Env.EXPO_PUBLIC_API_URL}/${endpoint}/${objId}`
+      `${Env.API_URL}/${endpoint}/${objId}`
     );
     return response.data;
   } catch (error) {

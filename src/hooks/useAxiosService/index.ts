@@ -5,7 +5,7 @@ import type { Tecnico } from './type';
 
 const apiClient = axios.create({
   baseURL:
-    String(Env.EXPO_PUBLIC_baseURL) + String(Env.EXPO_PUBLIC_API_URL_FEED), //'http://localhost:3333/api/v0/senaia',
+    String(Env.baseURL) + String(Env.API_URL_FEED), //'http://localhost:3333/api/v0/senaia',
   headers: {
     'Content-type': 'application/json',
   },

@@ -60,7 +60,7 @@ const Config = getConfig(appEnv) as ConfigType;
 import { Env } from '@env';
 
 const AES256 = require('acypher');
-const key = Env.EXPO_PUBLIC_AESKEY;
+const key = Env.AESKEY;
 import NetworkUtils from '@/utils/Networkutils';
 import protek from '@/utils/Protek';
 

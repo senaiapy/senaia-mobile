@@ -10,7 +10,7 @@ import { Env } from '@env';
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: String(Env.EXPO_PUBLIC_baseURL) + String(Env.EXPO_PUBLIC_API_WDB), //'http://localhost:3333/api/v0/senaia',
+  baseURL: String(Env.baseURL) + String(Env.API_WDB), //'http://localhost:3333/api/v0/senaia',
   headers: {
     'Content-type': 'application/json',
   },

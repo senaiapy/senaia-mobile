@@ -15,7 +15,7 @@ import { Env } from '@env';
 import axios from 'axios';
 
 const ApiClient = axios.create({
-  baseURL: Env.EXPO_PUBLIC_API_URL,
+  baseURL: Env.API_URL,
   headers: {
     'Content-type': 'application/json',
   },

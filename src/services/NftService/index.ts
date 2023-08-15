@@ -13,7 +13,7 @@ class NftService {
   async cadastrar(data: any) {
     // console.log(data);
     return axios({
-      url: Env.EXPO_PUBLIC_API_URL + 'nft/cadastrar',
+      url: Env.API_URL + 'nft/cadastrar',
       method: 'POST',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
@@ -29,7 +29,7 @@ class NftService {
 
   async login(data: any) {
     return axios({
-      url: Env.EXPO_PUBLIC_API_URL + 'nft/login',
+      url: Env.API_URL + 'nft/login',
       method: 'POST',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
@@ -46,7 +46,7 @@ class NftService {
 
   async loginComToken(data: any) {
     return axios({
-      url: Env.EXPO_PUBLIC_API_URL + 'nft/login-token',
+      url: Env.API_URL + 'nft/login-token',
       method: 'POST',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,

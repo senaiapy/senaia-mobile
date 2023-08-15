@@ -57,7 +57,7 @@ const updateConfig = async (projectName) => {
     encoding: 'utf-8',
   });
   const replaced = contents
-    .replace(/SenaiaApp/gi, projectName)
+    .replace(/Senaia/gi, projectName)
     .replace(/com.pyfoundation.senaia/gi, `com.${projectName.toLowerCase()}`);
 
   fs.writeFileSync(configPath, replaced, { spaces: 2 });

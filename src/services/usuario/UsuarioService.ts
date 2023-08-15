@@ -7,7 +7,7 @@ import axios from 'axios';
 class UsuarioService {
   async cadastrar(data: any) {
     return axios({
-      url: Env.EXPO_PUBLIC_API_URL + 'wdb/usuario/cadastrar',
+      url: Env.API_URL + 'wdb/usuario/cadastrar',
       method: 'POST',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
@@ -23,7 +23,7 @@ class UsuarioService {
 
   async activar(id: string, data: any) {
     return axios({
-      url: Env.EXPO_PUBLIC_API_URL + 'wdb/usuario/one/status/' + id,
+      url: Env.API_URL + 'wdb/usuario/one/status/' + id,
       method: 'PATCH',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
@@ -39,7 +39,7 @@ class UsuarioService {
 
   async saveToken(id: string, data: any) {
     return axios({
-      url: Env.EXPO_PUBLIC_API_URL + 'wdb/usuario/one/token/' + id,
+      url: Env.API_URL + 'wdb/usuario/one/token/' + id,
       method: 'PATCH',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
@@ -55,7 +55,7 @@ class UsuarioService {
 
   async cadastrarCoibfeId(data: any) {
     return axios({
-      url: Env.EXPO_PUBLIC_API_URL + 'wdb/usuario/cadastrarCId',
+      url: Env.API_URL + 'wdb/usuario/cadastrarCId',
       method: 'POST',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
@@ -71,7 +71,7 @@ class UsuarioService {
 
   async recoverPassword(data: any) {
     return axios({
-      url: Env.EXPO_PUBLIC_API_URL + 'wdb/usuario/recoverpassword',
+      url: Env.API_URL + 'wdb/usuario/recoverpassword',
       method: 'POST',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
@@ -87,7 +87,7 @@ class UsuarioService {
 
   async login(data: any) {
     return axios({
-      url: Env.EXPO_PUBLIC_API_URL + 'wdb/usuario/login',
+      url: Env.API_URL + 'wdb/usuario/login',
       method: 'POST',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
@@ -104,7 +104,7 @@ class UsuarioService {
 
   async simple_login(data: any) {
     return axios({
-      url: Env.EXPO_PUBLIC_API_URL + 'wdb/usuario/simple_login',
+      url: Env.API_URL + 'wdb/usuario/simple_login',
       method: 'POST',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
@@ -121,7 +121,7 @@ class UsuarioService {
 
   async loginComToken(data: any) {
     return axios({
-      url: Env.EXPO_PUBLIC_API_URL + 'wdb/usuario/login-token',
+      url: Env.API_URL + 'wdb/usuario/login-token',
       method: 'POST',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,
@@ -142,7 +142,7 @@ class UsuarioService {
 
   async status(data: string) {
     return axios({
-      url: Env.EXPO_PUBLIC_API_URL + 'wdb/usuario/listar_status/' + data,
+      url: Env.API_URL + 'wdb/usuario/listar_status/' + data,
       method: 'GET',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       headers: { Accept: 'application/json' },

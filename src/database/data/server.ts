@@ -17,9 +17,9 @@
  */
 import { Env } from '@env';
 
-//const EXPO_PUBLIC_SYNC_API_URL = 'http://24.199.112.85:3333/sync';
+//const SYNC_API_URL = 'http://24.199.112.85:3333/sync';
 export async function server() {
-  return await fetch(Env.EXPO_PUBLIC_SYNC_API_URL, {
+  return await fetch(Env.SYNC_API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
   });

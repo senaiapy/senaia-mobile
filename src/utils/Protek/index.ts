@@ -10,7 +10,7 @@ const appEnv = process.env.APP_ENV ?? 'development';
 import { Env } from '@env';
 
 const AES256 = require('acypher');
-const key = Env.EXPO_PUBLIC_AESKEY;
+const key = Env.AESKEY;
 import DeviceInfo from 'react-native-device-info';
 var aesjs = require('acypher');
 //import Functions from '@/utils/Functions';
