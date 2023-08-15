@@ -73,7 +73,7 @@ export const Home = () => {
             {translate('home.Home')}
           </Text>
           <Text variant="body" textAlign="center">
-            {translate('home.EnvVar')} : {API_URL}
+            {translate('home.EnvVar')} : {}
           </Text>
           {isLoading && <ActivityIndicator color="#000" />}
 

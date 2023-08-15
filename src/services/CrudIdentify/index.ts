@@ -59,7 +59,14 @@ class CrudIdentify {
 
   async findRegister(object: string, register: string, values: any) {
     return axios({
-      url: Env.API_URL + 'wdb/' + object + '/search/' + register + '/' + values,
+      url:
+        Env.API_URL +
+        'wdb/' +
+        object +
+        '/search/' +
+        register +
+        '/' +
+        values,
       method: 'GET',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       headers: { Accept: 'application/json' },
@@ -95,7 +102,14 @@ class CrudIdentify {
     values: any
   ) {
     return axios({
-      url: Env.API_URL + 'wdb/' + object + '/search/' + register + '/' + values,
+      url:
+        Env.API_URL +
+        'wdb/' +
+        object +
+        '/search/' +
+        register +
+        '/' +
+        values,
       method: 'PATCH',
       timeout: parseInt(Env.TIMEOUT_REQUEST || '6000', 10),
       data: data,

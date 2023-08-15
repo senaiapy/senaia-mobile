@@ -57,12 +57,10 @@ import type { ConfigType } from '@config';
 const appEnv = process.env.APP_ENV ?? 'development';
 import { getConfig } from '../../../config/config.js';
 const Config = getConfig(appEnv) as ConfigType;
-
-const AES256 = require('acypher');
-const key = Config.AESKEY;
-
 import { Env } from '@env';
 
+const AES256 = require('acypher');
+const key = Env.AESKEY;
 import NetworkUtils from '@/utils/Networkutils';
 import protek from '@/utils/Protek';
 
@@ -1541,7 +1539,7 @@ export default function formInit() {
   // ##################################################
   // ##################################################
   useEffect(() => {
-    function onBoot() {}
+    function onBoot() { }
     onBoot();
     return () =>
       BackHandler.removeEventListener('hardwareBackPress', () => true);

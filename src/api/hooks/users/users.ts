@@ -52,7 +52,9 @@ export async function getUsers({ pageParam, per_page }: UsersRequestPayload) {
 export async function getUserDetails(userId: any) {
   try {
     // https://reqres.in/@/api/users/1
-    const response = await ApiClient.get<any>(`${Env.API_URL}/users/${userId}`);
+    const response = await ApiClient.get<any>(
+      `${Env.API_URL}/users/${userId}`
+    );
     return response.data;
   } catch (error) {
     console.error('getUserDetails - Error: ', error);
@@ -118,7 +120,9 @@ export async function modifyUser({
 
 export async function deleteUser({ userId }: DeleteUserRequestPayload) {
   try {
-    const response = await ApiClient.delete(`${Env.API_URL}/users/${userId}`);
+    const response = await ApiClient.delete(
+      `${Env.API_URL}/users/${userId}`
+    );
 
     return response.data;
   } catch (error) {

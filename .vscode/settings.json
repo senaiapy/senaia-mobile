@@ -804,7 +804,9 @@
     "zipcode",
     "zustand"
   ],
-  "i18n-ally.localesPaths": ["src/translations/"],
+  "i18n-ally.localesPaths": [
+    "src/translations/"
+  ],
   "i18n-ally.keystyle": "nested",
   "i18n-ally.disabled": false, // make sure to disable i18n-ally in your global setting and only enable it for such projects
   "workbench.colorCustomizations": {

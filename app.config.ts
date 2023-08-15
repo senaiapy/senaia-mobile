@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import type { ConfigContext, ExpoConfig } from '@expo/config';
 
 import { ClientEnv, Env } from './env';
@@ -6,7 +7,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: Env.NAME,
   description: `${Env.NAME} Mobile App`,
-  slug: 'senaiaapp',
+  slug: 'senaia',
   version: Env.VERSION.toString(),
   orientation: 'portrait',
   icon: './assets/icon.png',
@@ -17,7 +18,24 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     backgroundColor: '#F75469',
   },
   updates: {
-    fallbackToCacheTimeout: 0,
+    fallbackToCacheTimeout: 30000,
+    url: 'https://senaia.online/api/manifest',
+    enabled: true,
+    codeSigningCertificate: './code-signing/certificate.pem',
+    codeSigningMetadata: {
+      keyid: 'main',
+      alg: 'rsa-v1_5-sha256',
+    },
+    // url: 'https://u.expo.dev/728153d8-c232-4b53-b827-2e5b6baa3000',
+    /*
+    url: 'https://senaia.online/api/manifest',
+    enabled: true,
+    codeSigningCertificate: './code-signing/certificate.pem',
+    codeSigningMetadata: {
+      keyid: 'main',
+      alg: 'rsa-v1_5-sha256',
+    },
+    */
   },
   assetBundlePatterns: ['**/*'],
   ios: {
